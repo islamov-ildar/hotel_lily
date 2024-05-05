@@ -6,3 +6,19 @@
     font-family: "Cormorant";
     src: url("./fonts/CormorantGaramond-Medium.ttf");
 }
+@font-face {
+    font-family: "Helvetica_Condensed";
+    src: url("./fonts/Helvetica-Condensed.ttf");
+}
+@font-face {
+    font-family: "Helvetica_Regular";
+    src: url("./fonts/Helvetica-Regular.otf");
+}
+@font-face {
+    font-family: "Helvetica_Light";
+    src: url("./fonts/Helvetica-Light.otf");
+}
+@font-face {
+    font-family: "Helvetica_Light2";
+    src: url("./fonts/Helvetica-Light2.ttf");
+}

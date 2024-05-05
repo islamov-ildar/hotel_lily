@@ -3,14 +3,16 @@ import IHeader from "@/components/IHeader.vue";
 import IButton from "@/components/IButton.vue";
 </script>
 <template>
-  <div class="wrapper flex flex-col justify-around">
+  <div class="wrapper">
     <IHeader />
-    <div class="font-cormorant text-[90px] leading-[100px] text-[#FFFFFF] mt-[50px] ml-[8%] mb-[120px]">
-      ОТЕЛЬ,<br>
-      В КОТОРОМ ВАС<br>
-      ВСЕГДА ЖДУТ!
+    <div class="w-[70%] h-[295px] title-background mt-[100px]">
+      <div class="font-cormorant  text-[75px] leading-[92px] text-[#FFFFFF] pl-[130px]">
+        ОТЕЛЬ,<br>
+        В КОТОРОМ ВАС<br>
+        ВСЕГДА ЖДУТ!
+      </div>
     </div>
-    <div class="text-right mr-[150px]">
+    <div class="text-right mr-[150px] mt-[125px] mb-[170px]">
       <IButton label="ЗАБРОНИРОВАТЬ"/>
     </div>
   </div>
@@ -19,9 +21,14 @@ import IButton from "@/components/IButton.vue";
 <style scoped>
 .wrapper {
   width: 100%;
-  height: 100vh;
   object-fit: cover;
   background: url("@/assets/images/top-section-cover.png") no-repeat;
   background-size: cover;
+  height: 100vh;
 }
+.title-background {
+  background: rgba(1, 1, 1, 0.99);
+  background: radial-gradient(at center, rgba(1, 1, 1, 0.7), rgba(1, 1, 1, 0.6), rgba(1, 1, 1, 0), rgba(0, 0, 0, 0));
+}
+
 </style>

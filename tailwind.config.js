@@ -8,6 +8,10 @@ export default {
     extend: {},
     fontFamily: {
       cormorant: ["Cormorant", "sans-serif"],
+      helveticaCondensed: ["Helvetica_Condensed", "sans-serif"],
+      helvetica: ["Helvetica_Regular", "sans-serif"],
+      helveticaLight: ["Helvetica-Light", "sans-serif"],
+      helveticaLight2: ["Helvetica-Light2", "sans-serif"],
     },
   },
   plugins: [],

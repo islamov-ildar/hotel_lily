@@ -2,23 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-    font-family: "Cormorant";
-    src: url("./fonts/CormorantGaramond-Medium.ttf");
-}
-@font-face {
-    font-family: "Helvetica_Condensed";
-    src: url("./fonts/Helvetica-Condensed.ttf");
-}
-@font-face {
-    font-family: "Helvetica_Regular";
-    src: url("./fonts/Helvetica-Regular.otf");
-}
-@font-face {
-    font-family: "Helvetica_Light";
-    src: url("./fonts/Helvetica-Light.otf");
-}
-@font-face {
-    font-family: "Helvetica_Light2";
-    src: url("./fonts/Helvetica-Light2.ttf");
+@layer base {
+    @font-face {
+        font-family: "Cormorant";
+        src: url("./fonts/CormorantGaramond-Medium.ttf");
+    }
+    @font-face {
+        font-family: Helvetica_Regular;
+        src: url("./fonts/helvetica_regular.otf");
+    }
+    @font-face {
+        font-family: Helvetica_Light;
+        src: url("./fonts/helvetica_light.otf");
+    }
+    @font-face {
+        font-family: "Roboto";
+        src: url("./fonts/roboto/roboto-thin.ttf") format("truetype");
+    }
+    @font-face {
+        font-family: Helvetica_Light_Normal;
+        src: url("./fonts/helvetica-light-normal.ttf");
+    }
+    @font-face {
+        font-family: HelveticaThin;
+        src: url("./fonts/HelveticaThin.ttf");
+    }
+    @font-face {
+        font-family: HelveticaUltraLight;
+        src: url("./fonts/HelveticaUltraLight.ttf");
+    }
 }

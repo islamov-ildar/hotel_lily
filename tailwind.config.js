@@ -7,11 +7,13 @@ export default {
   theme: {
     extend: {},
     fontFamily: {
+      roboto: ["Roboto", "sans-serif"],
       cormorant: ["Cormorant", "sans-serif"],
-      helveticaCondensed: ["Helvetica_Condensed", "sans-serif"],
       helvetica: ["Helvetica_Regular", "sans-serif"],
-      helveticaLight: ["Helvetica-Light", "sans-serif"],
-      helveticaLight2: ["Helvetica-Light2", "sans-serif"],
+      helveticaLight: ["Helvetica_Light", "sans-serif"],
+      helveticaLightNormal: ["Helvetica_Light_Normal", "sans-serif"],
+      helveticaThin: ["HelveticaThin", "sans-serif"],
+      helveticaUltraLight: ["HelveticaUltraLight", "sans-serif"],
     },
   },
   plugins: [],

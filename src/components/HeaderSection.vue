@@ -5,10 +5,10 @@
 <template>
 <div class="flex flex-col items-center">
   <div class="vertical-stick"></div>
-  <div class="mb-[40px] text-[70px] text-[#FBF6ED] font-cormorant">
+  <div class="mb-[40px] text-[70px] text-[#FBF6ED] font-cormorant leading-[37px]">
     <slot name="title"></slot>
   </div>
-  <div class="uppercase tracking-[4px] text-[20px] text-[#F2C452] font-helveticaCondensed">
+  <div class="font-helveticaLight uppercase tracking-[2.9px] text-[20px] text-[#F2C452]">
     <slot name="description"></slot>
   </div>
 </div>

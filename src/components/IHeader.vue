@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div class="header-grid pt-[20px] text-[12px] h-[170px]">
+  <div class="font-helveticaLight header-grid pt-[26px] text-[17px] h-[170px]">
     <div class="">
       <div class="header-container pb-[30px] pt-[10px]">
         <div class="ml-[20%] flex items-center gap-[10px]">
@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="mx-auto">
-      <img src="@/assets/images/logo.svg" width="120px" alt="logo">
+      <img src="@/assets/images/logo.svg" width="145px" alt="logo">
     </div>
     <div class="">
       <div class="header-container pb-[30px] pt-[10px]">

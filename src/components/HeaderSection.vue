@@ -1,14 +1,21 @@
-<script setup lang="ts">
-
+<script lang="ts">
+export default {
+  props: {
+    showVerticalStick: {
+      type: Boolean,
+      default: true,
+    }
+  }
+}
 </script>
 
 <template>
 <div class="flex flex-col items-center">
-  <div class="vertical-stick"></div>
-  <div class="mb-[40px] text-[70px] text-[#FBF6ED] font-cormorant leading-[37px]">
+  <div v-if="showVerticalStick" class="vertical-stick"></div>
+  <div class="mb-[40px] text-[70px] font-cormorant leading-[37px]">
     <slot name="title"></slot>
   </div>
-  <div class="font-helveticaLight uppercase tracking-[2.9px] text-[20px] text-[#F2C452]">
+  <div class="font-ralewayRegular uppercase tracking-[2.9px] text-[20px] text-[#F2C452]">
     <slot name="description"></slot>
   </div>
 </div>

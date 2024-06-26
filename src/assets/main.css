@@ -31,4 +31,20 @@
         font-family: HelveticaUltraLight;
         src: url("./fonts/HelveticaUltraLight.ttf");
     }
+    @font-face {
+        font-family: RalewayRegular;
+        src: url("./fonts/raleway-regular.ttf");
+    }
+    @font-face {
+        font-family: RalewayRegular;
+        src: url("./fonts/raleway-regular.ttf");
+    }
+    @font-face {
+        font-family: MontserratRegular;
+        src: url("./fonts/montserrat-regular.ttf");
+    }
+    @font-face {
+        font-family: AliceRegular;
+        src: url("./fonts/Alice-Regular.ttf");
+    }
 }

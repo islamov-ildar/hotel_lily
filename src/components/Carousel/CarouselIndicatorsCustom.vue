@@ -1,6 +1,6 @@
 <template>
   <div class="carousel-indicators font-aliceRegular text-[40px]"
-  :class="typeVertical ? 'mr-[-145px]' : 'mr-[-93px]'">
+  :class="[typeVertical ? 'mr-[-145px]' : 'mr-[-93px]', onRight ? 'mr-[-105px]': '']">
     <div class="text-[#F2C452]">
       {{addZeroBeforeOneNumber(currentIndex + 1)}}
     </div>
@@ -16,10 +16,9 @@ import {addZeroBeforeOneNumber} from "../../common/utils/addZeroBeforeOneNumber"
 
 export default {
   emits: ["switch"],
-  props: ["total", "currentIndex", "typeVertical"],
+  props: ["total", "currentIndex", "typeVertical", "onRight"],
 
   setup(props){
-
     const nextIndex = computed(() => {
       if(props.currentIndex + 1 === props.total) {
         return 1

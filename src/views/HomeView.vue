@@ -12,9 +12,9 @@ export default {
   setup() {
     const showFullscreenCarousel = ref(false);
     const slidesForFullscreenCarousel = ref([]);
-    // let slidesForFullscreenCarousel: any = [];
-
-    const openFullScreenCarousel = (slides: any) => {
+    const targetImgIdx = ref();
+    const openFullScreenCarousel = (slides: any, imgIdx: number) => {
+      targetImgIdx.value = imgIdx;
       showFullscreenCarousel.value = true;
       slidesForFullscreenCarousel.value = slides;
     }
@@ -23,6 +23,7 @@ export default {
       showFullscreenCarousel,
       openFullScreenCarousel,
       slidesForFullscreenCarousel,
+      targetImgIdx
     }
   }
 }
@@ -32,7 +33,7 @@ export default {
   <SectionTop />
   <SectionAbout @openFullScreenViewHandler="openFullScreenCarousel" />
   <SectionServices />
-  <SectionRooms />
+  <SectionRooms @openFullScreenViewHandler="openFullScreenCarousel" />
   <SectionTest />
-  <FullScreenCarousel v-if="showFullscreenCarousel" :slides="slidesForFullscreenCarousel" @close="showFullscreenCarousel = false"/>
+  <FullScreenCarousel :imgIdx="targetImgIdx" v-if="showFullscreenCarousel" :slides="slidesForFullscreenCarousel" @close="showFullscreenCarousel = false"/>
 </template>

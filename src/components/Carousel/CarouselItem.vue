@@ -1,34 +1,64 @@
 <template>
   <transition :name="transitionEffect">
     <div
+      @click="$emit('clickOnImg', index)"
+      v-if="slide.type === 'img'"
       class="carousel-item"
+      :class="{topCircle: typeVertical}"
       v-show="currentSlide === index"
       @mouseenter="$emit('mouseenter')"
       @mouseout="$emit('mouseout')"
+      :style="customStyle(slide.src)"
     >
-      <img v-if="slide.type === 'img'" :src="slide.src" alt="alt" :class="typeVertical ? 'topCircle' : ''"/>
-      <div v-else>
-        <video controls :src="slide.src" width="690" muted>
-          Простите, но ваш браузер не поддерживает встроенные видео.
-        </video>
+      <div class="indicatorImg" :class="{topCircle: typeVertical}">
+        <img src="@/assets/images/Zoom.svg" alt="Zoom" class="">
       </div>
+    </div>
+    <div v-else class="carousel-item" v-show="currentSlide === index">
+      <video controls :src="slide.src" width="690" muted>
+        Простите, но ваш браузер не поддерживает встроенные видео.
+      </video>
     </div>
   </transition>
 </template>
 
 <script>
+import {computed} from "vue";
+
 export default {
-  emits: ["mouseenter", "mouseout"],
+  emits: ["mouseenter", "mouseout", "clickOnImg"],
   props: ["slide", "currentSlide", "index", "direction", "typeVertical"],
-  computed: {
-    transitionEffect() {
-      return this.direction === "right" ? "slide-out" : "slide-in";
-    },
+
+  setup(props) {
+    const transitionEffect = computed(() => props.direction === "right" ? "slide-out" : "slide-in");
+
+    const customStyle = (url) => {
+      return {
+        'background-image': `url(${url})`,
+        'background-repeat': 'no-repeat',
+        'background-size': 'cover',
+        'background-position': 'center',
+      };
+    };
+
+    return {transitionEffect, customStyle}
   },
 };
 </script>
 
 <style scoped>
+.indicatorImg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(4, 4, 4, 0.55);
+}
+.carousel-item:hover .indicatorImg {
+  visibility: visible;
+}
 .carousel-item {
   position: absolute;
   top: 0;

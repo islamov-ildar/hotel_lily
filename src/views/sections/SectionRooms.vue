@@ -2,27 +2,37 @@
 import HeaderSection from '@/components/HeaderSection.vue';
 import ICarouselRoom from "@/components/ICarouselRoom.vue";
 import InfoTable from "@/components/InfoTable.vue";
-import {semiLuxurySeaView, standard} from "@/common/mockData/prices";
-import {standartRoomDescription} from "@/common/mockData/roomsDescription";
+import {semiLuxurySeaView, standard, semiLuxuryFamily} from "@/common/mockData/prices";
+import {semiluxRoomDescription, standartRoomDescription, familySemiluxRoomDescription} from "@/common/mockData/roomsDescription";
 import {slidesStandardRoom} from "@/common/mockData/roomStandardCarouselSource";
 import Carousel from '@/components/Carousel/Carousel.vue';
+import {slidesSemiLuxRoom} from "@/common/mockData/roomSemiLuxCarouselSource";
+import AdditionalConditions from "@/components/AdditionalConditions.vue";
 
 export default {
-  components: {ICarouselRoom, HeaderSection, InfoTable, Carousel},
+  methods: {
+    semiluxRoomDescription() {
+      return semiluxRoomDescription
+    }
+  },
+  components: {AdditionalConditions, ICarouselRoom, HeaderSection, InfoTable, Carousel},
   emits: ['openFullScreenViewHandler'],
 
   setup(_, { emit }) {
-    const openFullScreenViewAscent = (slides) => {
-      emit('openFullScreenViewHandler', slides);
+    const openFullScreenViewAscent = (slides, imgIdx) => {
+      emit('openFullScreenViewHandler', slides, imgIdx);
     }
 
-    console.log('slidesStandardRoom', slidesStandardRoom)
     return {
       standard,
+      semiLuxuryFamily,
       semiLuxurySeaView,
       standartRoomDescription,
       slidesStandardRoom,
-      openFullScreenViewAscent
+      slidesSemiLuxRoom,
+      slidesSemiLuxRoom,
+      openFullScreenViewAscent,
+      familySemiluxRoomDescription,
     }
   }
 
@@ -41,21 +51,29 @@ export default {
       ваш дом, даже вдали от дома
     </template>
   </HeaderSection>
+  <AdditionalConditions />
   <div class="flex gap-[110px] text-[20px] z-10 relative mb-[200px]">
     <div class="w-[45%]">
-<!--      <ICarouselRoom />-->
-      <Carousel :carousel-idx="1" type-vertical :slides="slidesStandardRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></Carousel>
+      <Carousel :carousel-idx="1" :type-vertical="true" :slides="slidesStandardRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></Carousel>
     </div>
     <div class="ml-[120px] w-[55%]">
       <InfoTable :price="standard" :roomDescription="standartRoomDescription" />
     </div>
   </div>
-  <div class="flex gap-[10px] text-[20px] z-10 relative">
-    <div class="mr-[120px] w-[55%]">
-      <InfoTable :price="semiLuxurySeaView" :roomDescription="standartRoomDescription"/>
+  <div class="flex ml-[85px] gap-[100px] text-[20px] z-10 relative mb-[200px]">
+    <div class="w-[55%]">
+      <InfoTable :price="semiLuxurySeaView" :roomDescription="semiluxRoomDescription()"/>
     </div>
     <div class="w-[45%]">
-      <ICarouselRoom />
+      <Carousel :carousel-idx="1" type-vertical onRight :slides="slidesSemiLuxRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></Carousel>
+    </div>
+  </div>
+  <div class="flex gap-[110px] text-[20px] z-10 relative mb-[200px]">
+    <div class="w-[45%]">
+      <Carousel :carousel-idx="1" :type-vertical="true" :slides="slidesSemiLuxRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></Carousel>
+    </div>
+    <div class="ml-[120px] w-[55%]">
+      <InfoTable :price="semiLuxuryFamily" :roomDescription="familySemiluxRoomDescription" />
     </div>
   </div>
 </div>

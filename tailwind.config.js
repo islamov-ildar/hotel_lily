@@ -16,6 +16,9 @@ export default {
       helveticaUltraLight: ["HelveticaUltraLight", "sans-serif"],
       ralewayRegular: ["RalewayRegular", "sans-serif"],
       montserratRegular: ["MontserratRegular", "sans-serif"],
+      montserratMedium: ["MontserratMedium", "sans-serif"],
+      montserratSemiBold: ["MontserratSemibold", "sans-serif"],
+      montserratBold: ["MontserratBold", "sans-serif"],
       aliceRegular: ["AliceRegular", "sans-serif"],
     },
     colors: {

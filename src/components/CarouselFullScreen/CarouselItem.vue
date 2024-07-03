@@ -1,18 +1,19 @@
 <template>
   <transition :name="transitionEffect">
-    <div
-      class="carousel-item"
-      v-show="currentSlide === index"
-      @mouseenter="$emit('mouseenter')"
-      @mouseout="$emit('mouseout')"
-    >
-      <img v-if="slide.type === 'img'" :src="slide.src" alt="alt"/>
-      <div v-else>
-        <video controls :src="slide.src" width="1200">
-          Простите, но ваш браузер не поддерживает встроенные видео.
-        </video>
+    <div v-show="currentSlide === index" class="carousel-item flex items-center justify-center">
+      <div
+          @mouseenter="$emit('mouseenter')"
+          @mouseout="$emit('mouseout')"
+      >
+        <img v-if="slide.type === 'img'" :src="slide.src" alt="alt"/>
+        <div v-else>
+          <video controls :src="slide.src" width="1200">
+            Простите, но ваш браузер не поддерживает встроенные видео.
+          </video>
+        </div>
       </div>
     </div>
+
   </transition>
 </template>
 

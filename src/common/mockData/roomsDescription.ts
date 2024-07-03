@@ -3,15 +3,7 @@ export interface IRoomDescription {
     area: number;
     sleep_place: number;
     additional_sleep_place: number;
-    additional_sleep_place_price: {
-        from: number;
-        to: number;
-    };
-    chambersCount: number;
-    floor: {
-        firstFloor: boolean;
-        secondFloor: boolean;
-    },
+    onlyOnSecondFloor: boolean,
     furniture: string;
     amenities: string;
 }
@@ -20,15 +12,27 @@ export const standartRoomDescription: IRoomDescription = {
     area: 23,
     sleep_place: 2,
     additional_sleep_place: 2,
-    additional_sleep_place_price: {
-        from: 1200,
-        to: 1500,
-    },
-    chambersCount: 1,
-    floor: {
-        firstFloor: true,
-        secondFloor: true,
-    },
+    onlyOnSecondFloor: false,
     furniture: 'двуспальная кровать, кресло-кровать, стол, стулья, шкаф, вешалка, зеркало.',
     amenities: 'сплит-система, холодильник, спутниковое ТВ, телевизор, Wi-Fi интернет, эл. чайник, посуда, фен, терраса.',
+};
+
+export const semiluxRoomDescription: IRoomDescription = {
+    title: 'Полулюкс с видом на море',
+    area: 27,
+    sleep_place: 2,
+    additional_sleep_place: 2,
+    onlyOnSecondFloor: true,
+    furniture: 'двуспальная кровать, кресло-кровать, стол, стулья, шкаф, вешалка, зеркало.',
+    amenities: 'сплит-система, холодильник, спутниковое ТВ, телевизор, Wi-Fi интернет, эл. чайник, посуда, фен, терраса.',
+};
+
+export const familySemiluxRoomDescription: IRoomDescription = {
+    title: 'Семейный полулюкс',
+    area: 35,
+    sleep_place: 3,
+    additional_sleep_place: 4,
+    onlyOnSecondFloor: true,
+    furniture: 'двуспальная кровать, диван-кровать, стол, стулья, шкаф, вешалка, зеркало, раскладная кровать.',
+    amenities: 'сплит-система, холодильник, цифровое ТВ, телевизор, Wi-Fi интернет, эл. чайник, посуда, фен, терраса, вид на улицу.',
 };

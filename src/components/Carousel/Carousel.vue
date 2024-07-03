@@ -1,8 +1,11 @@
 <template>
-  <div @click="clickInCarousel" class="carousel">
+  <div class="carousel max-w-[653px]"
+  :class="typeVertical ? 'max-w-[653px]' : 'max-w-[814px]'">
     <div class="carousel-inner" :class="typeVertical ? 'w-[507px] h-[692px]' : 'w-[690px] h-[387px]'">
       <div v-show="showBlackout" class="carouselBlackout"
-      :class="typeVertical ? 'topCircle' : ''"></div>
+      :class="typeVertical ? 'topCircle' : ''">
+        <img v-show="showBlackout" src="@/assets/images/Zoom.svg" alt="Zoom" class="absolute top-[40%] left-[47%]">
+      </div>
       <carousel-item
         v-for="(slide, index) in slides"
         :slide="slide"
@@ -11,26 +14,26 @@
         :current-slide="currentSlide"
         :index="index"
         :direction="direction"
+        @clickOnImg="clickInCarousel"
       ></carousel-item>
     </div>
     <div class="absolute w-[580px] h-[420px] carouselBorder"
          :class="[
              slides[currentSlide].type === 'video' ? 'toBackGround' : '',
-             typeVertical ? 'w-[507px] h-[692px] topCircle top-[110px] left-[83px]' : 'w-[580px] h-[420px] top-[85px] left-[234px]'
+             typeVertical ? 'w-[507px] h-[692px] topCircle top-[110px] left-[83px]' : 'w-[580px] h-[420px] top-[85px] left-[234px]',
+             onRight ? 'left-[118px]' : ''
              ]">
-      <div class="absolute left-0 top-0 w-[505px] h-[300px] carouselBorderUpper">
-        <img v-show="showBlackout" src="@/assets/images/Zoom.svg" alt="Zoom" class="absolute top-[20%] left-[30%]">
-      </div>
     </div>
 
     <div class="relative flex justify-between mt-[40px] w-full pl-[50px]"
-         :class="typeVertical ? 'pl-[3px]' : 'pl-[50px]'">
+         :class="[typeVertical ? 'pl-[3px]' : 'pl-[50px]', onRight ? 'pl-[38px]' : '']">
       <carousel-controls
           v-if="controls"
           @prev="prev"
           @next="next">
       </carousel-controls>
       <carousel-indicators-custom
+          :onRight="onRight"
           v-if="indicators"
           :total="slides.length"
           :current-index="currentSlide"
@@ -66,6 +69,10 @@ export default {
       default: 5000,
     },
     typeVertical: {
+      type: Boolean,
+      default: false,
+    },
+    onRight: {
       type: Boolean,
       default: false,
     },
@@ -125,33 +132,12 @@ export default {
         this.prev(step);
       }
     },
-    hoverHandler() {
-      const carousel = document.getElementsByClassName('carousel');
-      let carouselElementInDomIdx = this.carouselIdx;
-
-      carousel[carouselElementInDomIdx].addEventListener('mousemove', (e) => {
-        const rect = document.getElementsByClassName('carousel-inner')[carouselElementInDomIdx].getBoundingClientRect()
-
-        this.inRectByY = e.clientY > rect.y && e.clientY < (rect.y + rect.height) && this.slides[this.currentSlide].type !== 'video';
-        this.inRectByX = e.clientX > rect.x && e.clientX < (rect.x + rect.width);
-        this.inRectByY && this.inRectByX ? this.showBlackout = true : this.showBlackout = false;
-      })
-    },
-    clickInCarousel(){
-      if(this.inRectByY && this.inRectByX) {
-        this.$emit('openFullScreenView', this.slides);
-      }
+    clickInCarousel(imgIdx){
+      this.$emit('openFullScreenView', this.slides, imgIdx);
     },
   },
-  mounted() {
-    // this.startSlideTimer();
-
-    this.hoverHandler();
-
-  },
-  beforeUnmount() {
-    // this.stopSlideTimer();
-  },
+  mounted() {},
+  beforeUnmount() {},
 };
 </script>
 
@@ -167,16 +153,10 @@ export default {
   overflow: hidden;
   z-index: 1;
 }
-.stick {
-  background-color: #F2C452;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  height: 2px;
-}
 .carouselBorder {
   border: 2px solid #F2C452;
   z-index: 1;
+  pointer-events: none;
 }
 .toBackGround {
   z-index: 0;
@@ -190,5 +170,8 @@ export default {
 }
 .topCircle {
   border-radius: 290px 290px 0 0;
+}
+.carousel-item:hover {
+  background: rgba(0,0,0,.5);
 }
 </style>

@@ -43,6 +43,10 @@ export default {
       type: Number,
       default: 5000,
     },
+    startImgIdx: {
+      type: Number,
+      default: 0,
+    }
   },
   components: {CarouselItem},
   data: () => ({
@@ -97,6 +101,9 @@ export default {
   },
   mounted() {
     // this.startSlideTimer();
+  },
+  beforeMount() {
+    this.setCurrentSlide(this.startImgIdx);
   },
   beforeUnmount() {
     // this.stopSlideTimer();

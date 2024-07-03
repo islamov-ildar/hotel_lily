@@ -8,8 +8,8 @@ export default {
   components: {HeaderSection, Carousel},
   emits: ['openFullScreenViewHandler'],
   setup(_, { emit }) {
-    const openFullScreenViewAscent = (slides) => {
-      emit('openFullScreenViewHandler', slides);
+    const openFullScreenViewAscent = (slides, imgIdx) => {
+      emit('openFullScreenViewHandler', slides, imgIdx);
     }
     return {
       openFullScreenViewAscent,

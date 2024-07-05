@@ -17,16 +17,22 @@
         @clickOnImg="clickInCarousel"
       ></carousel-item>
     </div>
-    <div class="absolute w-[580px] h-[420px] carouselBorder"
-         :class="[
-             slides[currentSlide].type === 'video' ? 'toBackGround' : '',
-             typeVertical ? 'w-[507px] h-[692px] topCircle top-[110px] left-[83px]' : 'w-[580px] h-[420px] top-[85px] left-[234px]',
-             onRight ? 'left-[118px]' : ''
-             ]">
+<!--    <div class="absolute carouselBorder"-->
+<!--         :class="[-->
+<!--             slides[currentSlide].type === 'video' ? 'toBackGround' : '',-->
+<!--             typeVertical ? 'w-[507px] h-[692px] topCircle top-[110px] left-[83px]' : 'w-[580px] h-[420px] top-[85px] left-[234px]',-->
+<!--             onRight ? 'left-[118px]' : ''-->
+<!--             ]">-->
+<!--    </div>-->
+    <div class="absolute carouselBorder"
+         :class="classObjectCarouselBorder">
     </div>
 
-    <div class="relative flex justify-between mt-[40px] w-full pl-[50px]"
-         :class="[typeVertical ? 'pl-[3px]' : 'pl-[50px]', onRight ? 'pl-[38px]' : '']">
+<!--    <div class="relative flex justify-between mt-[40px] w-full"-->
+<!--         :class="[ typeVertical && onRight ? 'pl-[38px]' : '', typeVertical && !onRight ? 'pl-[3px]' : 'pl-[50px]']">-->
+      <div class="relative flex justify-between mt-[40px] w-full"
+          :class="classObject"
+      >
       <carousel-controls
           v-if="controls"
           @prev="prev"
@@ -87,9 +93,25 @@ export default {
     slideInterval: null,
     direction: "right",
     showBlackout: false,
-    inRectByY: false,
-    inRectByX: false,
   }),
+  computed: {
+    classObject() {
+      return {
+        'pl-[3px]': this.typeVertical && !this.onRight,
+        'pl-[38px]': this.typeVertical && this.onRight,
+        'pl-[50px]': !this.typeVertical && !this.onRight,
+      }
+    },
+    classObjectCarouselBorder() {
+      return {
+        'toBackGround': this.slides[this.currentSlide].type === 'video',
+        'w-[580px] h-[420px] top-[85px] left-[210px]': !this.typeVertical,
+        'w-[507px] h-[692px] topCircle top-[110px]': this.typeVertical,
+        'left-[83px]': !this.onRight && this.typeVertical,
+        'left-[118px]': this.onRight && this.typeVertical,
+      }
+    },
+  },
   methods: {
     setCurrentSlide(index) {
       this.currentSlide = index;
@@ -136,7 +158,10 @@ export default {
       this.$emit('openFullScreenView', this.slides, imgIdx);
     },
   },
-  mounted() {},
+  mounted() {
+    // this.leftPaddingCalculate();
+    console.log('mounted', this.onRight, this.typeVertical)
+  },
   beforeUnmount() {},
 };
 </script>

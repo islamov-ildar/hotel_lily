@@ -1,6 +1,6 @@
 <template>
-  <div class="carousel-indicators font-aliceRegular text-[40px]"
-  :class="[typeVertical ? 'mr-[-145px]' : 'mr-[-93px]', onRight ? 'mr-[-105px]': '']">
+    <div class="carousel-indicators font-aliceRegular text-[40px]"
+  :class="classObject">
     <div class="text-[#F2C452]">
       {{addZeroBeforeOneNumber(currentIndex + 1)}}
     </div>
@@ -26,10 +26,18 @@ export default {
         return props.currentIndex + 2
       }
     });
+    const classObject = computed(() => {
+          return {
+            'mr-[-145px]': props.typeVertical && !props.onRight,
+            'mr-[-120px]': props.typeVertical && props.onRight,
+            'mr-[-70px]': !props.typeVertical && !props.onRight,
+          }
+    })
 
     return{
       nextIndex,
       addZeroBeforeOneNumber,
+      classObject,
     }
   }
 };

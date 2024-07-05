@@ -3,12 +3,12 @@ import SectionTop from "@/views/sections/SectionTop.vue";
 import SectionAbout from "@/views/sections/SectionAbout.vue";
 import SectionServices from "@/views/sections/SectionServices.vue";
 import SectionRooms from "@/views/sections/SectionRooms.vue";
-import SectionTest from "@/views/sections/SectionTest.vue";
 import FullScreenCarousel from "@/components/FullScreenCarousel.vue";
 import {ref} from "vue";
+import SectionFeedbacks from "@/views/sections/SectionFeedbacks.vue";
 
 export default {
-  components: {FullScreenCarousel, SectionRooms, SectionTop, SectionAbout, SectionServices, SectionTest },
+  components: {SectionFeedbacks, FullScreenCarousel, SectionRooms, SectionTop, SectionAbout, SectionServices },
   setup() {
     const showFullscreenCarousel = ref(false);
     const slidesForFullscreenCarousel = ref([]);
@@ -34,6 +34,6 @@ export default {
   <SectionAbout @openFullScreenViewHandler="openFullScreenCarousel" />
   <SectionServices />
   <SectionRooms @openFullScreenViewHandler="openFullScreenCarousel" />
-  <SectionTest />
+  <SectionFeedbacks />
   <FullScreenCarousel :imgIdx="targetImgIdx" v-if="showFullscreenCarousel" :slides="slidesForFullscreenCarousel" @close="showFullscreenCarousel = false"/>
 </template>

@@ -2,7 +2,7 @@
 import HeaderSection from '@/components/HeaderSection.vue';
 import { Carousel, Slide, Pagination } from 'vue3-carousel'
 import 'vue3-carousel/dist/carousel.css'
-import {computed, ref} from "vue";
+import {ref} from "vue";
 import FeedBackCard from "@/components/FeedBackCard.vue";
 import FeedbackScrollIndicator from "@/components/FeedbackScrollIndicator.vue";
 
@@ -12,22 +12,25 @@ export default {
   setup(){
     const myCarousel = ref(null);
     const next = () => {
-      myCarousel.value.next();
       lastClick.value = 'next'
+      myCarousel.value.next();
     }
     const prev = () => {
-      myCarousel.value.prev();
       lastClick.value = 'prev'
+      myCarousel.value.prev();
     }
 
     let lastClick = ref<string>('prev');
 
-    // const currentSlide = computed(() => myCarousel.value.data.currentSlide)
     const currentSlide = ref(0);
+    const countOfSlideView = ref(7);
 
-    const handleSlide = (slideData) => {
-      currentSlide.value = slideData.currentSlideIndex;
-      console.log('currentSlide.value', currentSlide.value)
+    const handleSlide = (data) => {
+      if(lastClick.value === 'prev') {
+        currentSlide.value - 1 >= 0 ? currentSlide.value-- : false;
+      } else if(lastClick.value === 'next') {
+        currentSlide.value + 1 <= countOfSlideView.value ? currentSlide.value++ : false;
+      }
     }
 
     return {
@@ -43,7 +46,7 @@ export default {
 </script>
 
 <template>
-<div class="bg-[#FBF6ED] pt-[90px] pl-[10px] pb-[240px] bgImg">
+<div class="bg-[#FBF6ED] pt-[90px] pl-[10px] pb-[200px] bgImg">
    <HeaderSection class="mb-[90px]">
      <template #title>
        <span class="text-blueMain">Отзывы</span>
@@ -53,17 +56,12 @@ export default {
      </template>
    </HeaderSection>
   <div>
-      <Carousel @slide-start="handleSlide" ref="myCarousel" :items-to-show="3" :wrap-around="false">
+      <Carousel @slide-start="handleSlide" :touchDrag="false" :mouseDrag="false" ref="myCarousel" :items-to-show="3" :wrap-around="false">
         <Slide v-for="slide in 10" :key="slide" class="mr-[75px]">
             <FeedBackCard :number="slide" />
         </Slide>
-
-        <template #addons>
-          <Pagination />
-        </template>
       </Carousel>
-    <div class="relative">
-      <div class="">
+    <div class="relative mt-[90px]">
         <button @click="prev" class="w-[80px] h-[40px]" :class="{'bg-[#F2C452]': lastClick === 'prev'}">
           <img v-if="lastClick === 'prev'" src="@/assets/icons/arrow-left.svg" alt="arrow-left" class="mx-auto">
           <img v-else src="@/assets/icons/arrow-left_yellow.svg" alt="arrow-left" class="mx-auto">
@@ -72,20 +70,29 @@ export default {
           <img v-if="lastClick === 'next'" src="@/assets/icons/arrow-right.svg" alt="arrow-right" class="mx-auto">
           <img v-else src="@/assets/icons/arrow-right_yellow.svg" alt="arrow-right_yellow" class="mx-auto">
         </button>
-      </div>
     </div>
     <div class="relative w-full mt-[30px]">
       <FeedbackScrollIndicator :countOfSlides="10" :currentIdx="currentSlide" />
     </div>
   </div>
-<!--  <div>-->
-<!--    <div style="width:560px;height:800px;overflow:hidden;position:relative;"><iframe style="width:100%;height:100%;border:1px solid #e6e6e6;border-radius:8px;box-sizing:border-box" src="https://yandex.ru/maps-reviews-widget/180430998084?comments"></iframe><a href="https://yandex.ru/maps/org/liliya/180430998084/" target="_blank" style="box-sizing:border-box;text-decoration:none;color:#b3b3b3;font-size:10px;font-family:YS Text,sans-serif;padding:0 20px;position:absolute;bottom:8px;width:100%;text-align:center;left:0;overflow:hidden;text-overflow:ellipsis;display:block;max-height:14px;white-space:nowrap;padding:0 16px;box-sizing:border-box">Лилия на карте Гудауты — Яндекс Карты</a></div>-->
-<!--  </div>-->
-
 </div>
 </template>
 
 <style scoped>
+.customStyles{
+
+}
+.carousel__pagination {
+  position: absolute;
+  bottom: -200px;
+}
+.carousel__pagination-button--active::after {
+  background-color: #F2C4524D!important;
+}
+.carousel__pagination-button {
+  background-color: #F2C4524D!important;
+
+}
 .bgImg {
   background-image: url('@/assets/icons/lily_yellow_left.svg');
   background-repeat: no-repeat;

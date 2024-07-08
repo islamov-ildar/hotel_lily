@@ -158,10 +158,7 @@ export default {
       this.$emit('openFullScreenView', this.slides, imgIdx);
     },
   },
-  mounted() {
-    // this.leftPaddingCalculate();
-    console.log('mounted', this.onRight, this.typeVertical)
-  },
+  mounted() {},
   beforeUnmount() {},
 };
 </script>

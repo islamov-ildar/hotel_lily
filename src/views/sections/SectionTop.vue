@@ -12,9 +12,6 @@ import IButton from "@/components/IButton.vue";
         ВСЕГДА ЖДУТ!
       </div>
     </div>
-    <div class="text-right mr-[150px] mt-[125px] mb-[170px]">
-      <IButton label="ЗАБРОНИРОВАТЬ"/>
-    </div>
   </div>
 </template>
 

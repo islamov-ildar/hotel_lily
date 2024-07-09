@@ -34,7 +34,7 @@ export default {
 
 <template>
   <div>
-    <IButton label="ЗАБРОНИРОВАТЬ"/>
+    <IButton label="Забронировать"/>
   </div>
   <SectionTop />
   <SectionAbout @openFullScreenViewHandler="openFullScreenCarousel" />

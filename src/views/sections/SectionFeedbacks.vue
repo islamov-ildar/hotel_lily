@@ -5,6 +5,7 @@ import 'vue3-carousel/dist/carousel.css'
 import {ref} from "vue";
 import FeedBackCard from "@/components/FeedBackCard.vue";
 import FeedbackScrollIndicator from "@/components/FeedbackScrollIndicator.vue";
+import { feedbacks } from "@/common/mockData/feedbacks"
 
 export default {
   components: {FeedBackCard, HeaderSection, Carousel, Slide, Pagination, FeedbackScrollIndicator},
@@ -40,6 +41,7 @@ export default {
       prev,
       currentSlide,
       handleSlide,
+      feedbacks,
     }
   }
 };
@@ -56,9 +58,14 @@ export default {
      </template>
    </HeaderSection>
   <div>
+<!--      <Carousel @slide-start="handleSlide" :touchDrag="false" :mouseDrag="false" ref="myCarousel" :items-to-show="3" :wrap-around="false">-->
+<!--        <Slide v-for="slide in 10" :key="slide" class="mr-[75px]">-->
+<!--            <FeedBackCard :number="slide" />-->
+<!--        </Slide>-->
+<!--      </Carousel>-->
       <Carousel @slide-start="handleSlide" :touchDrag="false" :mouseDrag="false" ref="myCarousel" :items-to-show="3" :wrap-around="false">
-        <Slide v-for="slide in 10" :key="slide" class="mr-[75px]">
-            <FeedBackCard :number="slide" />
+        <Slide v-for="(slide, idx) in feedbacks" :key="idx" class="mr-[75px]">
+            <FeedBackCard :number="idx" :data="slide" />
         </Slide>
       </Carousel>
     <div class="relative mt-[90px]">

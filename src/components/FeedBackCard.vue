@@ -26,13 +26,13 @@ export default {
 
 <template>
   <div class="card relative">
-    <div class="absolute top-[-60px] left-[55px] w-[132px] h-[132px] rounded-t-full bg-[#FFFFFF] flex items-center justify-center">
+    <div v-if="data.user_name !=='link_to_yandex'" class="absolute top-[-60px] left-[55px] w-[132px] h-[132px] rounded-t-full bg-[#FFFFFF] flex items-center justify-center">
       <div v-if="data.user_photo !== 'default'" class="w-[90px] h-[90px] rounded-full overflow-hidden">
         <img :src="`src/assets/images/users/${data.user_photo}`" alt="person_elips">
       </div>
       <img v-else src="@/assets/icons/person_elips.svg" alt="person_elips">
     </div>
-    <div class="w-full text-left pt-[30px] pb-[30px] px-[30px] text-blueMain">
+    <div v-if="data.user_name !=='link_to_yandex'" class="w-full text-left pt-[30px] pb-[30px] px-[30px] text-blueMain">
       <div class="pb-[12px] w-full flex justify-end">
         <img src="@/assets/images/yandex_logo.png" alt="yandex_logo">
       </div>
@@ -50,6 +50,15 @@ export default {
       </div>
       <div v-if="rowCount === 88" class="mt-[8px] cursor-pointer font-montserratMedium text-[16px] flex items-center gap-[7px]">
         <div>Читать отзыв</div><img src="@/assets/icons/arrow-right_blue.svg" alt="arrow-right_blue">
+      </div>
+    </div>
+    <div v-else class="h-full flex items-center justify-center cursor-pointer">
+      <div class="font-montserratMedium text-[16px] text-blueMain pr-[8px]">
+        Читать больше отзывов об отеле “Лилия”
+      </div>
+      <img src="@/assets/icons/arrow-right_blue.svg" alt="arrow-right_blue" class="pr-[28px]">
+      <div>
+        <img src="@/assets/images/yandex_logo.png" alt="yandex_logo">
       </div>
     </div>
   </div>

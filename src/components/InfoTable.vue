@@ -53,9 +53,13 @@ export default {
           <div class="cell topCell">
             <div>{{ item.month }}</div>
           </div>
-          <div class="cell">
+          <div class="cell relative">
             {{ item.price }}
+            <div v-if="'promotion' in item" class="absolute right-0 bottom-[3px]">
+              <img src="@/assets/icons/promotion.svg" alt="%">
+            </div>
           </div>
+
         </div>
       </div>
     </div>

@@ -3,18 +3,16 @@ import {onMounted, ref} from "vue";
 
 export default {
   props: ['number', 'data'],
+  emits: ['openFeedbackModal'],
 
   setup(props) {
 
     const rowCount = ref(0);
 
-    console.log('props.number', props.number)
-
     onMounted(() => {
-      // const div = document.getElementById(`feedback_text-${props.number}`)!.offsetHeight;
-      //
-      //
-      rowCount.value = document.getElementById(`feedback_text-${props.number}`)!.offsetHeight;
+      if(document.getElementById(`feedback_text-${props.number}`)){
+        rowCount.value = document.getElementById(`feedback_text-${props.number}`)!.offsetHeight;
+      }
     })
 
     return {
@@ -48,11 +46,11 @@ export default {
       <div :id="`feedback_text-${number}`" class="feedbackText font-montserratRegular text-[16px] leading-[22px]">
         {{ data.feedback_text }}
       </div>
-      <div v-if="rowCount === 88" class="mt-[8px] cursor-pointer font-montserratMedium text-[16px] flex items-center gap-[7px]">
+      <div @click="$emit('openFeedbackModal', data)" v-if="rowCount === 88" class="readMore mt-[8px] cursor-pointer font-montserratMedium text-[16px] flex items-center gap-[7px]">
         <div>Читать отзыв</div><img src="@/assets/icons/arrow-right_blue.svg" alt="arrow-right_blue">
       </div>
     </div>
-    <div v-else class="h-full flex items-center justify-center cursor-pointer">
+    <a v-else href="https://yandex.ru/search/?text=%D0%9B%D0%B8%D0%BB%D0%B8%D1%8F+%D1%83%D0%BB.+%D0%9F%D1%83%D1%88%D0%BA%D0%B8%D0%BD%D0%B0%2C+2%2C+%D0%93%D1%83%D0%B4%D0%B0%D1%83%D1%82%D0%B0&lr=143731&clid=2270455&win=611&source=wizgeo-common-new_explicit&noreask=1&oid=b%3A180430998084&redircnt=1720985753.1" target="_blank" class="h-full flex items-center justify-center cursor-pointer">
       <div class="font-montserratMedium text-[16px] text-blueMain pr-[8px]">
         Читать больше отзывов об отеле “Лилия”
       </div>
@@ -60,7 +58,7 @@ export default {
       <div>
         <img src="@/assets/images/yandex_logo.png" alt="yandex_logo">
       </div>
-    </div>
+    </a>
   </div>
 </template>
 
@@ -79,9 +77,15 @@ export default {
   -webkit-line-clamp: 4;
   line-clamp: 4;
   display: -webkit-box;
-  display: box;
   word-wrap: break-word;
   -webkit-box-orient: vertical;
   box-orient: vertical;
+}
+.readMore img {
+  transition-duration: 500ms;
+  transition-property: margin-left;
+}
+.readMore:hover img {
+  margin-left: 7px;
 }
 </style>

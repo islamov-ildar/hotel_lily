@@ -22,7 +22,7 @@ export default {
   <div
       @mouseenter="showFullBtn = true"
       @mouseleave="showFullBtn = false"
-      class="btn fixed bottom-[120px] right-[50px] z-20"
+      class="btn fixed bottom-[120px] right-[50px] z-[11]"
       :class="{'h-[86px] w-[382px]': showFullBtn, 'h-[86px] w-[100px]': !showFullBtn}">
     <div class="relative flex items-center">
       <transition name="fullBtn">
@@ -41,57 +41,60 @@ export default {
 </template>
 
 <style scoped>
-/*.pulse{
-  transition: all .5s;
-  animation: shadow 2.2s infinite linear;
-  background-color: #F2C45299;
-  border-radius: 50%;
-}
 
-@keyframes shadow {
-  0% {
-    box-shadow: 0 0 10px 0 #F2C45299, 0 0 10px 0 #F2C45299;
-  }
-  100% {
-    box-shadow: 0 0 18px 6px rgba(255, 48, 26, 0), 0 0 4px 50px rgba(255, 48, 26, 0);
-  }
-}
-
- */
 .pulse::after,
 .pulse::before {
   content: '';
   position: absolute;
-  border: 3px solid #F2C452;
+  border: 30px solid #F2C452;
   left: -20px;
-  opacity: 0;
+  opacity: 0.9;
   right: -20px;
   top: -20px;
   bottom: -20px;
-  border-radius: 50%;
-  animation: pulse 2.5s linear infinite;
+  border-radius: 100%;
+  animation: pulse 2s linear infinite;
 }
 
 .pulse::after {
-  animation-delay: 1.25s;
+  animation-delay: 0.2s;
 }
 
 @keyframes pulse {
   0% {
-    transform: scale(0.5);
+    transform: scale(0);
     opacity: 0;
   }
+  25% {
+    opacity: 0.1;
+  }
   50% {
-    opacity: 0.5;
+    opacity: 0.3;
   }
   100% {
-    transform: scale(1.2);
+    transform: scale(1.3);
     opacity: 0;
   }
 }
 
+.pulse {
+  animation: scalePulse 2s linear infinite;
+}
 
-
+@keyframes scalePulse {
+  0% {
+    transform:  scale(1);
+  }
+  50% {
+    transform:  scale(0.8);
+  }
+  60% {
+    transform:  scale(1);
+  }
+  100% {
+    transform:  scale(1);
+  }
+}
 
 .fullBtn-enter-active,
 .fullBtn-leave-active {
@@ -104,7 +107,7 @@ export default {
 }
 .smallBtn-enter-active,
 .smallBtn-leave-active {
-  transition: opacity 1s ease;
+  transition: opacity 2s;
 }
 
 .smallBtn-enter-from,

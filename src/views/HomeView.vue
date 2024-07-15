@@ -9,11 +9,14 @@ import {ref} from "vue";
 import SectionFeedbacks from "@/views/sections/SectionFeedbacks.vue";
 import SectionMap from "@/views/sections/SectionMap.vue";
 import IButton from "@/components/IButton.vue";
+import FullScreenFeedbackModal from "@/components/FullScreenFeedbackModal.vue";
 
 export default {
-  components: {IButton, IFooter,SectionMap, SectionFeedbacks, FullScreenCarousel, SectionRooms, SectionTop, SectionAbout, SectionServices },
+  components: { FullScreenFeedbackModal,IButton, IFooter,SectionMap, SectionFeedbacks, FullScreenCarousel, SectionRooms, SectionTop, SectionAbout, SectionServices },
   setup() {
     const showFullscreenCarousel = ref(false);
+    const showFullscreenFeedback = ref(false);
+    const fullscreenFeedback = ref();
     const slidesForFullscreenCarousel = ref([]);
     const targetImgIdx = ref();
     const openFullScreenCarousel = (slides: any, imgIdx: number) => {
@@ -21,12 +24,20 @@ export default {
       showFullscreenCarousel.value = true;
       slidesForFullscreenCarousel.value = slides;
     }
+    const openFullScreenFeedbackView = (feedback: any) => {
+      console.log('openFullScreenFeedbackView', feedback)
+      fullscreenFeedback.value = feedback;
+      showFullscreenFeedback.value = true;
+    }
 
     return {
       showFullscreenCarousel,
       openFullScreenCarousel,
       slidesForFullscreenCarousel,
-      targetImgIdx
+      targetImgIdx,
+      openFullScreenFeedbackView,
+      fullscreenFeedback,
+      showFullscreenFeedback,
     }
   }
 }
@@ -40,8 +51,9 @@ export default {
   <SectionAbout @openFullScreenViewHandler="openFullScreenCarousel" />
   <SectionServices />
   <SectionRooms @openFullScreenViewHandler="openFullScreenCarousel" />
-  <SectionFeedbacks />
+  <SectionFeedbacks @openFullScreenFeedback="openFullScreenFeedbackView" />
   <SectionMap />
   <IFooter />
-  <FullScreenCarousel :imgIdx="targetImgIdx" v-if="showFullscreenCarousel" :slides="slidesForFullscreenCarousel" @close="showFullscreenCarousel = false"/>
+  <FullScreenCarousel :imgIdx="targetImgIdx" v-if="showFullscreenCarousel" :slides="slidesForFullscreenCarousel" @close="showFullscreenCarousel = false" />
+  <FullScreenFeedbackModal v-if="showFullscreenFeedback" :feedback="fullscreenFeedback" @close="showFullscreenFeedback = false" />
 </template>

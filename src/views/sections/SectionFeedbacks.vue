@@ -1,6 +1,6 @@
 <script lang="ts">
 import HeaderSection from '@/components/HeaderSection.vue';
-import { Carousel, Slide, Pagination } from 'vue3-carousel'
+import { Carousel, Slide } from 'vue3-carousel'
 import 'vue3-carousel/dist/carousel.css'
 import {ref} from "vue";
 import FeedBackCard from "@/components/FeedBackCard.vue";
@@ -8,10 +8,11 @@ import FeedbackScrollIndicator from "@/components/FeedbackScrollIndicator.vue";
 import { feedbacks } from "@/common/mockData/feedbacks"
 
 export default {
-  components: {FeedBackCard, HeaderSection, Carousel, Slide, Pagination, FeedbackScrollIndicator},
+  components: {FeedBackCard, HeaderSection, Carousel, Slide, FeedbackScrollIndicator},
+  emits: ['openFullScreenFeedback'],
 
-  setup(){
-    const myCarousel = ref(null);
+  setup(_, { emit }){
+    const myCarousel = ref();
     const next = () => {
       lastClick.value = 'next'
       myCarousel.value.next();
@@ -26,13 +27,15 @@ export default {
     const currentSlide = ref(0);
     const countOfSlideView = ref(7);
 
-    const handleSlide = (data) => {
+    const handleSlide = () => {
       if(lastClick.value === 'prev') {
         currentSlide.value - 1 >= 0 ? currentSlide.value-- : false;
       } else if(lastClick.value === 'next') {
         currentSlide.value + 1 <= countOfSlideView.value ? currentSlide.value++ : false;
       }
     }
+
+    const handleOpenFeedbackModal = (feedback: any) => emit('openFullScreenFeedback', feedback);
 
     return {
       lastClick,
@@ -42,6 +45,7 @@ export default {
       currentSlide,
       handleSlide,
       feedbacks,
+      handleOpenFeedbackModal,
     }
   }
 };
@@ -58,16 +62,11 @@ export default {
      </template>
    </HeaderSection>
   <div>
-<!--      <Carousel @slide-start="handleSlide" :touchDrag="false" :mouseDrag="false" ref="myCarousel" :items-to-show="3" :wrap-around="false">-->
-<!--        <Slide v-for="slide in 10" :key="slide" class="mr-[75px]">-->
-<!--            <FeedBackCard :number="slide" />-->
-<!--        </Slide>-->
-<!--      </Carousel>-->
-      <Carousel @slide-start="handleSlide" :touchDrag="false" :mouseDrag="false" ref="myCarousel" :items-to-show="3" :wrap-around="false">
-        <Slide v-for="(slide, idx) in feedbacks" :key="idx" class="mr-[75px]">
-            <FeedBackCard :number="idx" :data="slide" />
-        </Slide>
-      </Carousel>
+    <Carousel @slide-start="handleSlide" :touchDrag="false" :mouseDrag="false" ref="myCarousel" :items-to-show="3" :wrap-around="false">
+      <Slide v-for="(slide, idx) in feedbacks" :key="idx" class="mr-[75px]">
+          <FeedBackCard :number="idx" :data="slide" @openFeedbackModal="handleOpenFeedbackModal" />
+      </Slide>
+    </Carousel>
     <div class="relative mt-[90px]">
         <button @click="prev" class="w-[80px] h-[40px]" :class="{'bg-[#F2C452]': lastClick === 'prev'}">
           <img v-if="lastClick === 'prev'" src="@/assets/icons/arrow-left.svg" alt="arrow-left" class="mx-auto">

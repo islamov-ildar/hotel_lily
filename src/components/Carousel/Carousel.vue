@@ -17,19 +17,9 @@
         @clickOnImg="clickInCarousel"
       ></carousel-item>
     </div>
-<!--    <div class="absolute carouselBorder"-->
-<!--         :class="[-->
-<!--             slides[currentSlide].type === 'video' ? 'toBackGround' : '',-->
-<!--             typeVertical ? 'w-[507px] h-[692px] topCircle top-[110px] left-[83px]' : 'w-[580px] h-[420px] top-[85px] left-[234px]',-->
-<!--             onRight ? 'left-[118px]' : ''-->
-<!--             ]">-->
-<!--    </div>-->
     <div class="absolute carouselBorder"
          :class="classObjectCarouselBorder">
     </div>
-
-<!--    <div class="relative flex justify-between mt-[40px] w-full"-->
-<!--         :class="[ typeVertical && onRight ? 'pl-[38px]' : '', typeVertical && !onRight ? 'pl-[3px]' : 'pl-[50px]']">-->
       <div class="relative flex justify-between mt-[40px] w-full"
           :class="classObject"
       >
@@ -47,7 +37,6 @@
           :typeVertical="typeVertical"
       ></carousel-indicators-custom>
     </div>
-
   </div>
 </template>
 

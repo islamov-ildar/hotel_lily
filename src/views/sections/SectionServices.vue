@@ -8,7 +8,7 @@ export default {
 </script>
 
 <template>
-<div class="bg-[#FBF6ED] pt-[90px] px-[150px] pb-[240px]">
+<div class="bg-[#FBF6ED] pt-[90px] px-[225px] pb-[240px]">
   <div class="flex gap-[10px] text-[20px]">
     <div class="w-2/3">
       <HeaderSection class="mb-[90px]">
@@ -78,8 +78,8 @@ export default {
       всегда пожелаем  приятного аппетита
     </template>
   </HeaderSection>
-  <div class="flex gap-[10px] text-[20px]">
-    <div class="w-2/3 flex gap-[20px] relative">
+  <div class="flex gap-[10px] text-[20px] justify-between">
+    <div class="flex gap-[20px] relative">
       <div>
         <img src="@/assets/images/cafe.jpg" width="380" height="549" alt="cafe">
       </div>
@@ -92,9 +92,10 @@ export default {
     </div>
     <div class="ml-[40px] w-1/3 flex items-center">
       <div class="text-blueMain text-[18px] font-montserratRegular">
-        В отеле имеется своё уютное кафе.
-        Мы угощаем своих гостей вкуснейшими завтраками, которые включены в стоимость проживания!
-        Сможем приготовить для Вас и прекрасный комплексный обед по предварительному заказу.      </div>
+        Добро пожаловать в уютное кафе с домашней кухней, где по утрам для вас готовят прекрасные повара!
+        Насладитесь утром в уютной обстановке, окруженные заботой и вниманием наших чудесных девушек-поваров.<br><br>
+        Приходите к нам за вкусом и теплой атмосферой!
+      </div>
     </div>
   </div>
 </div>

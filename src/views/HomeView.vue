@@ -9,13 +9,16 @@ import {ref} from "vue";
 import SectionFeedbacks from "@/views/sections/SectionFeedbacks.vue";
 import SectionMap from "@/views/sections/SectionMap.vue";
 import IButton from "@/components/IButton.vue";
+import IButtonDiscounts from "@/components/IButtonDiscounts.vue";
 import FullScreenFeedbackModal from "@/components/FullScreenFeedbackModal.vue";
+import ContactsModal from "@/components/ContactsModal.vue";
 
 export default {
-  components: { FullScreenFeedbackModal,IButton, IFooter,SectionMap, SectionFeedbacks, FullScreenCarousel, SectionRooms, SectionTop, SectionAbout, SectionServices },
+  components: { IButtonDiscounts, ContactsModal, FullScreenFeedbackModal,IButton, IFooter,SectionMap, SectionFeedbacks, FullScreenCarousel, SectionRooms, SectionTop, SectionAbout, SectionServices },
   setup() {
     const showFullscreenCarousel = ref(false);
     const showFullscreenFeedback = ref(false);
+    const showContacts = ref(false);
     const fullscreenFeedback = ref();
     const slidesForFullscreenCarousel = ref([]);
     const targetImgIdx = ref();
@@ -38,6 +41,7 @@ export default {
       openFullScreenFeedbackView,
       fullscreenFeedback,
       showFullscreenFeedback,
+      showContacts,
     }
   }
 }
@@ -47,7 +51,8 @@ export default {
   <div>
     <IButton label="Забронировать"/>
   </div>
-  <SectionTop />
+  <IButtonDiscounts label="Скидки" />
+  <SectionTop @openContactsModal="showContacts = true" />
   <SectionAbout @openFullScreenViewHandler="openFullScreenCarousel" />
   <SectionServices />
   <SectionRooms @openFullScreenViewHandler="openFullScreenCarousel" />
@@ -56,4 +61,5 @@ export default {
   <IFooter />
   <FullScreenCarousel :imgIdx="targetImgIdx" v-if="showFullscreenCarousel" :slides="slidesForFullscreenCarousel" @close="showFullscreenCarousel = false" />
   <FullScreenFeedbackModal v-if="showFullscreenFeedback" :feedback="fullscreenFeedback" @close="showFullscreenFeedback = false" />
+  <ContactsModal v-if="showContacts" @close="showContacts = false" />
 </template>

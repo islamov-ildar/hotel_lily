@@ -30,7 +30,6 @@ export default {
       standartRoomDescription,
       slidesStandardRoom,
       slidesSemiLuxRoom,
-      slidesSemiLuxRoom,
       openFullScreenViewAscent,
       familySemiluxRoomDescription,
     }
@@ -52,7 +51,7 @@ export default {
     </template>
   </HeaderSection>
   <AdditionalConditions />
-  <div class="flex gap-[110px] text-[20px] z-10 relative mb-[200px]">
+  <div id="rooms" class="flex gap-[110px] text-[20px] z-[9] relative mb-[200px]">
     <div class="w-[45%]">
       <Carousel :carousel-idx="1" :type-vertical="true" :slides="slidesStandardRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></Carousel>
     </div>
@@ -60,7 +59,7 @@ export default {
       <InfoTable :price="standard" :roomDescription="standartRoomDescription" />
     </div>
   </div>
-  <div class="flex ml-[85px] gap-[100px] text-[20px] z-10 relative mb-[200px]">
+  <div class="flex ml-[85px] gap-[100px] text-[20px] z-[9] relative mb-[200px]">
     <div class="w-[55%]">
       <InfoTable :price="semiLuxurySeaView" :roomDescription="semiluxRoomDescription()"/>
     </div>
@@ -68,7 +67,7 @@ export default {
       <Carousel :carousel-idx="1" type-vertical onRight :slides="slidesSemiLuxRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></Carousel>
     </div>
   </div>
-  <div class="flex gap-[110px] text-[20px] z-10 relative mb-[200px]">
+  <div class="flex gap-[110px] text-[20px] z-[9] relative mb-[200px]">
     <div class="w-[45%]">
       <Carousel :carousel-idx="1" :type-vertical="true" :slides="slidesSemiLuxRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></Carousel>
     </div>

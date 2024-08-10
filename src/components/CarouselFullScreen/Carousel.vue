@@ -1,6 +1,7 @@
 <template>
-  <div class="carousel">
-    <button @click="prev()" class="w-[80px] h-[40px] hover:bg-[#a0a0a0] ml-[20px]" :class="{'bg-[#F2C452]': lastClick === 'prev'}">
+  <div class="carousel h-full">
+<!--    <button @click="prev()" class="w-[80px] h-[40px] hover:bg-[#a0a0a0] ml-[20px]" :class="{'bg-[#F2C452]': lastClick === 'prev'}">-->
+    <button @click="prev()" class="btn ml-[20px]" :class="{'bg-[#F2C452]': lastClick === 'prev'}">
       <img src="@/assets/icons/arrow-left.svg" alt="arrow-left" class="mx-auto">
     </button>
     <div class="carousel-inner">
@@ -13,7 +14,8 @@
         :direction="direction"
       ></carousel-item>
     </div>
-    <button  @click="next()" class="w-[80px] h-[40px] hover:bg-[#a0a0a0] mr-[20px]" :class="{'bg-[#F2C452]': lastClick === 'next'}">
+<!--    <button  @click="next()" class="w-[80px] h-[40px] hover:bg-[#a0a0a0] mr-[20px]" :class="{'bg-[#F2C452]': lastClick === 'next'}">-->
+    <button  @click="next()" class="btn mr-[20px]" :class="{'bg-[#F2C452]': lastClick === 'next'}">
       <img src="@/assets/icons/arrow-right.svg" alt="arrow-right" class="mx-auto">
     </button>
   </div>
@@ -120,9 +122,17 @@ export default {
 }
 .carousel-inner {
   position: relative;
-  width: 1200px;
-  height: 674px;
+  width: 100%;
+  height: 95vh;
   overflow: hidden;
   z-index: 1;
+}
+.btn {
+  width: 80px;
+  height: 40px;
+  border: 1px solid transparent;
+}
+.btn:hover {
+  border: 1px solid #FFFFFF;
 }
 </style>

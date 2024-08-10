@@ -1,13 +1,14 @@
 <template>
   <transition :name="transitionEffect">
-    <div v-show="currentSlide === index" class="carousel-item flex items-center justify-center">
+    <div v-show="currentSlide === index" class="carousel-item flex items-center justify-center h-full">
       <div
           @mouseenter="$emit('mouseenter')"
           @mouseout="$emit('mouseout')"
+          class="h-full"
       >
-        <img v-if="slide.type === 'img'" :src="slide.src" alt="alt"/>
-        <div v-else>
-          <video controls :src="slide.src" width="1200">
+        <img v-if="slide.type === 'img'" :src="slide.src" alt="alt" class="h-full"/>
+        <div v-else class="h-full flex items-center justify-center">
+          <video controls :src="slide.src" class="w-[80vw]">
             Простите, но ваш браузер не поддерживает встроенные видео.
           </video>
         </div>

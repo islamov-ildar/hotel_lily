@@ -60,3 +60,16 @@
         src: url("./fonts/Alice-Regular.ttf");
     }
 }
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --main-blue-color: #2A657E;
+    --main-yellow-color: #F2C452;
+    --main-white-color: #FBF6ED;
+    --main-red-color: #F01414;
+    --main-pink-color: #FF808F;
+    --main-grey-color: #999999;
+}

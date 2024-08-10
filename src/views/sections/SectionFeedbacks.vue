@@ -25,7 +25,8 @@ export default {
     let lastClick = ref<string>('prev');
 
     const currentSlide = ref(0);
-    const countOfSlideView = ref(7);
+    const itemsToShow = 3;
+    const countOfSlideView = ref(feedbacks.length - itemsToShow);
 
     const handleSlide = () => {
       if(lastClick.value === 'prev') {
@@ -46,6 +47,7 @@ export default {
       handleSlide,
       feedbacks,
       handleOpenFeedbackModal,
+      itemsToShow,
     }
   }
 };
@@ -62,31 +64,36 @@ export default {
      </template>
    </HeaderSection>
   <div>
-    <Carousel @slide-start="handleSlide" :touchDrag="false" :mouseDrag="false" ref="myCarousel" :items-to-show="3" :wrap-around="false">
+    <Carousel @slide-start="handleSlide" :touchDrag="false" :mouseDrag="false" ref="myCarousel" :items-to-show="itemsToShow" :wrap-around="false">
       <Slide v-for="(slide, idx) in feedbacks" :key="idx" class="mr-[75px]">
           <FeedBackCard :number="idx" :data="slide" @openFeedbackModal="handleOpenFeedbackModal" />
       </Slide>
     </Carousel>
     <div class="relative mt-[90px]">
-        <button @click="prev" class="w-[80px] h-[40px]" :class="{'bg-[#F2C452]': lastClick === 'prev'}">
+        <button @click="prev" class="btn" :class="{'bg-[#F2C452]': lastClick === 'prev'}">
           <img v-if="lastClick === 'prev'" src="@/assets/icons/arrow-left.svg" alt="arrow-left" class="mx-auto">
           <img v-else src="@/assets/icons/arrow-left_yellow.svg" alt="arrow-left" class="mx-auto">
         </button>
-        <button @click="next" class="w-[80px] h-[40px]" :class="{'bg-[#F2C452]': lastClick === 'next'}">
+        <button @click="next" class="btn" :class="{'bg-[#F2C452]': lastClick === 'next'}">
           <img v-if="lastClick === 'next'" src="@/assets/icons/arrow-right.svg" alt="arrow-right" class="mx-auto">
           <img v-else src="@/assets/icons/arrow-right_yellow.svg" alt="arrow-right_yellow" class="mx-auto">
         </button>
     </div>
     <div class="relative w-full mt-[30px]">
-      <FeedbackScrollIndicator :countOfSlides="10" :currentIdx="currentSlide" />
+      <FeedbackScrollIndicator :countOfSlides="feedbacks.length" :currentIdx="currentSlide" />
     </div>
   </div>
 </div>
 </template>
 
 <style scoped>
-.customStyles{
-
+.btn {
+  width: 80px;
+  height: 40px;
+  border: 1px solid transparent;
+}
+.btn:hover {
+  border: 1px solid #F2C452;
 }
 .carousel__pagination {
   position: absolute;

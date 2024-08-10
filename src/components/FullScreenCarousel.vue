@@ -9,7 +9,8 @@ export default {
   setup(_, { emit }){
     const clickIntoCarousel = (some: any) => {
       const classes = Array.from(some.srcElement.classList);
-      if(classes.includes('carousel') || classes.includes('cross')){
+      console.log('clickIntoCarousel', classes)
+      if(classes.includes('carousel') || classes.includes('cross') || classes.includes('carousel-item')){
         console.log('click on blackout')
         emit('close')
       }
@@ -22,9 +23,9 @@ export default {
 </script>
 
 <template>
-<div @click="clickIntoCarousel" class="fixed top-0 left-0 z-10 w-[100vw] h-[100vh] bg-[#040404D9]">
+<div @click="clickIntoCarousel" class="fixed top-0 left-0 z-10 w-[100vw] h-[100vh] bg-[#040404D9] z-30">
   <div class="cross h-full flex flex-col justify-center">
-    <div class="cross cursor-pointer absolute top-[35px] right-[90px] w-[35px] h-[35px]">
+    <div class="cross cursor-pointer absolute top-[35px] right-[90px] w-[35px] h-[35px] z-10">
       <img class="cross" src="@/assets/icons/cross.svg" alt="cross">
     </div>
     <Carousel :startImgIdx="imgIdx" :slides="slides" :interval="3000" controls/>

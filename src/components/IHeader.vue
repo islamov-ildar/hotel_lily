@@ -1,9 +1,12 @@
-<script setup lang="ts">
+<script lang="ts">
+export default {
+  emits: ['openContactsModal']
+}
 </script>
 
 <template>
   <div class="font-helveticaLight header-grid pt-[26px] text-[17px] h-[170px]">
-    <div class="">
+    <div>
       <div class="header-container pb-[30px] pt-[10px]">
         <div class="ml-[20%] flex items-center gap-[10px]">
           <img src="@/assets/images/map-pin.svg" alt="map-pin">
@@ -20,8 +23,12 @@
       <div class="header-container pb-[30px] pt-[10px]">
         <div class="text-right mr-[20%] text-[#FBF6ED] flex justify-end gap-[60px]">
           <div class="cursor-pointer">Номера</div>
-          <div class="cursor-pointer">Услуги</div>
-          <div class="cursor-pointer">Контакты</div>
+          <div @click="$emit('openContactsModal')" class="cursor-pointer">Контакты</div>
+          <a :href="'#rooms'">
+            <div class="cursor-pointer">
+              Бронирование
+            </div>
+          </a>
         </div>
       </div>
     </div>

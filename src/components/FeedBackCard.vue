@@ -23,7 +23,7 @@ export default {
 </script>
 
 <template>
-  <div class="card relative">
+  <div class="card relative shadow">
     <div v-if="data.user_name !=='link_to_yandex'" class="absolute top-[-60px] left-[55px] w-[132px] h-[132px] rounded-t-full bg-[#FFFFFF] flex items-center justify-center">
       <div v-if="data.user_photo !== 'default'" class="w-[90px] h-[90px] rounded-full overflow-hidden">
         <img :src="`src/assets/images/users/${data.user_photo}`" alt="person_elips">
@@ -50,11 +50,14 @@ export default {
         <div>Читать отзыв</div><img src="@/assets/icons/arrow-right_blue.svg" alt="arrow-right_blue">
       </div>
     </div>
-    <a v-else href="https://yandex.ru/search/?text=%D0%9B%D0%B8%D0%BB%D0%B8%D1%8F+%D1%83%D0%BB.+%D0%9F%D1%83%D1%88%D0%BA%D0%B8%D0%BD%D0%B0%2C+2%2C+%D0%93%D1%83%D0%B4%D0%B0%D1%83%D1%82%D0%B0&lr=143731&clid=2270455&win=611&source=wizgeo-common-new_explicit&noreask=1&oid=b%3A180430998084&redircnt=1720985753.1" target="_blank" class="h-full flex items-center justify-center cursor-pointer">
-      <div class="font-montserratMedium text-[16px] text-blueMain pr-[8px]">
-        Читать больше отзывов об отеле “Лилия”
+    <a v-else href="https://yandex.ru/maps/org/liliya/180430998084/reviews/?ll=40.626525%2C43.097830&z=17" target="_blank" class="readMore h-full flex items-center justify-between mx-[55px] cursor-pointer">
+      <div class="flex">
+        <div class="font-montserratMedium text-[16px] text-blueMain pr-[8px]">
+          Читать больше отзывов об отеле “Лилия”
+        </div>
+        <img src="@/assets/icons/arrow-right_blue.svg" alt="arrow-right_blue">
       </div>
-      <img src="@/assets/icons/arrow-right_blue.svg" alt="arrow-right_blue" class="pr-[28px]">
+
       <div>
         <img src="@/assets/images/yandex_logo.png" alt="yandex_logo">
       </div>
@@ -87,5 +90,8 @@ export default {
 }
 .readMore:hover img {
   margin-left: 7px;
+}
+.shadow {
+  box-shadow: -4px 2px 10px 0px #A5873B14;
 }
 </style>

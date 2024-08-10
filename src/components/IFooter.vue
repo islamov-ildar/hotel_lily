@@ -2,11 +2,11 @@
 </script>
 
 <template>
-  <div class="w-full py-[21px] bg-blueMain px-[150px] flex justify-between">
+  <div class="w-full py-[27px] bg-blueMain px-[150px] flex justify-between">
     <div>
       <img src="@/assets/images/logo.svg" width="145px" alt="logo">
     </div>
-    <div class="flex items-center gap-[50px]">
+    <div class="flex items-center gap-[50px] py-[5px]">
       <div class="flex flex-col justify-end h-full">
         <div class="flex gap-[20px]">
           <img src="@/assets/icons/telegram.svg" alt="logo">

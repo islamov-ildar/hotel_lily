@@ -1,9 +1,9 @@
 <template>
   <div class="z-[2]">
-    <button @click="prev" class="w-[80px] h-[40px] hover:bg-[#a0a0a0]" :class="{'bg-[#F2C452]': lastClick === 'prev'}">
+    <button @click="prev" class="btn" :class="{'bg-[#F2C452]': lastClick === 'prev'}">
       <img src="@/assets/icons/arrow-left.svg" alt="arrow-left" class="mx-auto">
     </button>
-    <button  @click="next" class="w-[80px] h-[40px] hover:bg-[#a0a0a0]" :class="{'bg-[#F2C452]': lastClick === 'next'}">
+    <button  @click="next" class="btn" :class="{'bg-[#F2C452]': lastClick === 'next'}">
       <img src="@/assets/icons/arrow-right.svg" alt="arrow-right" class="mx-auto">
     </button>
   </div>
@@ -38,4 +38,12 @@ export default {
 };
 </script>
 <style scoped>
+.btn {
+  width: 80px;
+  height: 40px;
+  border: 1px solid transparent;
+}
+.btn:hover {
+  border: 1px solid #FFFFFF;
+}
 </style>

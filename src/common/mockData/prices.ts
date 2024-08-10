@@ -40,7 +40,7 @@ export const semiLuxurySeaView: IPriceTable = {
         {month: MONTHS.JULY, price: 6000, promotion: true},
         {month: MONTHS.AUGUST, price: 7000},
         {month: MONTHS.SEPTEMBER, price: 6000},
-        {month: MONTHS.OCTOBER, price: 2500},
+        {month: MONTHS.OCTOBER, price: 2500, promotion: true},
     ],
 };
 

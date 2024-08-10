@@ -11,7 +11,7 @@ export default {
     },
     roomDescription: {
       type: Object as PropType<IRoomDescription>,
-      required: true,
+      required: false,
     }
   },
 }
@@ -19,8 +19,8 @@ export default {
 
 <template>
   <div class="font-montserratRegular text-whiteMain flex flex-col items-center">
-    <div class="text-[52px] mb-[92px]">{{ roomDescription.title }}</div>
-    <div class="flex gap-[70px] mb-[42px]">
+    <div v-if="roomDescription" class="text-[52px] mb-[92px]">{{ roomDescription.title }}</div>
+    <div v-if="roomDescription" class="flex gap-[70px] mb-[42px]">
       <div class="flex gap-[12px] items-center">
         <img src="@/assets/icons/area.svg" alt="area">
         <div class="text-[28px]">{{ roomDescription.area }} м2</div>
@@ -63,7 +63,7 @@ export default {
         </div>
       </div>
     </div>
-    <div class="w-[1008px] flex ">
+    <div v-if="roomDescription" class="w-[1008px] flex ">
       <div class="max-w-[1008px] mt-[35px]">
         <div class="mt-[35px]">
           Комнат в номере: 1

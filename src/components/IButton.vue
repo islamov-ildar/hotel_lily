@@ -1,6 +1,6 @@
 <script lang="ts">
 
-import {ref} from "vue";
+import {onMounted, ref} from "vue";
 
 export default {
   props: {
@@ -9,8 +9,20 @@ export default {
   setup(){
     const showFullBtn = ref<boolean>(false);
 
+    const isOnBottom = ref(false);
+
+    onMounted(() => {
+        document.addEventListener('scroll', function() {
+          const documentHeight = document.body.scrollHeight;
+          const currentScroll = window.scrollY + window.innerHeight;
+          const modifier = 10;
+          isOnBottom.value = currentScroll + modifier > documentHeight;
+        })
+    })
+
     return {
       showFullBtn,
+      isOnBottom,
     }
   }
 };
@@ -18,37 +30,39 @@ export default {
 </script>
 
 <template>
-<!--  <button class="rounded-full hover:rounded-none px-[70px] py-[30px] text-[28px]">-->
   <div
       @mouseenter="showFullBtn = true"
       @mouseleave="showFullBtn = false"
       class="btn fixed bottom-[120px] right-[50px] z-[11]"
-      :class="{'h-[86px] w-[382px]': showFullBtn, 'h-[86px] w-[100px]': !showFullBtn}">
+      :class="{'h-[86px] w-[382px]': showFullBtn, 'h-[86px] w-[100px]': !showFullBtn, onBottom: isOnBottom}">
     <div class="relative flex items-center">
       <transition name="fullBtn">
-        <div v-if="showFullBtn" class="cursor-pointer absolute rounded-[60px] right-0 top-0 btnLabel px-[35px] py-[17px] text-[28px] bg-yellowMain text-left text-[#FFFFFF]">
+        <div v-if="showFullBtn" class="z-[11] cursor-pointer absolute rounded-[60px] right-0 top-0 btnLabel px-[35px] py-[17px] text-[28px] bg-yellowMain text-left text-[#FFFFFF]">
           {{ label }}
         </div>
       </transition>
       <transition name="smallBtn">
-        <div v-if="!showFullBtn" class="pulse absolute mt-[-4px] right-0 top-0 w-[86px] h-[86px] yellowBgTelegram">
+        <div v-if="!showFullBtn" class="z-[10] pulse absolute mt-[-4px] right-0 top-0 w-[86px] h-[86px] yellowBgTelegram">
           <img src="@/assets/icons/yellowBgTelegram.svg" height="86" width="86" alt="yellowBgTelegram">
         </div>
       </transition>
     </div>
-
   </div>
 </template>
 
 <style scoped>
-
-.pulse::after,
+.btn {
+  transition: margin 700ms;
+}
+.onBottom {
+  margin-bottom: 50px;
+}
 .pulse::before {
   content: '';
   position: absolute;
-  border: 30px solid #F2C452;
+  border: 60px solid #F2C452;
   left: -20px;
-  opacity: 0.9;
+  opacity: 1;
   right: -20px;
   top: -20px;
   bottom: -20px;
@@ -57,7 +71,7 @@ export default {
 }
 
 .pulse::after {
-  animation-delay: 0.2s;
+  animation-delay: 0.5s;
 }
 
 @keyframes pulse {
@@ -66,13 +80,13 @@ export default {
     opacity: 0;
   }
   25% {
-    opacity: 0.1;
-  }
-  50% {
     opacity: 0.3;
   }
+  50% {
+    opacity: 0.6;
+  }
   100% {
-    transform: scale(1.3);
+    transform: scale(1);
     opacity: 0;
   }
 }
@@ -107,7 +121,7 @@ export default {
 }
 .smallBtn-enter-active,
 .smallBtn-leave-active {
-  transition: opacity 2s;
+  transition: opacity 0.5s;
 }
 
 .smallBtn-enter-from,

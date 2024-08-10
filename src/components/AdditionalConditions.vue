@@ -31,15 +31,19 @@ export default {}
           <div class="font-montserratRegular text-[18px] text-blueMain">Доп место евро-раскладушка - 1200 руб<br>
             Доп место диван - 1500 руб</div>
         </div>
-        <div class="flex items-center gap-[30px] relative">
-          <div class="saleSticker flex items-center">
-            <div class="ml-[30%]">
-              <div class="text-[30px] font-montserratSemiBold text-blueMain">АКЦИЯ</div>
-              <div class="text-[18px] font-montserratBold text-blueMain">Цены июня на начало июля!</div>
-              <div class="text-[18px] font-montserratMedium text-blueMain">*Низкие цены до 15 июля </div>
-            </div>
-          </div>
+        <div class="flex items-center gap-[30px]">
+          <img src="@/assets/icons/bannerIcons/ironingBoard.svg" alt="ico">
+          <div class="font-montserratRegular text-[18px] text-blueMain">Постирочная и гладильная комната</div>
         </div>
+<!--        <div class="flex items-center gap-[30px] relative">-->
+<!--          <div class="saleSticker flex items-center">-->
+<!--            <div class="ml-[30%]">-->
+<!--              <div class="text-[30px] font-montserratSemiBold text-blueMain">АКЦИЯ</div>-->
+<!--              <div class="text-[18px] font-montserratBold text-blueMain">Цены июня на начало июля!</div>-->
+<!--              <div class="text-[18px] font-montserratMedium text-blueMain">*Низкие цены до 15 июля </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
       </div>
     </div>
   </div>

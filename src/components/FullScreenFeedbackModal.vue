@@ -37,7 +37,7 @@ export default {
           </div>
           <img v-else src="@/assets/icons/person_elips.svg" alt="person_elips">
         </div>
-        <div class="w-full text-left pt-[30px] pb-[30px] px-[30px] text-blueMain">
+        <div class="w-full text-left pt-[30px] pb-[50px] px-[30px] text-blueMain">
           <div class="pb-[12px] w-full flex justify-end">
             <img src="@/assets/images/yandex_logo.png" alt="yandex_logo">
           </div>

@@ -1,6 +1,17 @@
 <script lang="ts">
+import {useRouter} from "vue-router";
+
 export default {
-  emits: ['openContactsModal']
+  emits: ['openContactsModal'],
+
+  setup() {
+    const router = useRouter();
+    const redirectToLogin = () => router.push({name: 'login'});
+
+    return {
+      redirectToLogin,
+    }
+  }
 }
 </script>
 
@@ -16,7 +27,7 @@ export default {
         </div>
       </div>
     </div>
-    <div class="mx-auto">
+    <div @click="redirectToLogin" class="mx-auto">
       <img src="@/assets/images/logo.svg" width="145px" alt="logo">
     </div>
     <div class="">

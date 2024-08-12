@@ -1,22 +1,46 @@
 <script lang="ts">
 import {ref} from "vue";
 import PriceTable from "@/components/PriceTable.vue";
-import {semiLuxuryFamily, semiLuxurySeaView, standard} from "@/common/mockData/prices";
+import {getAuth, signOut, onAuthStateChanged} from "firebase/auth";
+import {app, writeAllData, getAll} from '@/firebase';
+import {useRouter} from "vue-router";
+import { allData } from "@/common/allData";
+import {parseData} from "@/common/utils/parseData";
+import {buildData} from "@/common/utils/buildData";
 
 export default {
-  methods: {
-    semiLuxuryFamily() {
-      return semiLuxuryFamily
-    },
-    semiLuxurySeaView() {
-      return semiLuxurySeaView
-    },
-    standard() {
-      return standard
-    }
-  },
   components: {PriceTable},
+
   setup() {
+
+    console.log(app);
+    const router = useRouter();
+    const isUserLogin = ref(false);
+
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        console.log('User is signed in', uid)
+        isUserLogin.value = true
+      } else {
+        console.log('User is signed out')
+        isUserLogin.value = false
+        router.push({name: 'home'})
+      }
+    });
+
+
+    const logout = async () => {
+      const auth = getAuth();
+      signOut(auth)
+          .then(() => {
+            router.push({name: 'home'});
+          })
+          .catch((error) => {
+            error.log;
+          });
+    }
 
     const loading = ref<boolean>(false);
 
@@ -26,11 +50,23 @@ export default {
       main: 'Внимание! Только в этом году и только в этом месяце СКИДКА!',
       additional: 'Заказывайте два номера со скидкой 30% + завтраки и лежаки на пляже! Ждём!',
     });
-    //
-    // const salesText = ref({
-    //   main: 'Цены июня на начало июля!',
-    //   additional: '*Низкие цены до 15 июля',
-    // });
+
+    const saveData = () => {
+      loading.value = true;
+
+      const objForBuild = JSON.parse(JSON.stringify({
+        isSalesEnabled: isSalesEnabled.value,
+        salesText: salesText.value,
+        salesMonths: salesMonths.value,
+        priceYear: priceYear.value,
+        standard: buildData(standard.value),
+        semiLuxurySeaView: buildData(semiLuxurySeaView.value),
+        semiLuxuryFamily: buildData(semiLuxuryFamily.value),
+      }))
+      console.log(objForBuild);
+      // writeAllData(allData).then(() => loading.value = false)
+      writeAllData(objForBuild).then(() => loading.value = false)
+    }
 
     const salesMonths = ref({
       april: false,
@@ -48,8 +84,8 @@ export default {
     });
 
     const validationSaleText = () => {
-      if(salesText.value.main.length > 55) salesText.value.main = salesText.value.main.slice(0, 55)
-      if(salesText.value.additional.length > 55) salesText.value.additional = salesText.value.additional.slice(0, 55)
+      if (salesText.value.main.length > 55) salesText.value.main = salesText.value.main.slice(0, 55)
+      if (salesText.value.additional.length > 55) salesText.value.additional = salesText.value.additional.slice(0, 55)
       salesText.value.main.length > 55 ? salesTextErrors.value.mainError = true : salesTextErrors.value.mainError = false
       salesText.value.additional.length > 60 ? salesTextErrors.value.additionalError = true : salesTextErrors.value.additionalError = false
     }
@@ -64,6 +100,32 @@ export default {
       }
     }
 
+    const semiLuxuryFamily = ref({});
+    const semiLuxurySeaView = ref({});
+    const standard = ref({});
+
+    const loadingDataComplete = ref(false);
+
+    getAll().then(res => {
+      console.log('getAll123', res);
+      const parsedData = parseData(res);
+
+      isSalesEnabled.value = parsedData.isSalesEnabled;
+
+      salesMonths.value = parsedData.salesMonths;
+      salesText.value = parsedData.salesText;
+      semiLuxuryFamily.value = parsedData.semiLuxuryFamily;
+      semiLuxurySeaView.value = parsedData.semiLuxurySeaView;
+      standard.value = parsedData.standard;
+
+      if(!isSalesEnabled.value) switchSales()
+
+      loadingDataComplete.value = true;
+
+      priceYear.value = parsedData.year;
+
+    });
+
     return {
       salesText,
       loading,
@@ -73,6 +135,13 @@ export default {
       isSalesEnabled,
       salesMonths,
       switchSales,
+      logout,
+      isUserLogin,
+      saveData,
+      semiLuxuryFamily,
+      semiLuxurySeaView,
+      standard,
+      loadingDataComplete,
     }
   }
 }
@@ -80,8 +149,9 @@ export default {
 
 </script>
 <template>
-  <div>
-    <button @click="loading = !loading" class="fixed bottom-[70px] right-[40px] btnBorderWrapper cursor-pointer select-none">
+  <div v-if="isUserLogin">
+    <button @click="saveData"
+            class="fixed bottom-[70px] right-[40px] btnBorderWrapper cursor-pointer select-none">
       <span
           class="block relative bg-yellowMain py-[30px] px-[40px] font-montserratSemiBold uppercase text-[24px] text-whiteMain btnBorder">
       <span v-if="loading" class="absolute flex justify-center items-center h-full top-0 left-0 w-full">
@@ -91,7 +161,8 @@ export default {
         </span>
     </button>
   </div>
-  <div class="flex flex-col h-[100vh]">
+  <div v-if="isUserLogin && loadingDataComplete" class="flex flex-col h-[100vh]">
+    <button @click="logout" class="absolute">Logout</button>
     <div class="bg-blueMain">
       <div class="font-helveticaLight header-grid pt-[26px] text-[17px] h-[170px]">
         <div>
@@ -139,43 +210,57 @@ export default {
               <div>
                 <div>Апрель</div>
                 <div>
-                  <input v-model="salesMonths.april" :disabled="!isSalesEnabled" type="checkbox" id="april" class="custom-checkbox checkboxSmallBorder" :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
+                  <input v-model="salesMonths.april" :disabled="!isSalesEnabled" type="checkbox" id="april"
+                         class="custom-checkbox checkboxSmallBorder"
+                         :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
                   <label for="april"></label></div>
               </div>
               <div>
                 <div>Май</div>
                 <div>
-                  <input v-model="salesMonths.may" :disabled="!isSalesEnabled" type="checkbox" id="may" class="custom-checkbox checkboxSmallBorder" :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
+                  <input v-model="salesMonths.may" :disabled="!isSalesEnabled" type="checkbox" id="may"
+                         class="custom-checkbox checkboxSmallBorder"
+                         :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
                   <label for="may"></label></div>
               </div>
               <div>
                 <div>Июнь</div>
                 <div>
-                  <input v-model="salesMonths.june" :disabled="!isSalesEnabled" type="checkbox" id="june" class="custom-checkbox checkboxSmallBorder" :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
+                  <input v-model="salesMonths.june" :disabled="!isSalesEnabled" type="checkbox" id="june"
+                         class="custom-checkbox checkboxSmallBorder"
+                         :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
                   <label for="june"></label></div>
               </div>
               <div>
                 <div>Июль</div>
                 <div>
-                  <input v-model="salesMonths.july" :disabled="!isSalesEnabled" type="checkbox" id="july" class="custom-checkbox checkboxSmallBorder" :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
+                  <input v-model="salesMonths.july" :disabled="!isSalesEnabled" type="checkbox" id="july"
+                         class="custom-checkbox checkboxSmallBorder"
+                         :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
                   <label for="july"></label></div>
               </div>
               <div>
                 <div>Август</div>
                 <div>
-                  <input v-model="salesMonths.august" :disabled="!isSalesEnabled" type="checkbox" id="august" class="custom-checkbox checkboxSmallBorder" :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
+                  <input v-model="salesMonths.august" :disabled="!isSalesEnabled" type="checkbox" id="august"
+                         class="custom-checkbox checkboxSmallBorder"
+                         :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
                   <label for="august"></label></div>
               </div>
               <div>
                 <div>Сентябрь</div>
                 <div>
-                  <input v-model="salesMonths.september" :disabled="!isSalesEnabled" type="checkbox" id="september" class="custom-checkbox checkboxSmallBorder" :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
+                  <input v-model="salesMonths.september" :disabled="!isSalesEnabled" type="checkbox" id="september"
+                         class="custom-checkbox checkboxSmallBorder"
+                         :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
                   <label for="september"></label></div>
               </div>
               <div>
                 <div>Октябрь</div>
                 <div>
-                  <input v-model="salesMonths.october" :disabled="!isSalesEnabled" type="checkbox" id="october" class="custom-checkbox checkboxSmallBorder" :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
+                  <input v-model="salesMonths.october" :disabled="!isSalesEnabled" type="checkbox" id="october"
+                         class="custom-checkbox checkboxSmallBorder"
+                         :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
                   <label for="october"></label></div>
               </div>
             </div>
@@ -185,10 +270,13 @@ export default {
           <div class="text-right font-montserratRegular text-[#999999]">Поле ввода текста</div>
           <div class="relative flex border border-blueMain text-[20px]">
             <div
-                class="w-[243px] h-[65px] bg-blueMain text-whiteMain flex items-center justify-center font-montserratRegular" :class="{'bg-mainGrey': !isSalesEnabled}">
+                class="w-[243px] h-[65px] bg-blueMain text-whiteMain flex items-center justify-center font-montserratRegular"
+                :class="{'bg-mainGrey': !isSalesEnabled}">
               <div>Основной текст</div>
             </div>
-            <input :disabled="!isSalesEnabled" v-model="salesText.main" @input="validationSaleText" class="inputText text-blueMain font-montserratSemiBold text-[27px] bg-whiteMain w-[512px] text-center" :class="{'text-mainGrey': !isSalesEnabled}"
+            <input :disabled="!isSalesEnabled" v-model="salesText.main" @input="validationSaleText"
+                   class="inputText text-blueMain font-montserratSemiBold text-[27px] bg-whiteMain w-[512px] text-center"
+                   :class="{'text-mainGrey': !isSalesEnabled}"
                    type="text">
             <div
                 class="absolute bottom-[-12px] w-full justify-end text-right text-[#F01414] text-[13px] flex items-end">
@@ -197,10 +285,13 @@ export default {
           </div>
           <div class="relative mt-[32px] flex border border-blueMain text-[20px]">
             <div
-                class="w-[243px] h-[65px] bg-blueMain text-whiteMain flex items-center justify-center font-montserratRegular" :class="{'bg-mainGrey': !isSalesEnabled}">
+                class="w-[243px] h-[65px] bg-blueMain text-whiteMain flex items-center justify-center font-montserratRegular"
+                :class="{'bg-mainGrey': !isSalesEnabled}">
               <div class="text-center">Дополнительный<br> текст</div>
             </div>
-            <input :disabled="!isSalesEnabled" v-model="salesText.additional" @input="validationSaleText" class="inputText text-blueMain font-montserratRegular text-[23px] bg-whiteMain w-[512px] text-center" :class="{'text-mainGrey': !isSalesEnabled}"
+            <input :disabled="!isSalesEnabled" v-model="salesText.additional" @input="validationSaleText"
+                   class="inputText text-blueMain font-montserratRegular text-[23px] bg-whiteMain w-[512px] text-center"
+                   :class="{'text-mainGrey': !isSalesEnabled}"
                    type="text">
             <div
                 class="absolute bottom-[-12px] w-full justify-end text-right text-[#F01414] text-[13px] flex items-end">
@@ -222,10 +313,10 @@ export default {
                     <div class="flex justify-center items-center">
                       <div class="flex flex-col justify-between items-center h-full gap-[30px]">
                         <div class="flex items-center font-montserratSemiBold text-[27px] text-center px-[55px]">
-                          {{salesText.main}}
+                          {{ salesText.main }}
                         </div>
                         <div class="flex font-montserratRegular items-center text-[23px] text-center px-[55px]">
-                          {{salesText.additional}}
+                          {{ salesText.additional }}
                         </div>
                       </div>
                     </div>
@@ -273,14 +364,16 @@ export default {
             </div>
 
           </div>
-          <img v-if="isSalesEnabled" src="@/assets/icons/gift.svg" height="122" width="122" alt="gift" class="mt-[45px] ml-[60px]">
+          <img v-if="isSalesEnabled" src="@/assets/icons/gift.svg" height="122" width="122" alt="gift"
+               class="mt-[45px] ml-[60px]">
         </div>
 
       </div>
       <div class="bg-blueMain flex justify-center items-center">
         <div class="flex py-[24px] items-center">
           <div class="font-montserratRegular text-[40px] text-whiteMain mr-[32px]">Цены на номера</div>
-          <input type="number" min="2024" max="2099" step="1" v-model="priceYear" onkeypress="return false" class="inputYear text-center text-[22px] w-[118px] h-[42px] bg-[#FFFFFF26] border border-yellowMain text-yellowMain" />
+          <input type="number" min="2024" max="2099" step="1" v-model="priceYear" onkeypress="return false"
+                 class="inputYear text-center text-[22px] w-[118px] h-[42px] bg-[#FFFFFF26] border border-yellowMain text-yellowMain"/>
           <div class="font-montserratRegular text-[18px] text-[#999999] ml-[10px]">Укажите год</div>
         </div>
       </div>
@@ -292,20 +385,23 @@ export default {
           <div class="text-center text-[52px] font-montserratRegular text-whiteMain pt-[54px] pb-[40px]">Стандарт</div>
           <div class="flex justify-center">
             <div>
-              <PriceTable :price="standard()" />
+              <PriceTable :price="standard"/>
             </div>
           </div>
         </div>
       </div>
       <div class="bg-whiteMain flex justify-center items-center py-[30px]">
-        <div class="font-montserratMedium text-[23px] text-blueMain">Редактировать цены на “Полулюкс с видом на море”</div>
+        <div class="font-montserratMedium text-[23px] text-blueMain">Редактировать цены на “Полулюкс с видом на море”
+        </div>
       </div>
       <div>
         <div class="bg-blueMain">
-          <div class="text-center text-[52px] font-montserratRegular text-whiteMain pt-[54px] pb-[40px]">Полулюкс с видом на море</div>
+          <div class="text-center text-[52px] font-montserratRegular text-whiteMain pt-[54px] pb-[40px]">Полулюкс с
+            видом на море
+          </div>
           <div class="flex justify-center">
             <div>
-              <PriceTable :price="semiLuxurySeaView()" />
+              <PriceTable :price="semiLuxurySeaView"/>
             </div>
           </div>
         </div>
@@ -315,10 +411,12 @@ export default {
       </div>
       <div>
         <div class="bg-blueMain">
-          <div class="text-center text-[52px] font-montserratRegular text-whiteMain pt-[54px] pb-[40px]">Семейный полулюкс</div>
+          <div class="text-center text-[52px] font-montserratRegular text-whiteMain pt-[54px] pb-[40px]">Семейный
+            полулюкс
+          </div>
           <div class="flex justify-center">
             <div>
-              <PriceTable :price="semiLuxuryFamily()" />
+              <PriceTable :price="semiLuxuryFamily"/>
             </div>
           </div>
         </div>
@@ -334,19 +432,24 @@ export default {
   outline: none !important;
   @apply border border-yellowMain
 }
+
 .inputText:focus {
   outline: none !important;
   border: none;
 }
+
 .monthsWrapper > div {
   @apply flex items-center justify-between pl-[90px] pr-[42px] gap-[10px]
 }
+
 .monthsWrapper > div > div {
   height: 45px;
 }
+
 .monthsWrapper > div > div:first-child {
   padding-top: 4px;
 }
+
 .monthsWrapper > div > div > label {
   @apply cursor-pointer
 }

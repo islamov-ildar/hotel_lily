@@ -2,12 +2,13 @@
 import HeaderSection from '@/components/HeaderSection.vue';
 import ICarouselRoom from "@/components/ICarouselRoom.vue";
 import InfoTable from "@/components/InfoTable.vue";
-import {semiLuxurySeaView, standard, semiLuxuryFamily} from "@/common/mockData/prices";
+// import {semiLuxurySeaView, standard, semiLuxuryFamily} from "@/common/mockData/prices";
 import {semiluxRoomDescription, standartRoomDescription, familySemiluxRoomDescription} from "@/common/mockData/roomsDescription";
 import {slidesStandardRoom} from "@/common/mockData/roomStandardCarouselSource";
 import Carousel from '@/components/Carousel/Carousel.vue';
 import {slidesSemiLuxRoom} from "@/common/mockData/roomSemiLuxCarouselSource";
 import AdditionalConditions from "@/components/AdditionalConditions.vue";
+import type {PropType} from "vue";
 
 export default {
   methods: {
@@ -16,12 +17,22 @@ export default {
     }
   },
   components: {AdditionalConditions, ICarouselRoom, HeaderSection, InfoTable, Carousel},
+  props: {
+    data: {
+      type: Object as PropType<any>,
+      required: true,
+    }
+  },
   emits: ['openFullScreenViewHandler'],
 
-  setup(_, { emit }) {
+  setup(props, { emit }) {
     const openFullScreenViewAscent = (slides, imgIdx) => {
       emit('openFullScreenViewHandler', slides, imgIdx);
     }
+
+    const standard = props.data.standard;
+    const semiLuxuryFamily = props.data.semiLuxuryFamily;
+    const semiLuxurySeaView = props.data.semiLuxurySeaView;
 
     return {
       standard,

@@ -1,10 +1,11 @@
 <script lang="ts">
 
-import {onMounted, ref} from "vue";
+import {onMounted, PropType, ref} from "vue";
 
 export default {
   props: {
-    label: {type: String, required: true}
+    label: {type: String, required: true},
+    data: {type: Object as PropType<any>}
   },
   setup(){
     const showFullBtn = ref<boolean>(false);
@@ -44,11 +45,17 @@ export default {
           </div>
           <div class="flex justify-center items-center">
             <div class="flex flex-col justify-between items-center h-full gap-[30px]">
+<!--              <div class="flex items-center font-montserratSemiBold text-[27px]">-->
+<!--                  Цены июня на начало июля!-->
+<!--              </div>-->
               <div class="flex items-center font-montserratSemiBold text-[27px]">
-                  Цены июня на начало июля!
+                  {{ data.main }}
               </div>
+<!--              <div class="flex font-montserratRegular items-center text-[23px]">-->
+<!--                  *Низкие цены до 15 июля-->
+<!--              </div>-->
               <div class="flex font-montserratRegular items-center text-[23px]">
-                  *Низкие цены до 15 июля
+                  {{ data.additional }}
               </div>
             </div>
           </div>

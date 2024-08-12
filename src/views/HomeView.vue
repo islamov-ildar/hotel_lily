@@ -12,10 +12,20 @@ import IButton from "@/components/IButton.vue";
 import IButtonDiscounts from "@/components/IButtonDiscounts.vue";
 import FullScreenFeedbackModal from "@/components/FullScreenFeedbackModal.vue";
 import ContactsModal from "@/components/ContactsModal.vue";
+import {parseData} from "@/common/utils/parseData";
+import {getAll} from '@/firebase';
 
 export default {
   components: { IButtonDiscounts, ContactsModal, FullScreenFeedbackModal,IButton, IFooter,SectionMap, SectionFeedbacks, FullScreenCarousel, SectionRooms, SectionTop, SectionAbout, SectionServices },
   setup() {
+
+    const dataFromDB = ref();
+
+    getAll().then(res => {
+      console.log('getAll in Home.vue', res);
+      dataFromDB.value = parseData(res);
+    });
+
     const showFullscreenCarousel = ref(false);
     const showFullscreenFeedback = ref(false);
     const showContacts = ref(false);
@@ -42,6 +52,7 @@ export default {
       fullscreenFeedback,
       showFullscreenFeedback,
       showContacts,
+      dataFromDB,
     }
   }
 }
@@ -51,11 +62,11 @@ export default {
   <div>
     <IButton label="Забронировать"/>
   </div>
-  <IButtonDiscounts label="Скидки" />
+  <IButtonDiscounts v-if="dataFromDB && dataFromDB.isSalesEnabled" :data="dataFromDB.salesText" label="Скидки" />
   <SectionTop @openContactsModal="showContacts = true" />
   <SectionAbout @openFullScreenViewHandler="openFullScreenCarousel" />
   <SectionServices />
-  <SectionRooms @openFullScreenViewHandler="openFullScreenCarousel" />
+  <SectionRooms v-if="dataFromDB" :data="dataFromDB" @openFullScreenViewHandler="openFullScreenCarousel" />
   <SectionFeedbacks @openFullScreenFeedback="openFullScreenFeedbackView" />
   <SectionMap />
   <IFooter />

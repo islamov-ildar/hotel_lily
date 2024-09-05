@@ -28,4 +28,15 @@ export default {
   background-color: #F2C452;
   margin-bottom: 30px;
 }
+@media (min-width: 769px) {
+  .headerSmall {
+    display: none;
+  }
+  .textMediaSmall {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+
+}
 </style>

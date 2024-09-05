@@ -16,8 +16,7 @@ export default {
 </script>
 
 <template>
-  <div class="font-helveticaLight header-grid pt-[26px] text-[17px] h-[170px]">
-    <div>
+  <div class="headerBig font-helveticaLight header-grid pt-[26px] text-[17px] h-[170px] header-wrapper">
       <div class="header-container pb-[30px] pt-[10px]">
         <div class="ml-[20%] flex items-center gap-[10px]">
           <img src="@/assets/images/map-pin.svg" alt="map-pin">
@@ -25,12 +24,10 @@ export default {
             Абхазия, г. Гудаута, ул. Пушкина, 2
           </div>
         </div>
-      </div>
     </div>
     <div @click="redirectToLogin" class="mx-auto">
-      <img src="@/assets/images/logo.svg" width="145px" alt="logo">
+      <img src="@/assets/images/logo.svg" width="145px" alt="logo" >
     </div>
-    <div class="">
       <div class="header-container pb-[30px] pt-[10px]">
         <div class="text-right mr-[20%] text-[#FBF6ED] flex justify-end gap-[60px]">
           <div class="cursor-pointer">Номера</div>
@@ -41,9 +38,10 @@ export default {
             </div>
           </a>
         </div>
-      </div>
     </div>
   </div>
+
+
 </template>
 
 <style scoped>
@@ -54,4 +52,11 @@ export default {
 .header-container {
   border-bottom: 2px solid #F2C452;
 }
+
+@media (max-width: 768px) {
+  .headerBig {
+    display: none;
+  }
+}
+
 </style>

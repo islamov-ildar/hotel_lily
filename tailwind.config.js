@@ -5,7 +5,12 @@ export default {
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        mobile_m: '375px', //mobile medium
+        mobile_l: '425px', //mobile large
+      }
+    },
     fontFamily: {
       roboto: ["Roboto", "sans-serif"],
       cormorant: ["Cormorant", "sans-serif"],
@@ -28,7 +33,7 @@ export default {
       mainRed: '#F01414',
       mainPink: '#FF808F',
       mainGrey: '#999999',
-    },
+    }
   },
   plugins: [],
 }

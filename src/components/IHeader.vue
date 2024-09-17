@@ -16,28 +16,29 @@ export default {
 </script>
 
 <template>
-  <div class="headerBig font-helveticaLight header-grid pt-[26px] text-[17px] h-[170px] header-wrapper">
-      <div class="header-container pb-[30px] pt-[10px]">
-        <div class="ml-[20%] flex items-center gap-[10px]">
-          <img src="@/assets/images/map-pin.svg" alt="map-pin">
-          <div class="text-[#FBF6ED]">
-            Абхазия, г. Гудаута, ул. Пушкина, 2
-          </div>
+  <!--  <div class="headerBig font-helveticaLight header-grid pt-[26px] text-[17px] h-[170px] header-wrapper">-->
+  <div class="headerBig font-helveticaLight header-grid pt-[26px] text-[17px] header-wrapper">
+    <div class="pt-[10px]">
+      <div class="header-container pb-[30px] pl-[20%] flex items-center gap-[10px]">
+        <img src="@/assets/images/map-pin.svg" alt="map-pin">
+        <div class="text-[#FBF6ED]">
+          Абхазия, г. Гудаута, ул. Пушкина, 2
         </div>
+      </div>
     </div>
     <div @click="redirectToLogin" class="mx-auto">
-      <img src="@/assets/images/logo.svg" width="145px" alt="logo" >
+      <img src="@/assets/images/logo.svg" width="145px" alt="logo">
     </div>
-      <div class="header-container pb-[30px] pt-[10px]">
-        <div class="text-right mr-[20%] text-[#FBF6ED] flex justify-end gap-[60px]">
-          <div class="cursor-pointer">Номера</div>
-          <div @click="$emit('openContactsModal')" class="cursor-pointer">Контакты</div>
-          <a :href="'#rooms'">
-            <div class="cursor-pointer">
-              Бронирование
-            </div>
-          </a>
-        </div>
+    <div class="pt-[10px]">
+      <div class="pr-[20%] pb-[30px] w-full header-container text-right text-[#FBF6ED] flex justify-end gap-[60px]">
+        <div class="cursor-pointer">Номера</div>
+        <div @click="$emit('openContactsModal')" class="cursor-pointer">Контакты</div>
+        <a :href="'#rooms'">
+          <div class="cursor-pointer">
+            Бронирование
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 
@@ -49,6 +50,7 @@ export default {
   display: grid;
   grid-template-columns: 1fr 200px 1fr;
 }
+
 .header-container {
   border-bottom: 2px solid #F2C452;
 }

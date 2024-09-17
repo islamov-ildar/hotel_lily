@@ -16,7 +16,7 @@ export default {
   </div>
   <div class="wrapper relative">
     <IHeader @openContactsModal="$emit('openContactsModal')" />
-      <div class="absolute right-0 top-0 flex items-start gap-[10px] text-[13px] pt-[25px] pr-[14px]">
+      <div class="lg:hidden absolute right-0 top-0 flex items-start gap-[10px] text-[13px] pt-[25px] pr-[14px]">
         <img src="@/assets/images/map-pin.svg" alt="map-pin">
         <div class="text-[#FBF6ED] text-right">
           Абхазия, г. Гудаута,<br> ул. Пушкина, 2
@@ -67,6 +67,7 @@ export default {
 }
 .wrapper {
   width: 100%;
+  //max-width: 1920px;
   object-fit: cover;
   background: url("@/assets/images/top-section-cover.png") no-repeat;
   background-size: cover;

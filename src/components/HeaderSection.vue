@@ -12,10 +12,10 @@ export default {
 <template>
 <div class="flex flex-col items-center">
   <div v-if="showVerticalStick" class="vertical-stick"></div>
-  <div class="mb-[40px] text-[70px] font-cormorant leading-[37px]">
+  <div class="mb-[40px] text-[34px] font-cormorant leading-[37px] md:text-[70px]">
     <slot name="title"></slot>
   </div>
-  <div class="font-ralewayRegular uppercase tracking-[2.9px] text-[20px] text-[#F2C452]">
+  <div class="font-ralewayRegular uppercase tracking-[2.9px] text-center text-[11px] md:text-[20px] text-[#F2C452]">
     <slot name="description"></slot>
   </div>
 </div>
@@ -37,6 +37,9 @@ export default {
   }
 }
 @media (max-width: 768px) {
-
+  .vertical-stick {
+    height: 30px;
+    margin-bottom: 10px;
+  }
 }
 </style>

@@ -8,10 +8,10 @@ export default {
 </script>
 
 <template>
-<div class="bg-[#FBF6ED] pt-[90px] px-[225px] pb-[240px]">
-  <div class="flex gap-[10px] text-[20px]">
-    <div class="w-2/3">
-      <HeaderSection class="mb-[90px]">
+<div class="bg-[#FBF6ED] pt-[40px] lg:pt-[90px] lg:px-[225px] pb-[240px]">
+  <div class="flex flex-col lg:flex-row gap-[10px] text-[20px] px-[50px]">
+    <div class="w-full lg:w-2/3">
+      <HeaderSection class="mb-[25px] lg:mb-[90px]">
         <template #title>
           <span class="text-blueMain">Услуги</span>
         </template>
@@ -19,10 +19,16 @@ export default {
           ваш уютный уголок на берегу счастья
         </template>
       </HeaderSection>
+      <div class="w-full mx-auto relative">
+        <div class="lg:mt-[100px] px-[25px] z-10 relative">
+          <img src="@/assets/images/beach.jpg" alt="beach" width="525" height="699" class="mx-auto">
+        </div>
+        <div class="absolute w-[280px] h-[335px] border-2 border-yellowMain top-[73px] z-0"></div>
+      </div>
       <div class="text-blueMain text-[18px] font-montserratRegular">
         Отель находится на первой береговой линии, всего в 100 метрах от моря.<br>Имеется собственный  мелко-галечный пляж, оборудованный лежаками и зонтами, включенными в стоимость номеров.
       </div>
-      <div class="flex gap-[125px] mt-[60px] text-[18px] font-montserratRegular">
+      <div class="flex  gap-[125px] mt-[60px] text-[18px] font-montserratRegular">
         <div class="flex flex-col gap-[21px]">
           <div class="flex gap-[30px] items-center">
             <div><img src="@/assets/icons/swim.svg" alt="beach"></div>
@@ -61,7 +67,7 @@ export default {
         </div>
       </div>
     </div>
-    <div class="ml-[40px] w-1/3">
+    <div class="ml-[40px] w-1/3 hidden lg:block">
       <div class="w-[626px] mx-auto relative">
         <div class="mt-[100px] w-full">
           <img src="@/assets/images/beach.jpg" alt="beach" width="525" height="699" class="mx-auto">

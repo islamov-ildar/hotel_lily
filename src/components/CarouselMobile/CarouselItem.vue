@@ -8,11 +8,11 @@
       v-show="currentSlide === index"
       @mouseenter="$emit('mouseenter')"
       @mouseout="$emit('mouseout')"
-      :style="customStyle(slide.src)"
     >
-      <div class="indicatorImg" :class="{topCircle: typeVertical}">
-        <img src="@/assets/images/Zoom.svg" alt="Zoom" class="">
-      </div>
+<!--      <div class="indicatorImg" :class="{topCircle: typeVertical}">-->
+<!--        <img src="@/assets/images/Zoom.svg" alt="Zoom" class="">-->
+<!--      </div>-->
+      <img :src="slide.src" alt="Nature" class="responsive" width="600" height="400">
     </div>
     <div v-else class="carousel-item" v-show="currentSlide === index">
       <video controls :src="slide.src" width="690" muted>
@@ -47,6 +47,11 @@ export default {
 </script>
 
 <style scoped>
+.responsive {
+  width: 100%;
+  //max-width: 400px;
+  height: auto;
+}
 .indicatorImg {
   display: flex;
   justify-content: center;

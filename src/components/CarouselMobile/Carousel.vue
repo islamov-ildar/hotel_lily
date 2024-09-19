@@ -1,12 +1,8 @@
 <template>
   <div class="carousel max-w-[653px]"
   :class="typeVertical ? 'max-w-[653px]' : 'max-w-[814px]'">
-    <div class="carousel-inner" :class="typeVertical ? 'w-[507px] h-[692px]' : 'w-[690px] h-[387px]'">
-      <div v-show="showBlackout" class="carouselBlackout"
-      :class="typeVertical ? 'topCircle' : ''">
-        <img v-show="showBlackout" src="@/assets/images/Zoom.svg" alt="Zoom" class="absolute top-[40%] left-[47%]">
-      </div>
-      <div>123321</div>
+<!--    <div class="carousel-inner" :class="typeVertical ? 'w-[507px] h-[692px]' : 'w-[690px] h-[387px]'">-->
+    <div class="carousel-inner">
       <carousel-item
         v-for="(slide, index) in slides"
         :slide="slide"
@@ -24,11 +20,11 @@
       <div class="relative flex justify-between mt-[40px] w-full"
           :class="classObject"
       >
-<!--      <carousel-controls-->
-<!--          v-if="controls"-->
-<!--          @prev="prev"-->
-<!--          @next="next">-->
-<!--      </carousel-controls>-->
+      <carousel-controls
+          v-if="controls"
+          @prev="prev"
+          @next="next">
+      </carousel-controls>
       <carousel-indicators-custom
           :onRight="onRight"
           v-if="indicators"
@@ -155,14 +151,15 @@ export default {
 
 <style scoped>
 .carousel {
-  display: flex;
+  //display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 .carousel-inner {
   position: relative;
-  overflow: hidden;
+  //overflow: hidden;
+  overflow-x: clip;
   z-index: 1;
 }
 .carouselBorder {

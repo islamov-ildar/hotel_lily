@@ -29,12 +29,12 @@ export default {
       где мечты о море становятся реальностью
     </template>
   </HeaderSection>
-  <div class="flex gap-[110px] text-[20px] flex-col lg:flex-row">
+  <div class="gap-[110px] text-[20px] grid grid-rows-2 lg:flex lg:flex-row">
     <div class="lg:w-1/2">
-      <div class="hidden lg:block ml-[-50px]">
-        <Carousel :carousel-idx="0" :slides="slides" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></Carousel>
-      </div>
-      <div class="lg:hidden ml-[-50px]">
+<!--      <div class="hidden lg:block ml-[-50px]">-->
+<!--        <Carousel :carousel-idx="0" :slides="slides" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></Carousel>-->
+<!--      </div>-->
+      <div class="lg:hidden lg:ml-[-50px]">
         <CarouselMobile :carousel-idx="0" :slides="slides" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></CarouselMobile>
       </div>
     </div>

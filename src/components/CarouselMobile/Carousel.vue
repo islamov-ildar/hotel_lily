@@ -1,30 +1,29 @@
 <template>
   <div class="carousel max-w-[653px]"
-  :class="typeVertical ? 'max-w-[653px]' : 'max-w-[814px]'">
-<!--    <div class="carousel-inner" :class="typeVertical ? 'w-[507px] h-[692px]' : 'w-[690px] h-[387px]'">-->
+       :class="typeVertical ? 'max-w-[653px]' : 'max-w-[814px]'">
+    <!--    <div class="carousel-inner" :class="typeVertical ? 'w-[507px] h-[692px]' : 'w-[690px] h-[387px]'">-->
     <div class="carousel-inner">
       <carousel-item
-        v-for="(slide, index) in slides"
-        :slide="slide"
-        :typeVertical="typeVertical"
-        :key="`item-${index}`"
-        :current-slide="currentSlide"
-        :index="index"
-        :direction="direction"
-        @clickOnImg="clickInCarousel"
+          v-for="(slide, index) in slides"
+          :slide="slide"
+          :typeVertical="typeVertical"
+          :key="`item-${index}`"
+          :current-slide="currentSlide"
+          :index="index"
+          :direction="direction"
+          @clickOnImg="clickInCarousel"
       ></carousel-item>
     </div>
     <div class="absolute carouselBorder"
          :class="classObjectCarouselBorder">
     </div>
-      <div class="relative flex justify-between mt-[40px] w-full"
-          :class="classObject"
-      >
+    <div>
       <carousel-controls
           v-if="controls"
           @prev="prev"
-          @next="next">
-      </carousel-controls>
+          @next="next"
+          class="mt-6 mx-2 flex justify-between"
+      />
       <carousel-indicators-custom
           :onRight="onRight"
           v-if="indicators"
@@ -32,7 +31,13 @@
           :current-index="currentSlide"
           @switch="switchSlide($event)"
           :typeVertical="typeVertical"
-      ></carousel-indicators-custom>
+          class="indicatorCustom"
+      />
+    </div>
+    <div class="relative flex justify-between mt-[40px] w-full"
+         :class="classObject"
+    >
+
     </div>
   </div>
 </template>
@@ -73,7 +78,7 @@ export default {
       default: 0,
     }
   },
-  components: {CarouselIndicatorsCustom, CarouselItem, CarouselControls },
+  components: {CarouselIndicatorsCustom, CarouselItem, CarouselControls},
   data: () => ({
     currentSlide: 0,
     slideInterval: null,
@@ -91,10 +96,10 @@ export default {
     classObjectCarouselBorder() {
       return {
         'toBackGround': this.slides[this.currentSlide].type === 'video',
-        'w-[580px] h-[420px] top-[85px] left-[210px]': !this.typeVertical,
-        'w-[507px] h-[692px] topCircle top-[110px]': this.typeVertical,
-        'left-[83px]': !this.onRight && this.typeVertical,
-        'left-[118px]': this.onRight && this.typeVertical,
+        // 'w-[580px] h-[420px] top-[85px] left-[210px]': !this.typeVertical,
+        // 'w-[507px] h-[692px] topCircle top-[110px]': this.typeVertical,
+        // 'left-[83px]': !this.onRight && this.typeVertical,
+        // 'left-[118px]': this.onRight && this.typeVertical,
       }
     },
   },
@@ -104,18 +109,18 @@ export default {
     },
     prev(step = -1) {
       const index =
-        this.currentSlide > 0
-          ? this.currentSlide + step
-          : this.slides.length - 1;
+          this.currentSlide > 0
+              ? this.currentSlide + step
+              : this.slides.length - 1;
       this.setCurrentSlide(index);
       this.direction = "left";
       // this.startSlideTimer();
     },
     _next(step = 1) {
       const index =
-        this.currentSlide < this.slides.length - 1
-          ? this.currentSlide + step
-          : 0;
+          this.currentSlide < this.slides.length - 1
+              ? this.currentSlide + step
+              : 0;
       this.setCurrentSlide(index);
       this.direction = "right";
     },
@@ -140,36 +145,47 @@ export default {
         this.prev(step);
       }
     },
-    clickInCarousel(imgIdx){
+    clickInCarousel(imgIdx) {
       this.$emit('openFullScreenView', this.slides, imgIdx);
     },
   },
-  mounted() {},
-  beforeUnmount() {},
+  mounted() {
+  },
+  beforeUnmount() {
+  },
 };
 </script>
 
 <style scoped>
-.carousel {
-  //display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+.indicatorCustom {
+  position: absolute;
+  bottom: 12px;
+  left: calc(50% - 71px)
 }
+
+.carousel {
+//display: flex; justify-content: center; align-items: center; flex-direction: column;
+}
+
 .carousel-inner {
   position: relative;
-  //overflow: hidden;
-  overflow-x: clip;
-  z-index: 1;
+//overflow: hidden; overflow-x: clip; z-index: 1; height: 56vw;
 }
+
 .carouselBorder {
   border: 2px solid #F2C452;
   z-index: 1;
   pointer-events: none;
+  top: -5%;
+  width: 50%;
+  height: 104%;
+  left: 25%;
 }
+
 .toBackGround {
   z-index: 0;
 }
+
 .carouselBlackout {
   width: 100%;
   height: 100%;
@@ -177,10 +193,12 @@ export default {
   background-color: #0404048C;
   z-index: 2;
 }
+
 .topCircle {
   border-radius: 290px 290px 0 0;
 }
+
 .carousel-item:hover {
-  background: rgba(0,0,0,.5);
+  background: rgba(0, 0, 0, .5);
 }
 </style>

@@ -20,7 +20,7 @@ export default {
 </script>
 
 <template>
-<div class="bg-[#2A657E] bgImg py-[44px] lg:py-[90px] lg:px-[150px]">
+<div class="bg-[#2A657E] lg:bgImg py-[44px] lg:py-[90px] lg:px-[150px]">
   <HeaderSection class="mb-[25px] lg:mb-[90px]">
     <template #title >
       <span class="text-[#FBF6ED]">Об отеле</span>
@@ -29,7 +29,7 @@ export default {
       где мечты о море становятся реальностью
     </template>
   </HeaderSection>
-  <div class="gap-[110px] text-[20px] grid grid-rows-2 lg:flex lg:flex-row">
+  <div class="gap-[110px] text-[20px] lg:flex lg:flex-row">
     <div class="lg:w-1/2">
 <!--      <div class="hidden lg:block ml-[-50px]">-->
 <!--        <Carousel :carousel-idx="0" :slides="slides" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></Carousel>-->

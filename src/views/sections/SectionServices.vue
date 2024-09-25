@@ -8,7 +8,7 @@ export default {
 </script>
 
 <template>
-  <div class="bg-[#FBF6ED] pt-[40px] lg:pt-[90px] lg:px-[225px] pb-[240px]">
+  <div class="bg-[#FBF6ED] pt-[40px] lg:pt-[90px] lg:px-[225px] pb-[60px] lg:pb-[240px]">
     <div class="flex flex-col lg:flex-row gap-[10px] text-[20px] px-[50px]">
       <div class="w-full lg:w-2/3">
         <HeaderSection class="mb-[25px] lg:mb-[90px]">
@@ -23,7 +23,7 @@ export default {
           <div class="lg:mt-[100px] px-[25px] z-10 relative">
             <img src="@/assets/images/beach.jpg" alt="beach" width="525" height="699" class="mx-auto">
           </div>
-          <div class="absolute w-[100%] h-[95%] left-[0] border-2 border-yellowMain top-[73px] z-0"></div>
+          <div class="absolute w-[100%] h-[95%] left-[0] border-2 border-yellowMain top-[13%] z-0"></div>
         </div>
         <div class="text-blueMain text-[18px] font-montserratRegular">
           Отель находится на первой береговой линии, всего в 100 метрах от моря.<br>Имеется собственный мелко-галечный
@@ -77,7 +77,7 @@ export default {
         </div>
       </div>
     </div>
-    <HeaderSection :show-vertical-stick="false" class="mt-[253px] mb-[90px]">
+    <HeaderSection class="mt-[45px] mb-[60px] lg:mt-[253px] lg:mb-[90px]">
       <template #title>
         <span class="text-blueMain">Вкусная домашняя кухня</span>
       </template>

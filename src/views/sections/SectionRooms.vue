@@ -6,6 +6,7 @@ import InfoTable from "@/components/InfoTable.vue";
 import {semiluxRoomDescription, standartRoomDescription, familySemiluxRoomDescription} from "@/common/mockData/roomsDescription";
 import {slidesStandardRoom} from "@/common/mockData/roomStandardCarouselSource";
 import Carousel from '@/components/Carousel/Carousel.vue';
+import CarouselVerticalMobile from '@/components/CarouselVerticalMobile/Carousel.vue';
 import {slidesSemiLuxRoom} from "@/common/mockData/roomSemiLuxCarouselSource";
 import AdditionalConditions from "@/components/AdditionalConditions.vue";
 import type {PropType} from "vue";
@@ -16,7 +17,7 @@ export default {
       return semiluxRoomDescription
     }
   },
-  components: {AdditionalConditions, ICarouselRoom, HeaderSection, InfoTable, Carousel},
+  components: {AdditionalConditions, ICarouselRoom, HeaderSection, InfoTable, Carousel, CarouselVerticalMobile},
   props: {
     data: {
       type: Object as PropType<any>,
@@ -50,10 +51,10 @@ export default {
 </script>
 
 <template>
-<div class="bg-[#2A657E] py-[90px] px-[150px] relative overflow-hidden">
+<div class="bg-[#2A657E] py-[50px] lg:py-[90px] lg:px-[150px] relative overflow-hidden">
   <div class="glare w-[1000px] h-[1000px] absolute top-[10%] left-[-20%] z-0"></div>
   <div class="glare w-[1000px] h-[1000px] absolute top-0 right-[-20%] z-0"></div>
-  <HeaderSection class="mb-[90px] z-10 relative">
+  <HeaderSection class="mb-[40px] lg:mb-[90px] z-10 relative">
     <template #title >
       <span class="text-[#FBF6ED]">Комфорт в номерах</span>
     </template>
@@ -63,8 +64,11 @@ export default {
   </HeaderSection>
   <AdditionalConditions />
   <div id="rooms" class="flex gap-[110px] text-[20px] z-[9] relative mb-[200px]">
-    <div class="w-[45%]">
+    <div class="hidden lg:block w-[45%]">
       <Carousel :carousel-idx="1" :type-vertical="true" :slides="slidesStandardRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></Carousel>
+    </div>
+    <div class="lg:hidden">
+      <CarouselVerticalMobile :carousel-idx="1" :type-vertical="true" :slides="slidesStandardRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></CarouselVerticalMobile>
     </div>
     <div class="ml-[120px] w-[55%]">
       <InfoTable :price="standard" :roomDescription="standartRoomDescription" />

@@ -63,12 +63,12 @@ export default {
     </template>
   </HeaderSection>
   <AdditionalConditions />
-  <div id="rooms" class="flex gap-[110px] text-[20px] z-[9] relative mb-[200px]">
+  <div id="rooms" class="flex flex-col lg:flex-row gap-[110px] text-[20px] z-[9] relative mb-[200px]">
     <div class="hidden lg:block w-[45%]">
       <Carousel :carousel-idx="1" :type-vertical="true" :slides="slidesStandardRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></Carousel>
     </div>
     <div class="lg:hidden">
-      <CarouselVerticalMobile :carousel-idx="1" :type-vertical="true" :slides="slidesStandardRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></CarouselVerticalMobile>
+      <CarouselVerticalMobile :carousel-idx="1" :slides="slidesStandardRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></CarouselVerticalMobile>
     </div>
     <div class="ml-[120px] w-[55%]">
       <InfoTable :price="standard" :roomDescription="standartRoomDescription" />

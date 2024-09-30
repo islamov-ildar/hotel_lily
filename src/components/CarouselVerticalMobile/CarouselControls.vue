@@ -1,5 +1,5 @@
 <template>
-  <div class="z-[2]">
+  <div class="absolute w-full z-[4]">
     <button @click="prev" class="btn" :class="{'bg-[#F2C452]': lastClick === 'prev'}">
       <img src="@/assets/icons/arrow-left.svg" alt="arrow-left" class="mx-auto">
     </button>

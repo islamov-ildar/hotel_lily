@@ -87,16 +87,17 @@ export default {
     </HeaderSection>
     <div class="flex flex-col lg:flex-row gap-[10px] text-[20px] justify-between">
       <div class="flex gap-[20px] relative max-w-[85%] mx-auto">
-        <div>
-          <img src="@/assets/images/cafe.jpg" width="380" height="549" alt="cafe">
+        <div class="z-[1]">
+          <img src="@/assets/images/cafe.jpg" width="380" height="549" alt="cafe" class="lg:hidden w-auto h-full">
+          <img src="@/assets/images/cafe.jpg" width="380" height="549" alt="cafe" class="hidden lg:block">
         </div>
-        <div class="flex flex-col gap-[20px]">
+        <div class="flex flex-col gap-[20px] z-[1]">
           <img src="@/assets/images/vegetables.jpg" width="265" height="169" alt="vegetables">
           <img src="@/assets/images/cake.jpg" width="265" height="170" alt="cake">
           <img src="@/assets/images/dishes.jpg" width="265" height="170" alt="dishes">
         </div>
         <div class="hidden lg:block absolute w-[595px] h-[500px] border-2 border-yellowMain top-[125px] left-[200px]"></div>
-        <div class="lg:hidden absolute w-[70%] h-[100%] right-[-7%] top-[7%] border-2 border-yellowMain"></div>
+        <div class="lg:hidden absolute w-[90%] h-[90%] right-[-7%] top-[20%] border-2 border-yellowMain z-0"></div>
       </div>
       <div class="lg:ml-[40px] max-w-[75%] mx-auto lg:w-1/3 mt-[60px] flex items-center">
         <div class="text-blueMain text-[18px] font-montserratRegular">

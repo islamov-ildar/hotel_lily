@@ -55,6 +55,11 @@ export default {}
   z-index: 1;
   margin-bottom: 250px;
 }
+@media (max-width: 768px) {
+  .mainContainer {
+    margin-bottom: 50px;
+  }
+}
 .bgImg {
   background-image: url('@/assets/icons/bannerIcons/lily_yellow.svg');
   background-repeat: no-repeat;

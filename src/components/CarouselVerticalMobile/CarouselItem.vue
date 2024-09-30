@@ -3,8 +3,7 @@
     <div
       @click="$emit('clickOnImg', index)"
       v-if="slide.type === 'img'"
-      class="carousel-item"
-      :class="{topCircle: typeVertical}"
+      class="carousel-item topCircle"
       v-show="currentSlide === index"
       @mouseenter="$emit('mouseenter')"
       @mouseout="$emit('mouseout')"
@@ -51,6 +50,7 @@ export default {
   width: 100%;
   //max-width: 400px;
   height: auto;
+  border-radius: 290px 290px 0 0;
 }
 .indicatorImg {
   display: flex;
@@ -65,6 +65,7 @@ export default {
   visibility: visible;
 }
 .carousel-item {
+  padding: 0 25px;
   position: absolute;
   top: 0;
   left: 0;

@@ -1,7 +1,5 @@
 <template>
-  <div class="carousel max-w-[653px]"
-       :class="typeVertical ? 'max-w-[653px]' : 'max-w-[814px]'">
-    <!--    <div class="carousel-inner" :class="typeVertical ? 'w-[507px] h-[692px]' : 'w-[690px] h-[387px]'">-->
+  <div class="carousel">
     <div class="carousel-inner">
       <carousel-item
           v-for="(slide, index) in slides"
@@ -17,28 +15,21 @@
     <div class="absolute carouselBorder"
          :class="classObjectCarouselBorder">
     </div>
-    <div>
-      <carousel-controls
-          v-if="controls"
-          @prev="prev"
-          @next="next"
-          class="mt-6 mx-2 flex justify-between"
-      />
-      <carousel-indicators-custom
-          :onRight="onRight"
-          v-if="indicators"
-          :total="slides.length"
-          :current-index="currentSlide"
-          @switch="switchSlide($event)"
-          :typeVertical="typeVertical"
-          class="indicatorCustom"
-      />
-    </div>
-    <div class="relative flex justify-between mt-[40px] w-full"
-         :class="classObject"
-    >
-
-    </div>
+    <carousel-indicators-custom
+        :onRight="onRight"
+        v-if="indicators"
+        :total="slides.length"
+        :current-index="currentSlide"
+        @switch="switchSlide($event)"
+        :typeVertical="typeVertical"
+        class="indicatorCustom"
+    />
+    <carousel-controls
+        v-if="controls"
+        @prev="prev"
+        @next="next"
+        class="flex justify-between"
+    />
   </div>
 </template>
 
@@ -173,13 +164,18 @@ export default {
 }
 
 .carouselBorder {
+  border-radius: 290px 290px 0 0;
   border: 2px solid #F2C452;
-  z-index: 1;
+  //z-index: 1;
   pointer-events: none;
-  top: -5%;
-  width: 50%;
-  height: 104%;
-  left: 25%;
+  //top: -5%;
+  //width: 100%;
+  //height: 200%;
+  //left: 4%;
+  top: -8%;
+  width: 85%;
+  height: 230%;
+  left: 13%;
 }
 
 .toBackGround {

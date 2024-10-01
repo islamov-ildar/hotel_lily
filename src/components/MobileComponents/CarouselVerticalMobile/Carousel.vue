@@ -14,16 +14,25 @@
     </div>
     <div class="absolute carouselBorder"
          :class="classObjectCarouselBorder">
+      <carousel-indicators-custom
+          :onRight="onRight"
+          v-if="indicators"
+          :total="slides.length"
+          :current-index="currentSlide"
+          @switch="switchSlide($event)"
+          :typeVertical="typeVertical"
+          class="indicatorCustom"
+      />
     </div>
-    <carousel-indicators-custom
-        :onRight="onRight"
-        v-if="indicators"
-        :total="slides.length"
-        :current-index="currentSlide"
-        @switch="switchSlide($event)"
-        :typeVertical="typeVertical"
-        class="indicatorCustom"
-    />
+<!--    <carousel-indicators-custom-->
+<!--        :onRight="onRight"-->
+<!--        v-if="indicators"-->
+<!--        :total="slides.length"-->
+<!--        :current-index="currentSlide"-->
+<!--        @switch="switchSlide($event)"-->
+<!--        :typeVertical="typeVertical"-->
+<!--        class="indicatorCustom"-->
+<!--    />-->
     <carousel-controls
         v-if="controls"
         @prev="prev"
@@ -36,7 +45,7 @@
 <script>
 import CarouselItem from "./CarouselItem.vue";
 import CarouselControls from "./CarouselControls.vue";
-import CarouselIndicatorsCustom from "@/components/Carousel/CarouselIndicatorsCustom.vue";
+import CarouselIndicatorsCustom from "./CarouselIndicatorsCustom.vue";
 
 export default {
   props: {
@@ -150,8 +159,8 @@ export default {
 <style scoped>
 .indicatorCustom {
   position: absolute;
-  bottom: 12px;
-  left: calc(50% - 71px)
+  //bottom: 12px;
+  //left: calc(50% - 71px)
 }
 
 .carousel {
@@ -172,7 +181,7 @@ export default {
   pointer-events: none;
   top: -4%;
   width: 93%;
-  height: 110%;
+  height: 112%;
   left: 11%;
 }
 

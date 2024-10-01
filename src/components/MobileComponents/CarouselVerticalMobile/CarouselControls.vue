@@ -1,10 +1,10 @@
 <template>
-  <div class="absolute w-full z-[4]">
+  <div class="absolute w-full z-[4] btnContainer">
     <button @click="prev" class="btn" :class="{'bg-[#F2C452]': lastClick === 'prev', 'bg-[#528CA5]' : lastClick !== 'prev'}">
-      <img src="@/assets/icons/arrow-left.svg" alt="arrow-left" class="mx-auto">
+      <img src="../../../assets/icons/arrow-left.svg" alt="arrow-left" class="mx-auto">
     </button>
     <button  @click="next" class="btn" :class="{'bg-[#F2C452]': lastClick === 'next', 'bg-[#528CA5]' : lastClick !== 'next'}">
-      <img src="@/assets/icons/arrow-right.svg" alt="arrow-right" class="mx-auto">
+      <img src="../../../assets/icons/arrow-right.svg" alt="arrow-right" class="mx-auto">
     </button>
   </div>
 
@@ -38,6 +38,11 @@ export default {
 };
 </script>
 <style scoped>
+.btnContainer {
+  top: 55%;
+  width: 100vw;
+  margin-left: -5.5%;
+}
 .btn {
   width: 40px;
   height: 40px;

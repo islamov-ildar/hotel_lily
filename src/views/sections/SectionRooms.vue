@@ -6,10 +6,11 @@ import InfoTable from "@/components/InfoTable.vue";
 import {semiluxRoomDescription, standartRoomDescription, familySemiluxRoomDescription} from "@/common/mockData/roomsDescription";
 import {slidesStandardRoom} from "@/common/mockData/roomStandardCarouselSource";
 import Carousel from '@/components/Carousel/Carousel.vue';
-import CarouselVerticalMobile from '@/components/CarouselVerticalMobile/Carousel.vue';
+import CarouselVerticalMobile from '@/components/MobileComponents/CarouselVerticalMobile/Carousel.vue';
 import {slidesSemiLuxRoom} from "@/common/mockData/roomSemiLuxCarouselSource";
 import AdditionalConditions from "@/components/AdditionalConditions.vue";
 import type {PropType} from "vue";
+import RoomDescriptionShort from "@/components/MobileComponents/RoomDescription/RoomDescriptionShort.vue";
 
 export default {
   methods: {
@@ -17,7 +18,9 @@ export default {
       return semiluxRoomDescription
     }
   },
-  components: {AdditionalConditions, ICarouselRoom, HeaderSection, InfoTable, Carousel, CarouselVerticalMobile},
+  components: {
+    RoomDescriptionShort,
+    AdditionalConditions, ICarouselRoom, HeaderSection, InfoTable, Carousel, CarouselVerticalMobile},
   props: {
     data: {
       type: Object as PropType<any>,
@@ -63,10 +66,11 @@ export default {
     </template>
   </HeaderSection>
   <AdditionalConditions />
-  <div id="rooms" class="flex flex-col lg:flex-row gap-[110px] text-[20px] z-[9] relative mb-[200px]">
+  <div id="rooms" class="flex flex-col lg:flex-row lg:gap-[110px] text-[20px] z-[9] relative mb-[200px]">
     <div class="hidden lg:block w-[45%]">
       <Carousel :carousel-idx="1" :type-vertical="true" :slides="slidesStandardRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></Carousel>
     </div>
+    <RoomDescriptionShort :room-description="standartRoomDescription" />
     <div class="lg:hidden px-[5%]">
       <CarouselVerticalMobile :carousel-idx="1" :slides="slidesStandardRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></CarouselVerticalMobile>
     </div>

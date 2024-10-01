@@ -1,10 +1,10 @@
 <template>
-    <div class="carousel-indicators font-aliceRegular text-[40px]"
+    <div class="carousel-indicators font-aliceRegular text-[17px]"
   :class="classObject">
     <div class="text-[#F2C452]">
       {{addZeroBeforeOneNumber(currentIndex + 1)}}
     </div>
-    <div class="text-[#458099] mt-[35px]">
+    <div class="text-[#458099] mt-[5px]">
       {{addZeroBeforeOneNumber(nextIndex)}}
     </div>
   </div>
@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import {computed} from "vue";
-import {addZeroBeforeOneNumber} from "../../common/utils/addZeroBeforeOneNumber";
+import {addZeroBeforeOneNumber} from "../../../common/utils/addZeroBeforeOneNumber";
 
 export default {
   emits: ["switch"],
@@ -46,6 +46,8 @@ export default {
 <style scoped>
 .carousel-indicators {
   display: flex;
-  gap: 60px;
+  gap: 50%;
+  left: -31px;
+  bottom: 1%;
 }
 </style>

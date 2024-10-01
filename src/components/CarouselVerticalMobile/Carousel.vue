@@ -160,22 +160,20 @@ export default {
 
 .carousel-inner {
   position: relative;
-//overflow: hidden; overflow-x: clip; z-index: 1; height: 56vw;
+  overflow: hidden;
+  overflow-x: clip;
+  z-index: 1;
+  height: 122vw;
 }
 
 .carouselBorder {
   border-radius: 290px 290px 0 0;
   border: 2px solid #F2C452;
-  //z-index: 1;
   pointer-events: none;
-  //top: -5%;
-  //width: 100%;
-  //height: 200%;
-  //left: 4%;
-  top: -8%;
-  width: 85%;
-  height: 230%;
-  left: 13%;
+  top: -4%;
+  width: 93%;
+  height: 110%;
+  left: 11%;
 }
 
 .toBackGround {

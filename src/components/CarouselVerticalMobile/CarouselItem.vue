@@ -65,7 +65,7 @@ export default {
   visibility: visible;
 }
 .carousel-item {
-  padding: 0 25px;
+  //padding: 0 25px;
   position: absolute;
   top: 0;
   left: 0;

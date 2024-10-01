@@ -67,7 +67,7 @@ export default {
     <div class="hidden lg:block w-[45%]">
       <Carousel :carousel-idx="1" :type-vertical="true" :slides="slidesStandardRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></Carousel>
     </div>
-    <div class="lg:hidden">
+    <div class="lg:hidden px-[5%]">
       <CarouselVerticalMobile :carousel-idx="1" :slides="slidesStandardRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></CarouselVerticalMobile>
     </div>
     <div class="ml-[120px] w-[55%]">

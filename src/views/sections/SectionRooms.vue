@@ -11,6 +11,7 @@ import {slidesSemiLuxRoom} from "@/common/mockData/roomSemiLuxCarouselSource";
 import AdditionalConditions from "@/components/AdditionalConditions.vue";
 import type {PropType} from "vue";
 import RoomDescriptionShort from "@/components/MobileComponents/RoomDescription/RoomDescriptionShort.vue";
+import RoomWrapper from "@/components/MobileComponents/RoomDescription/RoomWrapper.vue";
 
 export default {
   methods: {
@@ -19,6 +20,7 @@ export default {
     }
   },
   components: {
+    RoomWrapper,
     RoomDescriptionShort,
     AdditionalConditions, ICarouselRoom, HeaderSection, InfoTable, Carousel, CarouselVerticalMobile},
   props: {
@@ -70,10 +72,17 @@ export default {
     <div class="hidden lg:block w-[45%]">
       <Carousel :carousel-idx="1" :type-vertical="true" :slides="slidesStandardRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></Carousel>
     </div>
+    <RoomWrapper class="lg:hidden" />
+
+    <div class="my-24"></div>
+
     <RoomDescriptionShort :room-description="standartRoomDescription" />
     <div class="lg:hidden px-[5%]">
       <CarouselVerticalMobile :carousel-idx="1" :slides="slidesStandardRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></CarouselVerticalMobile>
     </div>
+
+    <div class="my-6"></div>
+
     <div class="ml-[120px] w-[55%]">
       <InfoTable :price="standard" :roomDescription="standartRoomDescription" />
     </div>

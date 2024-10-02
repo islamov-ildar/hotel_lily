@@ -13,7 +13,7 @@ export default {
 </script>
 
 <template>
-  <div v-if="roomDescription" class="text-whiteMain text-[18px] flex justify-around mb-[45px] px-[5%]">
+  <div v-if="roomDescription" class="text-whiteMain text-[18px] flex justify-around mb-[45px]">
     <div class="flex gap-[10px] items-center">
       <img src="../../../assets/icons/area.svg" alt="area" class="w-[30px] h-[30px]">
       <div>{{ roomDescription.area }} м2</div>

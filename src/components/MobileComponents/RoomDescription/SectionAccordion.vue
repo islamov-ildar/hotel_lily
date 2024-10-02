@@ -1,11 +1,12 @@
 <script lang="ts">
-export default {}
+export default {
+  props: ['title', 'isCollapse']
+}
 </script>
 
 <template>
-<h1></h1>
+  <div class="flex justify-center gap-[14px] mb-[27px] px-[2%]">
+    <img src="../../../assets/icons/triangle_yellow.svg" alt="triangle" :class="{'rotate-[270deg]': isCollapse}">
+    <div class="text-[34px] text-yellowMain font-montserratRegular">{{ title }}</div>
+  </div>
 </template>
-
-<style scoped>
-
-</style>

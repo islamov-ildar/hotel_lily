@@ -5,7 +5,10 @@ export interface IRoomDescription {
     additional_sleep_place: number;
     onlyOnSecondFloor: boolean,
     furniture: string;
+    furnitureList?: string[];
     amenities: string;
+    amenitiesList?: string[];
+    terrace?: boolean;
 }
 export const standartRoomDescription: IRoomDescription = {
     title: 'Стандарт',
@@ -13,8 +16,11 @@ export const standartRoomDescription: IRoomDescription = {
     sleep_place: 2,
     additional_sleep_place: 2,
     onlyOnSecondFloor: false,
+    terrace: true,
     furniture: 'двуспальная кровать, кресло-кровать, стол, стулья, шкаф, вешалка, зеркало.',
+    furnitureList: ['двуспальная кровать', 'кресло-кровать', 'стол', 'стулья', 'шкаф', 'вешалка', 'зеркало'],
     amenities: 'сплит-система, холодильник, спутниковое ТВ, телевизор, Wi-Fi интернет, эл. чайник, посуда, фен, терраса.',
+    amenitiesList: ['сплит-система', 'холодильник', 'спутниковое ТВ', 'телевизор', 'Wi-Fi интернет', 'эл. чайник', 'посуда', 'фен', 'терраса'],
 };
 
 export const semiluxRoomDescription: IRoomDescription = {

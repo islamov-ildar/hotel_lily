@@ -12,13 +12,9 @@ import AdditionalConditions from "@/components/AdditionalConditions.vue";
 import type {PropType} from "vue";
 import RoomDescriptionShort from "@/components/MobileComponents/RoomDescription/RoomDescriptionShort.vue";
 import RoomWrapper from "@/components/MobileComponents/RoomDescription/RoomWrapper.vue";
+import {slidesFamilySemiLux} from "@/common/mockData/roomFamilySemiLuxCarouselSource";
 
 export default {
-  methods: {
-    semiluxRoomDescription() {
-      return semiluxRoomDescription
-    }
-  },
   components: {
     RoomWrapper,
     RoomDescriptionShort,
@@ -45,10 +41,12 @@ export default {
       semiLuxuryFamily,
       semiLuxurySeaView,
       standartRoomDescription,
+      semiluxRoomDescription,
+      familySemiluxRoomDescription,
       slidesStandardRoom,
       slidesSemiLuxRoom,
+      slidesFamilySemiLux,
       openFullScreenViewAscent,
-      familySemiluxRoomDescription,
     }
   }
 
@@ -69,40 +67,38 @@ export default {
   </HeaderSection>
   <AdditionalConditions />
   <div id="rooms" class="flex flex-col lg:flex-row lg:gap-[110px] text-[20px] z-[9] relative mb-[200px]">
-    <div class="hidden lg:block w-[45%]">
-      <Carousel :carousel-idx="1" :type-vertical="true" :slides="slidesStandardRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></Carousel>
+    <div class="lg:hidden">
+      <RoomWrapper :price="standard" :slides="slidesStandardRoom" :roomDescription="standartRoomDescription"/>
+      <RoomWrapper :price="semiLuxurySeaView" :slides="slidesSemiLuxRoom" :roomDescription="semiluxRoomDescription" />
+      <RoomWrapper :price="semiLuxuryFamily" :slides="slidesFamilySemiLux" :roomDescription="familySemiluxRoomDescription" />
     </div>
-    <RoomWrapper class="lg:hidden" />
-
-    <div class="my-24"></div>
-
-    <RoomDescriptionShort :room-description="standartRoomDescription" />
-    <div class="lg:hidden px-[5%]">
-      <CarouselVerticalMobile :carousel-idx="1" :slides="slidesStandardRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></CarouselVerticalMobile>
+    <div class="hidden lg:block">
+      <div class="hidden lg:block w-[45%]">
+        <Carousel :carousel-idx="1" :type-vertical="true" :slides="slidesStandardRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></Carousel>
+      </div>
+      <div class="ml-[120px] w-[55%]">
+        <InfoTable :price="standard" :roomDescription="standartRoomDescription" />
+      </div>
+      <div class="flex ml-[85px] gap-[100px] text-[20px] z-[9] relative mb-[200px]">
+        <div class="w-[55%]">
+          <InfoTable :price="semiLuxurySeaView" :roomDescription="semiluxRoomDescription"/>
+        </div>
+        <div class="w-[45%]">
+          <Carousel :carousel-idx="1" type-vertical onRight :slides="slidesSemiLuxRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></Carousel>
+        </div>
+      </div>
+      <div class="flex gap-[110px] text-[20px] z-[9] relative mb-[200px]">
+        <div class="w-[45%]">
+          <Carousel :carousel-idx="1" :type-vertical="true" :slides="slidesSemiLuxRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></Carousel>
+        </div>
+        <div class="ml-[120px] w-[55%]">
+          <InfoTable :price="semiLuxuryFamily" :roomDescription="familySemiluxRoomDescription" />
+        </div>
+      </div>
     </div>
 
-    <div class="my-6"></div>
-
-    <div class="ml-[120px] w-[55%]">
-      <InfoTable :price="standard" :roomDescription="standartRoomDescription" />
-    </div>
   </div>
-  <div class="flex ml-[85px] gap-[100px] text-[20px] z-[9] relative mb-[200px]">
-    <div class="w-[55%]">
-      <InfoTable :price="semiLuxurySeaView" :roomDescription="semiluxRoomDescription()"/>
-    </div>
-    <div class="w-[45%]">
-      <Carousel :carousel-idx="1" type-vertical onRight :slides="slidesSemiLuxRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></Carousel>
-    </div>
-  </div>
-  <div class="flex gap-[110px] text-[20px] z-[9] relative mb-[200px]">
-    <div class="w-[45%]">
-      <Carousel :carousel-idx="1" :type-vertical="true" :slides="slidesSemiLuxRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></Carousel>
-    </div>
-    <div class="ml-[120px] w-[55%]">
-      <InfoTable :price="semiLuxuryFamily" :roomDescription="familySemiluxRoomDescription" />
-    </div>
-  </div>
+
 </div>
 </template>
 

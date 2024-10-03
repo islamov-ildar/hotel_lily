@@ -6,17 +6,12 @@ import {slidesStandardRoom} from "@/common/mockData/roomStandardCarouselSource";
 import SectionAccordion from "@/components/MobileComponents/RoomDescription/SectionAccordion.vue";
 import {ref} from "vue";
 import RoomDescriptionText from "@/components/MobileComponents/RoomDescription/RoomDescriptionText.vue";
+import PriceTableVertical from "@/components/MobileComponents/RoomDescription/PriceTableVertical.vue";
 
 export default {
-  methods: {
-    slidesStandardRoom() {
-      return slidesStandardRoom
-    },
-    standartRoomDescription() {
-      return standartRoomDescription
-    }
-  },
-  components: {RoomDescriptionText, SectionAccordion, CarouselVerticalMobile, RoomDescriptionShort},
+  components: {RoomDescriptionText, SectionAccordion, CarouselVerticalMobile, RoomDescriptionShort, PriceTableVertical},
+  props: ['price', 'slides', 'roomDescription'],
+
   setup() {
     const collapse = ref(true);
 
@@ -29,12 +24,12 @@ export default {
 
 <template>
   <div class="px-[5%]">
-    <SectionAccordion @click="collapse = !collapse" :title="standartRoomDescription().title" :isCollapse="collapse" />
+    <SectionAccordion @click="collapse = !collapse" :title="roomDescription.title" :isCollapse="collapse" />
     <div v-if="!collapse">
-      <RoomDescriptionShort :room-description="standartRoomDescription()"/>
-      <CarouselVerticalMobile :carousel-idx="1" :slides="slidesStandardRoom()" :interval="3000" controls indicators/>
-      <RoomDescriptionText class="mt-[25%] px-[5%]" :room-description="standartRoomDescription()" />
-      <PriceTableVertical />
+      <RoomDescriptionShort :room-description="roomDescription"/>
+      <CarouselVerticalMobile :carousel-idx="1" :slides="slides" :interval="3000" controls indicators/>
+      <RoomDescriptionText class="mt-[25%] px-[5%]" :room-description="roomDescription" />
+      <PriceTableVertical :price="price" />
     </div>
   </div>
 </template>

@@ -2,7 +2,7 @@
 import HeaderSection from '@/components/HeaderSection.vue';
 import { Carousel, Slide } from 'vue3-carousel'
 import 'vue3-carousel/dist/carousel.css'
-import {ref} from "vue";
+import {onBeforeUnmount, onMounted, ref} from "vue";
 import FeedBackCard from "@/components/FeedBackCard.vue";
 import FeedbackScrollIndicator from "@/components/FeedbackScrollIndicator.vue";
 import { feedbacks } from "@/common/mockData/feedbacks"
@@ -24,8 +24,10 @@ export default {
 
     let lastClick = ref<string>('prev');
 
-    const currentSlide = ref(0);
-    const itemsToShow = 3;
+    const currentSlide = ref(1);
+    const refreshCarousel = ref(0);
+
+    const itemsToShow = ref(1);
     const countOfSlideView = ref(feedbacks.length - itemsToShow);
 
     const handleSlide = () => {
@@ -35,6 +37,20 @@ export default {
         currentSlide.value + 1 <= countOfSlideView.value ? currentSlide.value++ : false;
       }
     }
+
+    const reportWindowSize = () => {
+      window.innerWidth > 768 ? itemsToShow.value = 3 : itemsToShow.value = 1
+
+      setTimeout(() => {
+        console.log('reportWindowSize', itemsToShow.value)
+        refreshCarousel.value = refreshCarousel.value + 1
+      }, 1000)
+    }
+
+    reportWindowSize();
+
+    onMounted(() => window.addEventListener("resize", reportWindowSize));
+    onBeforeUnmount(() => window.removeEventListener("resize", reportWindowSize));
 
     const handleOpenFeedbackModal = (feedback: any) => emit('openFullScreenFeedback', feedback);
 
@@ -48,14 +64,15 @@ export default {
       feedbacks,
       handleOpenFeedbackModal,
       itemsToShow,
+      refreshCarousel,
     }
   }
 };
 </script>
 
 <template>
-<div class="bg-[#FBF6ED] pt-[90px] pl-[10px] pb-[200px] bgImg">
-   <HeaderSection class="mb-[90px]">
+<div class="bg-[#FBF6ED] pt-[40px] lg:pt-[90px] pl-[10px] pb-[200px] bgImg">
+   <HeaderSection class="mb-[20px] lg:mb-[90px]">
      <template #title>
        <span class="text-blueMain">Отзывы</span>
      </template>
@@ -64,7 +81,15 @@ export default {
      </template>
    </HeaderSection>
   <div>
-    <Carousel @slide-start="handleSlide" :touchDrag="false" :mouseDrag="false" ref="myCarousel" :items-to-show="itemsToShow" :wrap-around="false">
+    <Carousel
+        @slide-start="handleSlide"
+        :touchDrag="false"
+        :mouseDrag="false"
+        ref="myCarousel"
+        :items-to-show="itemsToShow"
+        :wrap-around="false"
+        :key="refreshCarousel"
+    >
       <Slide v-for="(slide, idx) in feedbacks" :key="idx" class="mr-[75px]">
           <FeedBackCard :number="idx" :data="slide" @openFeedbackModal="handleOpenFeedbackModal" />
       </Slide>

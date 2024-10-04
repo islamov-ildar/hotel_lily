@@ -66,7 +66,7 @@ export default {
     </template>
   </HeaderSection>
   <AdditionalConditions />
-  <div id="rooms" class="flex flex-col lg:flex-row lg:gap-[110px] text-[20px] z-[9] relative mb-[200px]">
+  <div id="rooms" class="flex flex-col lg:flex-row lg:gap-[110px] text-[20px] z-[9] relative mb-[40px] lg:mb-[200px]">
     <div class="lg:hidden">
       <RoomWrapper :price="standard" :slides="slidesStandardRoom" :roomDescription="standartRoomDescription"/>
       <RoomWrapper :price="semiLuxurySeaView" :slides="slidesSemiLuxRoom" :roomDescription="semiluxRoomDescription" />

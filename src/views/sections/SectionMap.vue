@@ -16,7 +16,7 @@ export default {
 
 <template>
 <div class="bg-[#FBF6ED] pt-[30px] lg:pt-[90px]">
-   <HeaderSection class="mb-[90px]" :showVerticalStick="false">
+   <HeaderSection class="mb-[20px] lg:mb-[90px]" :showVerticalStick="false">
      <template #title>
        <span class="text-blueMain">Ждём вас по адресу</span>
      </template>

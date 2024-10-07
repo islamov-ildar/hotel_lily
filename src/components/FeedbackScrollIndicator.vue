@@ -1,7 +1,6 @@
 <script lang="ts">
 export default {
   props: ['countOfSlides', 'currentIdx'],
-  emits: ['slideTo'],
 }
 </script>
 

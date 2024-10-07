@@ -24,28 +24,37 @@ export default {
 
     let lastClick = ref<string>('prev');
 
-    const currentSlide = ref(1);
+    const currentSlide = ref(0);
     const refreshCarousel = ref(0);
 
     const itemsToShow = ref(1);
-    const countOfSlideView = ref(feedbacks.length - itemsToShow);
+    const countOfSlideView = ref(feedbacks.length - itemsToShow.value);
 
     const handleSlide = () => {
       if(lastClick.value === 'prev') {
-        currentSlide.value - 1 >= 0 ? currentSlide.value-- : false;
+        if(currentSlide.value - 1 >= 0) {
+           currentSlide.value = currentSlide.value - 1;
+        }
       } else if(lastClick.value === 'next') {
-        currentSlide.value + 1 <= countOfSlideView.value ? currentSlide.value++ : false;
+          if(currentSlide.value + 1 <= countOfSlideView.value) {
+            currentSlide.value = currentSlide.value + 1;
+          }
       }
     }
 
     const reportWindowSize = () => {
-      window.innerWidth > 768 ? itemsToShow.value = 3 : itemsToShow.value = 1
+      if(window.innerWidth < 769) {
+        itemsToShow.value = 1;
+      } else if(window.innerWidth > 768 && window.innerWidth < 1024) {
+        itemsToShow.value = 2;
+      } else {
+        itemsToShow.value = 3;
+      }
 
-      setTimeout(() => {
-        console.log('reportWindowSize', itemsToShow.value)
-        refreshCarousel.value = refreshCarousel.value + 1
-      }, 1000)
-    }
+      console.log('refreshCarousel.value');
+      currentSlide.value = 0
+      refreshCarousel.value = refreshCarousel.value + 1;
+    };
 
     reportWindowSize();
 
@@ -71,7 +80,7 @@ export default {
 </script>
 
 <template>
-<div class="bg-[#FBF6ED] pt-[40px] lg:pt-[90px] pl-[10px] pb-[200px] bgImg">
+<div class="bg-[#FBF6ED] pt-[40px] lg:pt-[90px] pl-[10px] pb-[40px] lg:pb-[200px] bgImg">
    <HeaderSection class="mb-[20px] lg:mb-[90px]">
      <template #title>
        <span class="text-blueMain">Отзывы</span>
@@ -80,7 +89,7 @@ export default {
        наших гостей
      </template>
    </HeaderSection>
-  <div>
+  <div class="pr-[10px]">
     <Carousel
         @slide-start="handleSlide"
         :touchDrag="false"
@@ -94,7 +103,7 @@ export default {
           <FeedBackCard :number="idx" :data="slide" @openFeedbackModal="handleOpenFeedbackModal" />
       </Slide>
     </Carousel>
-    <div class="relative mt-[90px]">
+    <div class="relative mt-[20px] lg:mt-[90px] flex justify-between lg:block">
         <button @click="prev" class="btn" :class="{'bg-[#F2C452]': lastClick === 'prev'}">
           <img v-if="lastClick === 'prev'" src="@/assets/icons/arrow-left.svg" alt="arrow-left" class="mx-auto">
           <img v-else src="@/assets/icons/arrow-left_yellow.svg" alt="arrow-left" class="mx-auto">
@@ -104,7 +113,7 @@ export default {
           <img v-else src="@/assets/icons/arrow-right_yellow.svg" alt="arrow-right_yellow" class="mx-auto">
         </button>
     </div>
-    <div class="relative w-full mt-[30px]">
+    <div class="hidden lg:block relative w-full mt-[30px]">
       <FeedbackScrollIndicator :countOfSlides="feedbacks.length" :currentIdx="currentSlide" />
     </div>
   </div>

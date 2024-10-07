@@ -4,8 +4,9 @@ import HeaderSection from '@/components/HeaderSection.vue';
 import { slides } from "@/common/mockData/aboutCarouselSource";
 import Carousel from '@/components/Carousel/Carousel.vue';
 import CarouselMobile from '@/components/CarouselMobile/Carousel.vue';
+import CarouselMobile2 from '@/components/CarouselMobile2/Carousel.vue';
 export default {
-  components: {HeaderSection, Carousel, CarouselMobile},
+  components: {HeaderSection, Carousel, CarouselMobile, CarouselMobile2},
   emits: ['openFullScreenViewHandler'],
   setup(_, { emit }) {
     const openFullScreenViewAscent = (slides, imgIdx) => {
@@ -31,14 +32,14 @@ export default {
   </HeaderSection>
   <div class="gap-[110px] text-[20px] lg:flex lg:flex-row">
     <div class="lg:w-1/2">
-<!--      <div class="hidden lg:block ml-[-50px]">-->
-<!--        <Carousel :carousel-idx="0" :slides="slides" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></Carousel>-->
+<!--      <div class="lg:hidden lg:ml-[-50px]">-->
+<!--        <CarouselMobile :carousel-idx="0" :slides="slides" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></CarouselMobile>-->
 <!--      </div>-->
-      <div class="lg:hidden lg:ml-[-50px]">
-        <CarouselMobile :carousel-idx="0" :slides="slides" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></CarouselMobile>
+      <div class="px-[5%]">
+        <CarouselMobile2 :carousel-idx="0" :slides="slides" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></CarouselMobile2>
       </div>
     </div>
-    <div class="text-[18px] ml-[10px] lg:w-1/2 text-[#FBF6ED] tracking-[0.8px] leading-[28px] font-montserratRegular">
+    <div class="text-[13px] lg:text-[18px] ml-[10px] lg:w-1/2 text-[#FBF6ED] tracking-[0.8px] lg:leading-[28px] font-montserratRegular">
       <div class="ml-[30px] mr-[30px]">
         <p>Отель "Лилия" на берегу моря с панорамными окнами и завораживающим видом - отличное место для тихого семейного отдыха! Отель находится в 65 км от границы (р. Псоу) и в 300 метрах от городского парка, где детские площадки, набережная, рестораны и кафе.
         </p><br>

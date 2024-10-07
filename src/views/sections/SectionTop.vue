@@ -71,7 +71,7 @@ export default {
   object-fit: cover;
   background: url("@/assets/images/top-section-cover.png") no-repeat;
   background-size: cover;
-  height: 100vh;
+  height: 85vh;
 }
 
 .title-background {

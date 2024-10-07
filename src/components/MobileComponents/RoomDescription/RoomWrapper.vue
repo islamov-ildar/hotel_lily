@@ -1,8 +1,6 @@
 <script lang="ts">
 import RoomDescriptionShort from "@/components/MobileComponents/RoomDescription/RoomDescriptionShort.vue";
-import {standartRoomDescription} from "@/common/mockData/roomsDescription";
 import CarouselVerticalMobile from "@/components/MobileComponents/CarouselVerticalMobile/Carousel.vue";
-import {slidesStandardRoom} from "@/common/mockData/roomStandardCarouselSource";
 import SectionAccordion from "@/components/MobileComponents/RoomDescription/SectionAccordion.vue";
 import {ref} from "vue";
 import RoomDescriptionText from "@/components/MobileComponents/RoomDescription/RoomDescriptionText.vue";

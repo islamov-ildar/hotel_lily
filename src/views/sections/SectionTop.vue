@@ -1,28 +1,66 @@
 <script lang="ts">
 import IHeader from "@/components/IHeader.vue";
-
+import MobileBlackout from "@/components/MobileComponents/MobileBlackout.vue";
+import {mobileBooking, mobileMenuContent} from "@/components/MobileComponents/mockData"
+import {ref} from "vue";
 export default {
-  components: { IHeader },
+  components: {MobileBlackout, IHeader},
   emits: ['openContactsModal'],
+  setup(){
+
+    const showBooking = ref(false);
+    const showMenu = ref(false);
+
+    return {
+      showMenu,
+      showBooking,
+      mobileBooking,
+      mobileMenuContent,
+    }
+  }
 }
 </script>
 <template>
   <div>
     <div class="headerSmall flex justify-between pt-[38px] pb-[15px] px-[14px]">
-      <img src="@/assets/icons/burger_menu.svg" width="40px" alt="logo">
+      <img @click="showMenu = !showMenu; showBooking = false" src="@/assets/icons/burger_menu.svg" width="40px" alt="logo">
       <img src="@/assets/icons/logo_Liliya_small.svg" width="67px" alt="logo">
-      <img src="@/assets/icons/bell.svg" width="40px" alt="logo">
+      <img @click="showBooking = !showBooking; showMenu = false" src="@/assets/icons/bell.svg" width="40px" alt="logo">
     </div>
   </div>
   <div class="wrapper relative">
-    <IHeader @openContactsModal="$emit('openContactsModal')" />
-      <div class="lg:hidden absolute right-0 top-0 flex items-start gap-[10px] text-[13px] pt-[25px] pr-[14px]">
-        <img src="@/assets/images/map-pin.svg" alt="map-pin">
-        <div class="text-[#FBF6ED] text-right">
-          Абхазия, г. Гудаута,<br> ул. Пушкина, 2
+    <IHeader @openContactsModal="$emit('openContactsModal')"/>
+    <div class="md:hidden">
+      <MobileBlackout v-if="showBooking" @close="showBooking = false">
+        <div class="flex flex-col justify-between items-center h-full pb-[10%]">
+          <div class="text-[34px] text-whiteMain font-cormorant text-center">Бронирование<br>номеров</div>
+          <a v-for="(item, idx) in mobileBooking" :key="idx" :href="item.link">
+            <img :src="`/src/assets/icons/${item.iconName}.svg`" alt="cross" class="w-[55px]">
+          </a>
         </div>
+      </MobileBlackout>
+      <MobileBlackout v-if="showMenu" @close="showMenu = false">
+        <div class="flex flex-col justify-between items-center h-full pb-[10%]">
+          <a v-for="(item, idx) in mobileMenuContent" :key="idx" :href="item.link" class="w-full">
+            <div class="text-[20px] text-whiteMain py-[23px] menuItem w-full text-center">{{item.title}}</div>
+          </a>
+          <div class="flex items-start gap-[10px] text-[20px] pt-[25px] pr-[14px]">
+            <img src="@/assets/images/map-pin.svg" alt="map-pin">
+            <div class="text-[#FBF6ED] text-left">
+              Абхазия, г. Гудаута,<br> ул. Пушкина, 2
+            </div>
+          </div>
+        </div>
+      </MobileBlackout>
+    </div>
+    <div class="lg:hidden absolute right-0 top-0 flex items-start gap-[10px] text-[13px] pt-[25px] pr-[14px]">
+      <img src="@/assets/images/map-pin.svg" alt="map-pin">
+      <div class="text-[#FBF6ED] text-right">
+        Абхазия, г. Гудаута,<br> ул. Пушкина, 2
       </div>
+    </div>
     <div class="titleContainer relative md:w-[70%] h-[295px] title-background mt-[215px]">
+
       <div class="font-cormorant text-[#FFFFFF]">
         <div class="textMedia text-[75px] leading-[92px]  pl-[130px]">
           ОТЕЛЬ,<br>
@@ -40,34 +78,43 @@ export default {
 </template>
 
 <style scoped>
+.menuItem {
+  border-bottom: 1px solid var(--main-blue-color);
+}
 .headerSmall {
   background-color: var(--main-blue-color);
 }
+
 @media (min-width: 769px) {
   .headerSmall {
     display: none;
   }
+
   .textMediaSmall {
     display: none;
   }
 }
+
 @media (max-width: 768px) {
   .wrapper {
     @apply flex justify-center items-center
   }
+
   .titleContainer {
     @apply mt-0 text-[54px] flex justify-center items-center
   }
+
   .textMedia {
     display: none;
   }
+
   .textMediaSmall {
-    line-height: normal!important;
+    line-height: normal !important;
   }
 }
+
 .wrapper {
   width: 100%;
-  //max-width: 1920px;
   object-fit: cover;
   background: url("@/assets/images/top-section-cover.png") no-repeat;
   background-size: cover;

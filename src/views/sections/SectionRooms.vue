@@ -54,7 +54,7 @@ export default {
 </script>
 
 <template>
-<div class="bg-[#2A657E] pt-[50px] lg:py-[90px] lg:px-[150px] relative overflow-hidden">
+<div id="rooms" class="bg-[#2A657E] pt-[50px] lg:py-[90px] lg:px-[150px] relative overflow-hidden">
   <div class="glare w-[1000px] h-[1000px] absolute top-[10%] left-[-20%] z-0"></div>
   <div class="glare w-[1000px] h-[1000px] absolute top-0 right-[-20%] z-0"></div>
   <HeaderSection class="mb-[40px] lg:mb-[90px] z-10 relative">
@@ -66,7 +66,7 @@ export default {
     </template>
   </HeaderSection>
   <AdditionalConditions />
-  <div id="rooms" class="flex flex-col lg:flex-row lg:gap-[110px] text-[20px] z-[9] relative lg:mb-[200px]">
+  <div class="flex flex-col lg:flex-row lg:gap-[110px] text-[20px] z-[9] relative lg:mb-[200px]">
     <div class="lg:hidden">
       <RoomWrapper :price="standard" :slides="slidesStandardRoom" :roomDescription="standartRoomDescription"/>
       <RoomWrapper :price="semiLuxurySeaView" :slides="slidesSemiLuxRoom" :roomDescription="semiluxRoomDescription" />

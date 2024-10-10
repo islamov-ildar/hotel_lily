@@ -16,7 +16,6 @@ export default {
 </script>
 
 <template>
-  <!--  <div class="headerBig font-helveticaLight header-grid pt-[26px] text-[17px] h-[170px] header-wrapper">-->
   <div class="headerBig font-helveticaLight header-grid pt-[26px] text-[17px] header-wrapper">
     <div class="pt-[10px]">
       <div class="header-container pb-[30px] pl-[20%] flex items-center gap-[10px]">
@@ -41,8 +40,6 @@ export default {
       </div>
     </div>
   </div>
-
-
 </template>
 
 <style scoped>

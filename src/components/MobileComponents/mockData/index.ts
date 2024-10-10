@@ -1,41 +1,41 @@
 export const mobileBooking = [
     {
         iconName: 'telegram',
-        link: '#',
+        link: 'https://t.me/Asmat_Agumava',
     },
     {
         iconName: 'instagram',
-        link: '#',
+        link: 'https://www.instagram.com/lily_hotel_gudauta?igsh=c2ZxbGpiNnI0ZGF5',
     },
     {
         iconName: 'phone_rounded',
-        link: '#',
+        link: 'tel:+79680765527',
     },
     {
         iconName: 'mail_rounded',
-        link: '#',
+        link: 'mailto:asmatka2008@mail.ru',
     },
 ]
 
 export const mobileMenuContent = [
     {
         title: 'О нас',
-        link: '#',
+        link: '#about',
     },
     {
         title: 'Услуги',
-        link: '#',
+        link: '#services',
     },
     {
         title: 'Кухня',
-        link: '#',
+        link: '#kitchen',
     },
     {
         title: 'Номера',
-        link: '#',
+        link: '#rooms',
     },
     {
         title: 'Отзывы',
-        link: '#',
+        link: '#feedbacks',
     },
 ]

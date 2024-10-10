@@ -80,7 +80,7 @@ export default {
 </script>
 
 <template>
-<div class="bg-[#FBF6ED] pt-[40px] lg:pt-[90px] pl-[10px] pb-[40px] lg:pb-[200px] bgImg">
+<div id="feedbacks" class="bg-[#FBF6ED] pt-[40px] lg:pt-[90px] pl-[10px] pb-[40px] lg:pb-[200px] bgImg">
    <HeaderSection class="mb-[20px] lg:mb-[90px]">
      <template #title>
        <span class="text-blueMain">Отзывы</span>

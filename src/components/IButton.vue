@@ -33,12 +33,14 @@ export default {
   <div
       @mouseenter="showFullBtn = true"
       @mouseleave="showFullBtn = false"
-      class="btn fixed bottom-[120px] right-[50px] z-[11]"
+      class="btn fixed bottom-[120px] right-[10px] md:right-[50px] z-[11]"
       :class="{'h-[86px] w-[382px]': showFullBtn, 'h-[86px] w-[100px]': !showFullBtn, onBottom: isOnBottom}">
     <div class="relative flex items-center">
       <transition name="fullBtn">
         <div v-if="showFullBtn" class="z-[11] cursor-pointer absolute rounded-[60px] right-0 top-0 btnLabel px-[35px] py-[17px] text-[28px] bg-yellowMain text-left text-[#FFFFFF]">
-          {{ label }}
+          <a href="https://t.me/Asmat_Agumava">
+            {{ label }}
+          </a>
         </div>
       </transition>
       <transition name="smallBtn">

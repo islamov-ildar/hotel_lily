@@ -8,7 +8,7 @@ export default {
 </script>
 
 <template>
-  <div class="bg-[#FBF6ED] pt-[40px] lg:pt-[90px] lg:px-[225px] pb-[60px] lg:pb-[240px]">
+  <div id="services" class="bg-[#FBF6ED] pt-[40px] lg:pt-[90px] lg:px-[225px] pb-[60px] lg:pb-[240px]">
     <div class="flex flex-col lg:flex-row gap-[10px] text-[20px] px-[50px]">
       <div class="w-full lg:w-2/3">
         <HeaderSection class="mb-[25px] lg:mb-[90px]">
@@ -77,7 +77,7 @@ export default {
         </div>
       </div>
     </div>
-    <HeaderSection class="mt-[45px] mb-[60px] lg:mt-[253px] lg:mb-[90px]">
+    <HeaderSection id="kitchen" class="mt-[45px] mb-[60px] lg:mt-[253px] lg:mb-[90px]">
       <template #title>
         <span class="text-blueMain">Вкусная домашняя кухня</span>
       </template>

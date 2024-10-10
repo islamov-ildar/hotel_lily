@@ -30,7 +30,8 @@ export default {
   </div>
   <div class="wrapper relative">
     <IHeader @openContactsModal="$emit('openContactsModal')"/>
-    <div class="md:hidden">
+<!--    <div class="md:hidden">-->
+    <div class="mobileBlackoutWrapper">
       <MobileBlackout v-if="showBooking" @close="showBooking = false">
         <div class="flex flex-col justify-between items-center h-full pb-[10%]">
           <div class="text-[34px] text-whiteMain font-cormorant text-center">Бронирование<br>номеров</div>
@@ -40,34 +41,35 @@ export default {
         </div>
       </MobileBlackout>
       <MobileBlackout v-if="showMenu" @close="showMenu = false">
-        <div class="flex flex-col justify-between items-center h-full pb-[10%]">
+        <div @click="showMenu = false" class="flex flex-col justify-between items-center h-full pb-[10%]">
           <a v-for="(item, idx) in mobileMenuContent" :key="idx" :href="item.link" class="w-full">
             <div class="text-[20px] text-whiteMain py-[23px] menuItem w-full text-center">{{item.title}}</div>
           </a>
-          <div class="flex items-start gap-[10px] text-[20px] pt-[25px] pr-[14px]">
-            <img src="@/assets/images/map-pin.svg" alt="map-pin">
-            <div class="text-[#FBF6ED] text-left">
-              Абхазия, г. Гудаута,<br> ул. Пушкина, 2
+          <a href="#map">
+            <div class="flex items-start gap-[10px] text-[20px] pt-[25px] pr-[14px]">
+              <img src="@/assets/images/map-pin.svg" alt="map-pin">
+              <div class="text-[#FBF6ED] text-left">
+                Абхазия, г. Гудаута,<br> ул. Пушкина, 2
+              </div>
             </div>
-          </div>
+          </a>
         </div>
       </MobileBlackout>
     </div>
-    <div class="lg:hidden absolute right-0 top-0 flex items-start gap-[10px] text-[13px] pt-[25px] pr-[14px]">
+    <div class="addressInMobile absolute right-0 top-0 flex items-start gap-[10px] text-[13px] pt-[25px] pr-[14px]">
       <img src="@/assets/images/map-pin.svg" alt="map-pin">
       <div class="text-[#FBF6ED] text-right">
         Абхазия, г. Гудаута,<br> ул. Пушкина, 2
       </div>
     </div>
-    <div class="titleContainer relative md:w-[70%] h-[295px] title-background mt-[215px]">
-
+    <div class="titleContainer relative md:w-[70%] w-full h-[70%] title-background mt-[215px]">
       <div class="font-cormorant text-[#FFFFFF]">
-        <div class="textMedia text-[75px] leading-[92px]  pl-[130px]">
+        <div class="hidden md:block textMedia text-[54px] lg:text-[75px] leading-[92px] pl-[130px]">
           ОТЕЛЬ,<br>
-          В КОТОРОМ ВАС<br>
-          ВСЕГДА ЖДУТ!
+          В&nbsp;КОТОРОМ&nbsp;ВАС<br>
+          ВСЕГДА&nbsp;ЖДУТ!
         </div>
-        <div class="textMediaSmall text-[54px]">
+        <div class="md:hidden textMediaSmall text-[54px]">
           ОТЕЛЬ,<br>
           В КОТОРОМ <br>ВАС
           ВСЕГДА <br>ЖДУТ!
@@ -90,8 +92,14 @@ export default {
     display: none;
   }
 
-  .textMediaSmall {
+  .mobileBlackoutWrapper {
     display: none;
+  }
+  .addressInMobile {
+    display: none;
+  }
+  .textMediaSmall{
+    padding-left: 20%;
   }
 }
 
@@ -104,13 +112,6 @@ export default {
     @apply mt-0 text-[54px] flex justify-center items-center
   }
 
-  .textMedia {
-    display: none;
-  }
-
-  .textMediaSmall {
-    line-height: normal !important;
-  }
 }
 
 .wrapper {

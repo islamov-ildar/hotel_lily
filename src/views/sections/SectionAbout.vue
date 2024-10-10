@@ -21,7 +21,7 @@ export default {
 </script>
 
 <template>
-<div class="bg-[#2A657E] lg:bgImg py-[44px] lg:py-[90px] lg:px-[150px]">
+<div id="about" class="bg-[#2A657E] lg:bgImg py-[44px] lg:py-[90px] lg:px-[150px]">
   <HeaderSection class="mb-[25px] lg:mb-[90px]">
     <template #title >
       <span class="text-[#FBF6ED]">Об отеле</span>

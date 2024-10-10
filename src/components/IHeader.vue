@@ -16,23 +16,29 @@ export default {
 </script>
 
 <template>
-  <div class="headerBig font-helveticaLight header-grid pt-[26px] text-[17px] header-wrapper">
+  <div class="headerBig font-helveticaLight header-grid pt-[26px] header-wrapper">
     <div class="pt-[10px]">
-      <div class="header-container pb-[30px] pl-[20%] flex items-center gap-[10px]">
-        <img src="@/assets/images/map-pin.svg" alt="map-pin">
-        <div class="text-[#FBF6ED]">
-          Абхазия, г. Гудаута, ул. Пушкина, 2
+      <div class="w-full header-container flex justify-center">
+        <div class="pb-[30px] header-container-left flex items-center gap-[10px]">
+          <img src="@/assets/images/map-pin.svg" alt="map-pin">
+          <div class="text-[#FBF6ED] md:text-[11px] lg:text-[18px]">
+            Абхазия, г. Гудаута, ул. Пушкина, 2
+          </div>
         </div>
       </div>
     </div>
     <div @click="redirectToLogin" class="mx-auto">
-      <img src="@/assets/images/logo.svg" width="145px" alt="logo">
+      <img src="@/assets/icons/logo_liliya_for_header.svg" width="145px" alt="logo">
     </div>
     <div class="pt-[10px]">
-      <div class="pr-[20%] pb-[30px] w-full header-container text-right text-[#FBF6ED] flex justify-end gap-[60px]">
-        <div class="cursor-pointer">Номера</div>
-        <div @click="$emit('openContactsModal')" class="cursor-pointer">Контакты</div>
-        <a :href="'#rooms'">
+      <div class="md:text-[11px] lg:text-[18px] header-container-right pb-[30px] w-full header-container text-right text-[#FBF6ED] flex justify-center gap-[60px]">
+        <a href="#rooms">
+          <div class="cursor-pointer">Номера</div>
+        </a>
+        <a href="#">
+          <div @click="$emit('openContactsModal')" class="cursor-pointer">Контакты</div>
+        </a>
+        <a href="https://t.me/Asmat_Agumava">
           <div class="cursor-pointer">
             Бронирование
           </div>
@@ -55,6 +61,15 @@ export default {
 @media (max-width: 768px) {
   .headerBig {
     display: none;
+  }
+}
+
+@media (max-width: 930px) {
+  .header-container-left {
+    padding-left: 5%;
+  }
+  .header-container-right {
+    padding-right: 5%;
   }
 }
 

@@ -22,7 +22,7 @@ export default {
 
 <template>
 <div id="about" class="bg-[#2A657E] lg:bgImg py-[44px] lg:py-[90px] lg:px-[150px]">
-  <HeaderSection class="mb-[25px] lg:mb-[90px]">
+  <HeaderSection class="mb-[45px] lg:mb-[90px]">
     <template #title >
       <span class="text-[#FBF6ED]">Об отеле</span>
     </template>
@@ -39,7 +39,7 @@ export default {
         <CarouselMobile2 :carousel-idx="0" :slides="slides" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></CarouselMobile2>
       </div>
     </div>
-    <div class="text-[13px] lg:text-[18px] ml-[10px] lg:w-1/2 text-[#FBF6ED] tracking-[0.8px] lg:leading-[28px] font-montserratRegular">
+    <div class="text-[13px] md:text-[16px] lg:text-[18px] ml-[10px] lg:w-1/2 text-[#FBF6ED] tracking-[0.8px] lg:leading-[28px] font-montserratRegular">
       <div class="ml-[30px] mr-[30px]">
         <p>Отель "Лилия" на берегу моря с панорамными окнами и завораживающим видом - отличное место для тихого семейного отдыха! Отель находится в 65 км от границы (р. Псоу) и в 300 метрах от городского парка, где детские площадки, набережная, рестораны и кафе.
         </p><br>
@@ -49,7 +49,7 @@ export default {
         <p>
           Профессиональный подход к управлению отелем обеспечивает качественные условия проживания. Замечательный персонал и радушные хозяева, самолично встречающие своих постояльцев.
         </p>
-        <p>
+        <p class="pt-[18px] md:text-center">
           Ждем Вас! Добро пожаловать!
         </p>
       </div>

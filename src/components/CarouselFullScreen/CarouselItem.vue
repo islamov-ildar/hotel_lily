@@ -4,9 +4,10 @@
       <div
           @mouseenter="$emit('mouseenter')"
           @mouseout="$emit('mouseout')"
-          class="h-full"
+          class="h-full flex items-center"
       >
-        <img v-if="slide.type === 'img'" :src="slide.src" alt="alt" class="h-full"/>
+<!--        <img v-if="slide.type === 'img'" :src="slide.src" alt="alt" class="h-full"/>-->
+        <img v-if="slide.type === 'img'" :src="slide.src" alt="alt" :class="{'h-full': windowWidth }" />
         <div v-else class="h-full flex items-center justify-center">
           <video controls :src="slide.src" class="w-[80vw]">
             Простите, но ваш браузер не поддерживает встроенные видео.
@@ -25,6 +26,7 @@ export default {
     transitionEffect() {
       return this.direction === "right" ? "slide-out" : "slide-in";
     },
+    windowWidth() { return window.innerWidth > 1919 }
   },
 };
 </script>

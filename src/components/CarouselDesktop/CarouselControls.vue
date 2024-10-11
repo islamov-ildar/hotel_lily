@@ -1,9 +1,9 @@
 <template>
-  <div class="absolute w-full z-[4] btnContainer">
-    <button @click="prev" class="btn" :class="{'bg-[#F2C452]': lastClick === 'prev', 'bg-[#528CA5]' : lastClick !== 'prev'}">
+  <div class="absolute z-[4] btnContainer">
+    <button @click="prev" class="btn" :class="{'bg-[#F2C452]': lastClick === 'prev'}">
       <img src="../../assets/icons/arrow-left.svg" alt="arrow-left" class="mx-auto">
     </button>
-    <button  @click="next" class="btn" :class="{'bg-[#F2C452]': lastClick === 'next', 'bg-[#528CA5]' : lastClick !== 'next'}">
+    <button  @click="next" class="btn" :class="{'bg-[#F2C452]': lastClick === 'next'}">
       <img src="../../assets/icons/arrow-right.svg" alt="arrow-right" class="mx-auto">
     </button>
   </div>
@@ -20,10 +20,13 @@ export default {
 
     const lastClick = ref<string>('prev');
     const next = () => {
+      console.log('next');
       emit('next');
       lastClick.value = 'next'
     }
     const prev = () => {
+      console.log('prev');
+
       emit('prev');
       lastClick.value = 'prev'
     }
@@ -39,16 +42,16 @@ export default {
 </script>
 <style scoped>
 .btnContainer {
-  top: 33%;
-  width: 100vw;
-  margin-left: -5.5%;
+  bottom: -10%;
+  left: 0;
 }
 .btn {
-  width: 40px;
+  width: 80px;
   height: 40px;
   border: 1px solid transparent;
 }
 .btn:hover {
+  cursor: pointer;
   border: 1px solid #FFFFFF;
 }
 </style>

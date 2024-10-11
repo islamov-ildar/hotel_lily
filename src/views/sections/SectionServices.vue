@@ -25,7 +25,7 @@ export default {
           </div>
           <div class="absolute w-[100%] h-[95%] left-[0] border-2 border-yellowMain top-[13%] z-0"></div>
         </div>
-        <div class="text-blueMain text-[13px] lg:text-[18px] font-montserratRegular">
+        <div class="text-blueMain text-[13px] md:text-[18px] font-montserratRegular">
           Отель находится на первой береговой линии, всего в 100 метрах от моря.<br>Имеется собственный мелко-галечный
           пляж, оборудованный лежаками и зонтами, включенными в стоимость номеров.
         </div>
@@ -100,7 +100,7 @@ export default {
         <div class="lg:hidden absolute w-[90%] h-[90%] right-[-7%] top-[20%] border-2 border-yellowMain z-0"></div>
       </div>
       <div class="lg:ml-[40px] max-w-[75%] mx-auto lg:w-1/3 mt-[60px] flex items-center">
-        <div class="text-blueMain text-[13px] lg:text-[18px] font-montserratRegular">
+        <div class="text-blueMain text-[13px] md:text-[18px] font-montserratRegular">
           Добро пожаловать в уютное кафе с домашней кухней, где по утрам для вас готовят прекрасные повара!
           Насладитесь утром в уютной обстановке, окруженные заботой и вниманием наших чудесных девушек-поваров.<br><br>
           Приходите к нам за вкусом и теплой атмосферой!

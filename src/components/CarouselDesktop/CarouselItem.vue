@@ -8,13 +8,13 @@
       @mouseenter="$emit('mouseenter')"
       @mouseout="$emit('mouseout')"
     >
-<!--      <div class="indicatorImg" :class="{topCircle: typeVertical}">-->
-<!--        <img src="@/assets/images/Zoom.svg" alt="Zoom" class="">-->
-<!--      </div>-->
-      <img :src="slide.src" alt="Nature" class="responsive" width="600" height="400">
+      <div class="indicatorImg">
+        <img src="@/assets/images/Zoom.svg" alt="Zoom" class="">
+      </div>
+      <img :src="slide.src" alt="Nature" class="responsive" >
     </div>
     <div v-else class="carousel-item" v-show="currentSlide === index">
-      <video controls :src="slide.src" width="690" muted>
+      <video controls :src="slide.src" width="100%" muted>
         Простите, но ваш браузер не поддерживает встроенные видео.
       </video>
     </div>
@@ -53,6 +53,7 @@ export default {
   //border-radius: 290px 290px 0 0;
 }
 .indicatorImg {
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;

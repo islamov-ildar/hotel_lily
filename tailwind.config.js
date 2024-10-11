@@ -9,6 +9,7 @@ export default {
       screens: {
         mobile_m: '375px', //mobile medium
         mobile_l: '425px', //mobile large
+        fhd: '1920px',
       }
     },
     fontFamily: {
@@ -34,9 +35,6 @@ export default {
       mainPink: '#FF808F',
       mainGrey: '#999999',
     },
-    // screens: {
-    //   fhd: '1920px',
-    // }
   },
   plugins: [],
 }

@@ -102,7 +102,7 @@ export default {
       }
     },
     clickInCarousel(imgIdx) {
-      this.$emit('openFullScreenView', this.slides, imgIdx);
+      if(window.innerWidth > 768) this.$emit('openFullScreenView', this.slides, imgIdx);
     },
   },
   mounted() {
@@ -168,6 +168,19 @@ export default {
   left: 10%;
 }
 
+@media (min-width: 769px) {
+  .carousel-inner {
+    //height: 65vw;
+    height: 49.5vw;
+    margin-bottom: 15%;
+  }
+  .carouselBorder {
+    height: 115%;
+  }
+}
+
+
+
 .toBackGround {
   z-index: 0;
 }
@@ -184,7 +197,4 @@ export default {
   border-radius: 290px 290px 0 0;
 }
 
-.carousel-item:hover {
-  background: rgba(0, 0, 0, .5);
-}
 </style>

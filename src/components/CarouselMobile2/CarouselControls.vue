@@ -1,9 +1,9 @@
 <template>
   <div class="absolute w-full z-[4] btnContainer">
-    <button @click="prev" class="btn" :class="{'bg-[#F2C452]': lastClick === 'prev', 'bg-[#528CA5]' : lastClick !== 'prev'}">
+    <button @click="prev" class="btn h-[40px] w-[40px] md:h-[10vw] md:w-[5vw]" :class="{'bg-[#F2C452]': lastClick === 'prev', 'bg-[#528CA5]' : lastClick !== 'prev'}">
       <img src="../../assets/icons/arrow-left.svg" alt="arrow-left" class="mx-auto">
     </button>
-    <button  @click="next" class="btn" :class="{'bg-[#F2C452]': lastClick === 'next', 'bg-[#528CA5]' : lastClick !== 'next'}">
+    <button  @click="next" class="btn h-[40px] w-[40px] md:h-[10vw] md:w-[5vw]" :class="{'bg-[#F2C452]': lastClick === 'next', 'bg-[#528CA5]' : lastClick !== 'next'}">
       <img src="../../assets/icons/arrow-right.svg" alt="arrow-right" class="mx-auto">
     </button>
   </div>
@@ -43,9 +43,15 @@ export default {
   width: 100vw;
   margin-left: -5.5%;
 }
+
+@media (min-width: 769px) {
+  .btnContainer {
+    top: 40%;
+    z-index: 0;
+  }
+}
+
 .btn {
-  width: 40px;
-  height: 40px;
   border: 1px solid transparent;
 }
 .btn:hover {

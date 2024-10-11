@@ -31,12 +31,12 @@ export default {
 };
 </script>
 <template>
-  <div class="carousel-indicators font-aliceRegular text-[17px]"
+  <div class="carousel-indicators font-aliceRegular text-[40px]"
        :class="classObject">
     <div class="text-[#F2C452]">
       {{addZeroBeforeOneNumber(currentIndex + 1)}}
     </div>
-    <div class="text-[#458099] mt-[5px]">
+    <div class="text-[#458099] mt-[30px]">
       {{addZeroBeforeOneNumber(nextIndex)}}
     </div>
   </div>
@@ -44,8 +44,8 @@ export default {
 <style scoped>
 .carousel-indicators {
   display: flex;
-  gap: 50%;
-  left: -31px;
-  bottom: 1%;
+  gap: 70%;
+  right: 60px;
+  bottom: -3%;
 }
 </style>

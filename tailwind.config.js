@@ -33,7 +33,10 @@ export default {
       mainRed: '#F01414',
       mainPink: '#FF808F',
       mainGrey: '#999999',
-    }
+    },
+    // screens: {
+    //   fhd: '1920px',
+    // }
   },
   plugins: [],
 }

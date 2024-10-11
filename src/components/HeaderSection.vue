@@ -12,7 +12,7 @@ export default {
 <template>
 <div class="flex flex-col items-center">
   <div v-if="showVerticalStick" class="vertical-stick"></div>
-  <div class="mb-[20px] lg:mb-[40px] text-[34px] font-cormorant leading-[37px] md:text-[70px]">
+  <div class="mb-[20px] lg:mb-[40px] font-cormorant leading-[37px] text-[34px] md:text-[50px] lg:text-[70px]">
     <slot name="title"></slot>
   </div>
   <div class="font-ralewayRegular uppercase tracking-[2.9px] text-center text-[11px] md:text-[20px] text-[#F2C452]">

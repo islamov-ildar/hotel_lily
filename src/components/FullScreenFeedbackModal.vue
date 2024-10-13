@@ -1,5 +1,7 @@
 <script lang="ts">
 
+import {onBeforeUnmount, onMounted} from "vue";
+
 export default {
   props: ['feedback'],
   emits: ['close'],
@@ -12,6 +14,18 @@ export default {
         emit('close')
       }
     }
+
+
+
+    onMounted(() => {
+      document.body.style.overflow = 'hidden';
+      // document.body.style.top = `-${window.scrollY}px`;
+    })
+    onBeforeUnmount(() => {
+      document.body.style.overflow = '';
+      // document.body.style.position = '';
+      // document.body.style.top = '';
+    })
 
     console.log('fullscreenModal props', props);
 
@@ -50,7 +64,7 @@ export default {
             </div>
             <div>{{ feedback.feedback_date }}</div>
           </div>
-          <div class="feedbackText font-montserratRegular text-[16px] leading-[22px]">
+          <div class="feedbackText font-montserratRegular text-[16px] leading-[22px] overflow-y-scroll max-h-[50vh]">
             {{ feedback.feedback_text }}
           </div>
         </div>

@@ -46,7 +46,7 @@ export default {}
   z-index: 1;
   margin-bottom: 250px;
 }
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .mainContainer {
     margin-bottom: 50px;
   }

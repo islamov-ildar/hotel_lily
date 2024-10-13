@@ -22,12 +22,14 @@ export default {
 
 <template>
   <div class="px-[5%]">
-    <SectionAccordion @click="collapse = !collapse" :title="roomDescription.title" :isCollapse="collapse" />
+    <SectionAccordion @click="collapse = !collapse" :title="roomDescription.title" :isCollapse="collapse"/>
     <div v-if="!collapse">
-      <RoomDescriptionShort :room-description="roomDescription"/>
-      <CarouselVerticalMobile :carousel-idx="1" :slides="slides" :interval="3000" controls indicators/>
-      <RoomDescriptionText class="mt-[25%] px-[5%]" :room-description="roomDescription" />
-      <PriceTableVertical :price="price" />
+      <div>
+        <RoomDescriptionShort :room-description="roomDescription"/>
+        <CarouselVerticalMobile :carousel-idx="1" :slides="slides" :interval="3000" controls indicators/>
+        <RoomDescriptionText class="mt-[25%] px-[5%]" :room-description="roomDescription"/>
+        <PriceTableVertical :price="price"/>
+      </div>
     </div>
   </div>
 </template>

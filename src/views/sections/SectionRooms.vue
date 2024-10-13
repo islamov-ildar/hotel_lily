@@ -13,9 +13,11 @@ import type {PropType} from "vue";
 import RoomDescriptionShort from "@/components/MobileComponents/RoomDescription/RoomDescriptionShort.vue";
 import RoomWrapper from "@/components/MobileComponents/RoomDescription/RoomWrapper.vue";
 import {slidesFamilySemiLux} from "@/common/mockData/roomFamilySemiLuxCarouselSource";
+import RoomWrapperDesktop from "@/components/RoomWrapperDesktop.vue";
 
 export default {
   components: {
+    RoomWrapperDesktop,
     RoomWrapper,
     RoomDescriptionShort,
     AdditionalConditions, ICarouselRoom, HeaderSection, InfoTable, Carousel, CarouselVerticalMobile},
@@ -54,7 +56,7 @@ export default {
 </script>
 
 <template>
-<div id="rooms" class="bg-[#2A657E] pt-[50px] lg:py-[90px] lg:px-[150px] relative overflow-hidden">
+<div id="rooms" class="bg-[#2A657E] pt-[50px] lg:py-[90px] lg:px-[5%] relative overflow-hidden">
   <div class="glare w-[1000px] h-[1000px] absolute top-[10%] left-[-20%] z-0"></div>
   <div class="glare w-[1000px] h-[1000px] absolute top-0 right-[-20%] z-0"></div>
   <HeaderSection class="mb-[40px] lg:mb-[90px] z-10 relative">
@@ -66,37 +68,17 @@ export default {
     </template>
   </HeaderSection>
   <AdditionalConditions />
-  <div class="flex flex-col lg:flex-row lg:gap-[110px] text-[20px] z-[9] relative lg:mb-[200px]">
-    <div class="lg:hidden">
+  <div class="flex flex-col lg:gap-[110px] text-[20px] z-[9] relative lg:mb-[200px]">
+    <div class="lg:hidden mb-[40px]">
       <RoomWrapper :price="standard" :slides="slidesStandardRoom" :roomDescription="standartRoomDescription"/>
       <RoomWrapper :price="semiLuxurySeaView" :slides="slidesSemiLuxRoom" :roomDescription="semiluxRoomDescription" />
       <RoomWrapper :price="semiLuxuryFamily" :slides="slidesFamilySemiLux" :roomDescription="familySemiluxRoomDescription" />
     </div>
-    <div class="hidden lg:block">
-      <div class="hidden lg:block w-[45%]">
-        <Carousel :carousel-idx="1" :type-vertical="true" :slides="slidesStandardRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></Carousel>
-      </div>
-      <div class="ml-[120px] w-[55%]">
-        <InfoTable :price="standard" :roomDescription="standartRoomDescription" />
-      </div>
-      <div class="flex ml-[85px] gap-[100px] text-[20px] z-[9] relative mb-[200px]">
-        <div class="w-[55%]">
-          <InfoTable :price="semiLuxurySeaView" :roomDescription="semiluxRoomDescription"/>
-        </div>
-        <div class="w-[45%]">
-          <Carousel :carousel-idx="1" type-vertical onRight :slides="slidesSemiLuxRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></Carousel>
-        </div>
-      </div>
-      <div class="flex gap-[110px] text-[20px] z-[9] relative mb-[200px]">
-        <div class="w-[45%]">
-          <Carousel :carousel-idx="1" :type-vertical="true" :slides="slidesSemiLuxRoom" :interval="3000" controls indicators @openFullScreenView="openFullScreenViewAscent"></Carousel>
-        </div>
-        <div class="ml-[120px] w-[55%]">
-          <InfoTable :price="semiLuxuryFamily" :roomDescription="familySemiluxRoomDescription" />
-        </div>
-      </div>
+    <div class="hidden lg:flex flex-col gap-[230px] min-[1440px]:gap-[100px]">
+      <RoomWrapperDesktop @openFullScreenView="openFullScreenViewAscent" :price="standard" :slides="slidesStandardRoom" :roomDescription="standartRoomDescription" />
+      <RoomWrapperDesktop @openFullScreenView="openFullScreenViewAscent" :price="semiLuxurySeaView" :slides="slidesSemiLuxRoom" :roomDescription="semiluxRoomDescription" :rightCarousel="true" />
+      <RoomWrapperDesktop @openFullScreenView="openFullScreenViewAscent" :price="semiLuxuryFamily" :slides="slidesFamilySemiLux" :roomDescription="familySemiluxRoomDescription" />
     </div>
-
   </div>
 
 </div>

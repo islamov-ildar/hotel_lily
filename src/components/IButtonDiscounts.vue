@@ -172,6 +172,10 @@ export default {
 </template>
 
 <style scoped>
+.fixedModal {
+  box-shadow: 7px 7px 25px 2px rgba(42, 101, 126, 0.20);
+}
+
 @media (min-width: 670px) {
   .responsiveModal {
     display: none;

@@ -21,7 +21,7 @@ export default {
       <div class="w-full header-container flex justify-center">
         <div class="pb-[30px] header-container-left flex items-center gap-[10px]">
           <img src="@/assets/images/map-pin.svg" alt="map-pin">
-          <div class="text-[#FBF6ED] md:text-[11px] lg:text-[18px]">
+          <div class="text-[#FBF6ED] md:text-[11px] lg:text-[17px]">
             Абхазия, г. Гудаута, ул. Пушкина, 2
           </div>
         </div>
@@ -31,7 +31,7 @@ export default {
       <img src="@/assets/icons/logo_liliya_for_header.svg" width="145px" alt="logo">
     </div>
     <div class="pt-[10px]">
-      <div class="md:text-[11px] lg:text-[18px] header-container-right pb-[30px] w-full header-container text-right text-[#FBF6ED] flex justify-center gap-[60px]">
+      <div class="md:text-[11px] lg:text-[17px] header-container-right pb-[30px] w-full header-container text-right text-[#FBF6ED] flex justify-center gap-[60px]">
         <a href="#rooms">
           <div class="cursor-pointer">Номера</div>
         </a>

@@ -9,7 +9,7 @@ export default {
       screens: {
         mobile_m: '375px', //mobile medium
         mobile_l: '425px', //mobile large
-        fhd: '1920px',
+        fhd: '1900px',
       }
     },
     fontFamily: {

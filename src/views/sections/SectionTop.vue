@@ -103,24 +103,24 @@ export default {
   }
 }
 
-@media (max-width: 768px) {
-  .wrapper {
-    @apply flex justify-center items-center
-  }
-
-  .titleContainer {
-    @apply mt-0 text-[54px] flex justify-center items-center
-  }
-
-}
-
 .wrapper {
   width: 100%;
   object-fit: cover;
   background: url("@/assets/images/top-section-cover.png") no-repeat;
   background-size: cover;
-  height: 85vh;
+  height: 100vh;
 }
+
+@media (max-width: 768px) {
+  .wrapper {
+    @apply flex justify-center items-center h-[86vh]
+  }
+  .titleContainer {
+    @apply mt-0 text-[54px] flex justify-center items-center
+  }
+}
+
+
 
 .title-background {
   background: radial-gradient(at center, rgba(1, 1, 1, 0.3), rgba(1, 1, 1, 0.2), rgba(1, 1, 1, 0.1), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));

@@ -159,8 +159,7 @@ export default {
   position: relative;
   overflow: hidden;
   overflow-x: clip;
-  //z-index: 0;
-  height: 22.7vw;
+  height: 22.5vw;
   margin-bottom: 10%;
 }
 

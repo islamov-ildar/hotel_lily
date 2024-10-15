@@ -5,7 +5,7 @@ export default {
 </script>
 
 <template>
-  <div class="text-whiteMain text-[18px]">
+  <div class="text-whiteMain text-[18px] font-montserratRegular">
     <div class="mt-[35px]">
       Комнат в номере: 1
     </div>

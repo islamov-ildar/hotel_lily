@@ -7,7 +7,7 @@ export default {
       return monthsDictionary
     }
   },
-  props: ['price']
+  props: ['price', 'sleep_places'],
 }
 </script>
 
@@ -26,7 +26,7 @@ export default {
         <div class="cell">
           <div class="flex items-center">
             <div><img src="@/assets/icons/person.svg" alt="person"></div>
-            <div>х 2</div>
+            <div>х {{ sleep_places }}</div>
           </div>
         </div>
       </div>

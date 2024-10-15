@@ -48,7 +48,7 @@ export default {
           {{ roomDescription.title }}
         </div>
         <RoomDescriptionShort :room-description="roomDescription"/>
-        <PriceTable :price="price" class="mx-auto hidden min-[1440px]:flex"/>
+        <PriceTable :price="price" :sleep_places="roomDescription.sleep_place" class="mx-auto hidden min-[1440px]:flex"/>
         <RoomDescriptionText class="mt-[25%] px-[5%] min-[1440px]:hidden" :room-description="roomDescription"/>
         <RoomDescriptionTextHorizontal :room-description="roomDescription" class="hidden min-[1440px]:block" />
       </div>

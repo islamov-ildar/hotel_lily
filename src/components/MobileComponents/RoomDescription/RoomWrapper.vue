@@ -28,7 +28,7 @@ export default {
         <RoomDescriptionShort :room-description="roomDescription"/>
         <CarouselVerticalMobile :carousel-idx="1" :slides="slides" :interval="3000" controls indicators/>
         <RoomDescriptionText class="mt-[25%] px-[5%]" :room-description="roomDescription"/>
-        <PriceTableVertical :price="price"/>
+        <PriceTableVertical :price="price" :roomDescription="roomDescription"/>
       </div>
     </div>
   </div>

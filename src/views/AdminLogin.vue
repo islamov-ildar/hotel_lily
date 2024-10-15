@@ -86,7 +86,7 @@ export default {
                     <div class="w-[143px] h-[65px] bg-blueMain text-whiteMain flex items-center justify-center">
                       <div>Логин</div>
                     </div>
-                    <input v-model="email" class="bg-whiteMain w-[300px] text-center" type="text">
+                    <input v-model="email" class="bg-whiteMain w-[300px] text-center text-[18px]" type="text">
                   </div>
                   <div class="flex border border-blueMain text-[20px] relative">
                     <div class="w-[143px] h-[65px] bg-blueMain text-whiteMain flex items-center justify-center">

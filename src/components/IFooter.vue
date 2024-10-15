@@ -9,8 +9,12 @@
     <div class="flex items-center gap-[10px] lg:gap-[50px] py-[5px]">
       <div class="hidden lg:block flex-col justify-end h-full">
         <div class="flex gap-[20px]">
-          <img src="@/assets/icons/telegram.svg" alt="logo">
-          <img src="@/assets/icons/instagram.svg" alt="logo">
+          <a href="https://t.me/Asmat_Agumava">
+            <img src="@/assets/icons/telegram.svg" alt="logo">
+          </a>
+          <a href="https://www.instagram.com/lily_hotel_gudauta?igsh=c2ZxbGpiNnI0ZGF5">
+            <img src="@/assets/icons/instagram.svg" alt="logo">
+          </a>
         </div>
       </div>
       <div class="flex flex-col justify-between h-full">
@@ -35,8 +39,12 @@
       </div>
       <div class="lg:hidden min-w-[40px]">
         <div class="flex flex-col gap-[20px]">
-          <img src="@/assets/icons/telegram.svg" alt="logo">
-          <img src="@/assets/icons/instagram.svg" alt="logo">
+          <a href="https://t.me/Asmat_Agumava">
+            <img src="@/assets/icons/telegram.svg" alt="logo">
+          </a>
+          <a href="https://www.instagram.com/lily_hotel_gudauta?igsh=c2ZxbGpiNnI0ZGF5">
+            <img src="@/assets/icons/instagram.svg" alt="logo">
+          </a>
         </div>
       </div>
     </div>

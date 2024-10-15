@@ -64,7 +64,7 @@ export default {
             </div>
             <div>{{ feedback.feedback_date }}</div>
           </div>
-          <div class="feedbackText font-montserratRegular text-[16px] leading-[22px] overflow-y-scroll max-h-[50vh]">
+          <div class="feedbackText font-montserratRegular text-[16px] leading-[22px] overflow-y-auto max-h-[50vh]">
             {{ feedback.feedback_text }}
           </div>
         </div>

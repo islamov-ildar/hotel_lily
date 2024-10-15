@@ -5,7 +5,7 @@ export default {
 </script>
 
 <template>
-  <div class="flex flex-col
+  <div class="flex flex-col font-montserratRegular
   text-whiteMain
   text-[13px]
   min-[550px]:text-[22px]

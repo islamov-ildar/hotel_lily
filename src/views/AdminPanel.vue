@@ -2,7 +2,7 @@
 import {ref} from "vue";
 import PriceTable from "@/components/PriceTable.vue";
 import {getAuth, signOut, onAuthStateChanged} from "firebase/auth";
-import {app, writeAllData, getAll} from '@/firebase';
+import {app, writeAllData, getAll} from '@/firebase-api';
 import {useRouter} from "vue-router";
 import { allData } from "@/common/allData";
 import {parseData} from "@/common/utils/parseData";

@@ -13,7 +13,7 @@ import IButtonDiscounts from "@/components/IButtonDiscounts.vue";
 import FullScreenFeedbackModal from "@/components/FullScreenFeedbackModal.vue";
 import ContactsModal from "@/components/ContactsModal.vue";
 import {parseData} from "@/common/utils/parseData";
-import {getAll} from '@/firebase';
+import {getAll} from '@/firebase-api.js';
 
 export default {
   components: { IButtonDiscounts, ContactsModal, FullScreenFeedbackModal,IButton, IFooter,SectionMap, SectionFeedbacks, FullScreenCarousel, SectionRooms, SectionTop, SectionAbout, SectionServices },

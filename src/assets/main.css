@@ -16,36 +16,12 @@
         src: url("./fonts/helvetica_light.otf");
     }
     @font-face {
-        font-family: "Roboto";
-        src: url("./fonts/roboto/roboto-thin.ttf") format("truetype");
-    }
-    @font-face {
-        font-family: Helvetica_Light_Normal;
-        src: url("./fonts/helvetica-light-normal.ttf");
-    }
-    @font-face {
-        font-family: HelveticaThin;
-        src: url("./fonts/HelveticaThin.ttf");
-    }
-    @font-face {
-        font-family: HelveticaUltraLight;
-        src: url("./fonts/HelveticaUltraLight.ttf");
-    }
-    @font-face {
-        font-family: RalewayRegular;
-        src: url("./fonts/raleway-regular.ttf");
-    }
-    @font-face {
         font-family: RalewayRegular;
         src: url("./fonts/raleway-regular.ttf");
     }
     @font-face {
         font-family: MontserratRegular;
         src: url("./fonts/montserrat-regular.ttf");
-    }
-    @font-face {
-        font-family: MontserratBold;
-        src: url("./fonts/Montserrat-Bold.ttf");
     }
     @font-face {
         font-family: MontserratMedium;

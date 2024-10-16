@@ -36,7 +36,7 @@ export default {
         <div class="flex flex-col justify-between items-center h-full pb-[10%]">
           <div class="text-[34px] text-whiteMain font-cormorant text-center">Бронирование<br>номеров</div>
           <a v-for="(item, idx) in mobileBooking" :key="idx" :href="item.link">
-            <img :src="`/src/assets/icons/${item.iconName}.svg`" alt="cross" class="w-[55px]">
+            <img :src="item.iconLink" alt="cross" class="w-[55px]">
           </a>
         </div>
       </MobileBlackout>
@@ -106,7 +106,7 @@ export default {
 .wrapper {
   width: 100%;
   object-fit: cover;
-  background: url("@/assets/images/top-section-cover.png") no-repeat;
+  background: url("https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/common%2Ftop-section-cover.png?alt=media&token=461059fb-5841-421c-8a4f-f964614e9552") no-repeat;
   background-size: cover;
   height: 100vh;
 }

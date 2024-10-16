@@ -26,7 +26,7 @@ export default {
   <div class="card relative shadow">
     <div v-if="data.user_name !=='link_to_yandex'" class="absolute top-[-60px] left-[55px] w-[132px] h-[132px] rounded-t-full bg-[#FFFFFF] flex items-center justify-center">
       <div v-if="data.user_photo !== 'default'" class="w-[90px] h-[90px] rounded-full overflow-hidden">
-        <img :src="`src/assets/images/users/${data.user_photo}`" alt="person_elips">
+        <img :src="data.user_photo" alt="person">
       </div>
       <img v-else src="@/assets/icons/person_elips.svg" alt="person_elips">
     </div>

@@ -33,7 +33,7 @@ export default {
   <div
       @mouseenter="showFullBtn = true"
       @mouseleave="showFullBtn = false"
-      class="btn fixed bottom-[120px] right-[10px] md:right-[50px] z-[11]"
+      class="btn fixed bottom-[40px] lg:bottom-[120px] right-[10px] md:right-[50px] z-[11]"
       :class="{'h-[86px] w-[382px]': showFullBtn, 'h-[86px] w-[100px]': !showFullBtn, onBottom: isOnBottom}">
     <div class="relative flex items-center">
       <transition name="fullBtn">
@@ -59,6 +59,13 @@ export default {
 .onBottom {
   margin-bottom: 50px;
 }
+
+@media (max-width: 550px) {
+  .onBottom {
+    margin-bottom: 90px;
+  }
+}
+
 .pulse::before {
   content: '';
   position: absolute;

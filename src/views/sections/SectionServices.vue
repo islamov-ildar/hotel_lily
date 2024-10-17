@@ -90,19 +90,12 @@ export default {
     </HeaderSection>
     <div class="flex flex-col min-[1275px]:flex-row gap-[10px] text-[20px] justify-between">
       <div class="flex gap-[20px] relative max-w-[85%] mx-auto">
-        <div class="z-[1]">
-<!--          <img src="@/assets/images/cafe.jpg" width="380" height="549" alt="cafe" class="lg:hidden w-auto h-full">-->
-          <img src="https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/common%2Fcafe.jpg?alt=media&token=f2f98058-6da5-4fd0-abd3-4cd2e53b3d59" width="380" height="549" alt="cafe" class="lg:hidden w-auto h-full">
-<!--          <img src="@/assets/images/cafe.jpg" width="380" height="549" alt="cafe" class="hidden lg:block">-->
-          <img src="https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/common%2Fcafe.jpg?alt=media&token=f2f98058-6da5-4fd0-abd3-4cd2e53b3d59" width="380" height="549" alt="cafe" class="hidden lg:block">
+        <div class="z-[1] cafeImg">
         </div>
         <div class="flex flex-col gap-[20px] z-[1]">
-<!--          <img src="@/assets/images/vegetables.jpg" width="265" height="169" alt="vegetables">-->
-          <img src="https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/common%2Fvegetables.jpg?alt=media&token=815cd0c5-7d93-496d-81c5-a0cb0cd0c561" width="265" height="169" alt="vegetables">
-<!--          <img src="@/assets/images/cake.jpg" width="265" height="170" alt="cake">-->
-          <img src="https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/common%2Fcake.jpg?alt=media&token=e7184e7d-1bd3-4b17-b102-2629a1c7a7b1" width="265" height="170" alt="cake">
-<!--          <img src="@/assets/images/dishes.jpg" width="265" height="170" alt="dishes">-->
-          <img src="https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/common%2Fdishes.jpg?alt=media&token=e316d84f-c24c-4baf-aa47-f35c9e085293" width="265" height="170" alt="dishes">
+          <img src="https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/common%2Fvegetables.jpg?alt=media&token=815cd0c5-7d93-496d-81c5-a0cb0cd0c561" alt="vegetables">
+          <img src="https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/common%2Fcake.jpg?alt=media&token=e7184e7d-1bd3-4b17-b102-2629a1c7a7b1" alt="cake">
+          <img src="https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/common%2Fdishes.jpg?alt=media&token=e316d84f-c24c-4baf-aa47-f35c9e085293" alt="dishes">
         </div>
         <div class="hidden lg:block absolute w-[95%] h-[100%] border-2 border-yellowMain top-[10%] left-[15%]"></div>
         <div class="lg:hidden absolute w-[90%] h-[90%] right-[-7%] top-[20%] border-2 border-yellowMain z-0"></div>
@@ -123,5 +116,14 @@ export default {
   .cardContainer {
     margin-left: 10%;
   }
+}
+
+.cafeImg {
+  width: 100%;
+  object-fit: cover;
+  background: url("https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/common%2Fcafe.jpg?alt=media&token=f2f98058-6da5-4fd0-abd3-4cd2e53b3d59") no-repeat;
+  background-size: cover;
+  object-position: 50% 50%;
+  //height: 100vh;
 }
 </style>

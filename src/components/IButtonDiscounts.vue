@@ -153,7 +153,7 @@ export default {
       @mouseenter="showFullBtn = true"
       @mouseleave="showFullBtn = false"
       @click="showDiscount = !showDiscount"
-      class="btn fixed h-[86px] bottom-[120px] z-[11] w-[100px]"
+      class="btn fixed h-[86px] bottom-[40px] lg:bottom-[120px] z-[11] w-[100px]"
       :class="{ 'w-[180px]': showFullBtn, onBottom: isOnBottom}">
     <div class="relative flex items-center">
       <transition name="fullBtn">
@@ -197,7 +197,11 @@ export default {
 .onBottom {
   margin-bottom: 50px;
 }
-
+@media (max-width: 550px) {
+  .onBottom {
+    margin-bottom: 90px;
+  }
+}
 .fullBtn-enter-active,
 .fullBtn-leave-active {
   transition: opacity 0.5s ease;

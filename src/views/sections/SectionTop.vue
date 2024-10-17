@@ -106,7 +106,7 @@ export default {
 .wrapper {
   width: 100%;
   object-fit: cover;
-  background: url("https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/common%2Ftop-section-cover.png?alt=media&token=461059fb-5841-421c-8a4f-f964614e9552") no-repeat;
+  background: url("https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/common%2Ftop-section-cover.webp?alt=media&token=c2d2ec46-0919-4dcb-b220-62bbbe6e60c1") no-repeat;
   background-size: cover;
   height: 100vh;
 }

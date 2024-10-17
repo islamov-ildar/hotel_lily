@@ -1,7 +1,7 @@
 import {initializeApp} from "firebase/app";
 
 import {child, get, getDatabase, ref, set} from "firebase/database";
-import { getStorage, getDownloadURL , ref as storageRef, listAll } from "firebase/storage";
+// import { getStorage, getDownloadURL , ref as storageRef, listAll } from "firebase/storage";
 
 
 const firebaseConfig = {
@@ -22,28 +22,26 @@ const dbRef = ref(getDatabase());
 
 export const getAll = async () => {
     const snapshot = await get(child(dbRef, 'allData'));
-    console.log('getAll', snapshot, snapshot.val());
     return snapshot.exists() ? snapshot.val() : '"No data available"';
 }
 
 export async function writeAllData(allData) {
-    console.log('writeAllData')
     const db = getDatabase();
     set(ref(db, 'allData'), allData).then(res => console.log(res))
         .catch(err => console.log(err));
 }
 
-const storage = getStorage();
-
-const listRef = storageRef(storage, 'icons');
-
-listAll(listRef)
-    .then((res) => {
-
-        res.items.forEach((itemRef) => {
-            getDownloadURL(itemRef).then((res) => {console.log(res)})
-        });
-    }).catch((error) => {});
+// const storage = getStorage();
+//
+// const listRef = storageRef(storage, 'icons');
+//
+// listAll(listRef)
+//     .then((res) => {
+//
+//         res.items.forEach((itemRef) => {
+//             getDownloadURL(itemRef).then((res) => {console.log(res)})
+//         });
+//     }).catch((error) => {});
 
 
 

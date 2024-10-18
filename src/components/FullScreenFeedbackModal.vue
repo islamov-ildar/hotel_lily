@@ -10,24 +10,16 @@ export default {
     const clickIntoCarousel = (some: any) => {
       const classes = Array.from(some.srcElement.classList);
       if(classes.includes('carousel') || classes.includes('cross')){
-        console.log('click on blackout')
         emit('close')
       }
     }
 
-
-
     onMounted(() => {
       document.body.style.overflow = 'hidden';
-      // document.body.style.top = `-${window.scrollY}px`;
     })
     onBeforeUnmount(() => {
       document.body.style.overflow = '';
-      // document.body.style.position = '';
-      // document.body.style.top = '';
     })
-
-    console.log('fullscreenModal props', props);
 
     return {
       clickIntoCarousel

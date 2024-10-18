@@ -21,6 +21,7 @@ export default {
       montserratMedium: ["MontserratMedium", "sans-serif"],
       montserratSemiBold: ["MontserratSemibold", "sans-serif"],
       aliceRegular: ["AliceRegular", "sans-serif"],
+      souliyoUnicode: ["Souliyo-Unicode", "sans-serif"],
     },
     colors: {
       yellowMain: '#F2C452',

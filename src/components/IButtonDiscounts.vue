@@ -22,10 +22,13 @@ export default {
         })
     })
 
+    const checkWindowWidth = () => window.innerWidth > 767;
+
     return {
+      checkWindowWidth,
+      isOnBottom,
       showDiscount,
       showFullBtn,
-      isOnBottom,
     }
   }
 };
@@ -33,7 +36,7 @@ export default {
 </script>
 
 <template>
-  <div v-if="showDiscount" class="fixed bottom-[275px] z-[11] hidden fixedModal">
+  <div v-if="showDiscount" class="fixed bottom-[275px] z-[11] hidden fixedModal modalShadow">
     <div @click="showDiscount = false" class="cursor-pointer absolute right-0 top-0">
       <img src="@/assets/icons/yellow-cross.svg" alt="cross">
     </div>
@@ -90,7 +93,7 @@ export default {
       </div>
     </div>
   </div>
-  <div v-if="showDiscount" class="fixed bottom-[275px] left-[40px] z-[11] max-w-[65%] responsiveModal">
+  <div v-if="showDiscount" class="fixed bottom-[275px] left-[40px] z-[11] max-w-[65%] responsiveModal modalShadow">
     <div @click="showDiscount = false" class="cursor-pointer absolute right-0 top-0 w-[17%]">
       <img src="@/assets/icons/yellow-cross.svg" alt="cross">
     </div>
@@ -150,7 +153,7 @@ export default {
     </div>
   </div>
   <div
-      @mouseenter="showFullBtn = true"
+      @mouseenter="showFullBtn = checkWindowWidth()"
       @mouseleave="showFullBtn = false"
       @click="showDiscount = !showDiscount"
       class="btn fixed h-[86px] bottom-[40px] lg:bottom-[120px] z-[11] w-[100px]"
@@ -163,7 +166,7 @@ export default {
         </div>
       </transition>
       <transition name="smallBtn">
-        <div v-if="!showFullBtn" class="z-[10] absolute mt-[-4px] left-[10px] md:left-[40px] top-0 w-[86px] h-[86px] yellowBgTelegram">
+        <div v-if="!showFullBtn" class="z-[10] cursor-pointer absolute mt-[-4px] left-[10px] md:left-[40px] top-0 w-[86px] h-[86px] yellowBgTelegram">
           <img src="@/assets/icons/gift.svg" height="86" width="86" alt="yellowBgTelegram">
         </div>
       </transition>
@@ -172,7 +175,7 @@ export default {
 </template>
 
 <style scoped>
-.fixedModal {
+.modalShadow {
   box-shadow: 7px 7px 25px 2px rgba(42, 101, 126, 0.20);
 }
 

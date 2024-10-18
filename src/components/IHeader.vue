@@ -19,12 +19,14 @@ export default {
   <div class="headerBig font-helveticaLight header-grid pt-[26px] header-wrapper">
     <div class="pt-[10px]">
       <div class="w-full header-container flex justify-center">
-        <div class="pb-[30px] header-container-left flex items-center gap-[10px]">
-          <img src="@/assets/images/map-pin.svg" alt="map-pin">
-          <div class="text-[#FBF6ED] md:text-[11px] lg:text-[17px]">
-            Абхазия, г. Гудаута, ул. Пушкина, 2
+        <a href="#map">
+          <div class="pb-[30px] header-container-left flex items-center gap-[10px]">
+            <img src="@/assets/images/map-pin.svg" alt="map-pin">
+            <div class="text-[#FBF6ED] md:text-[11px] lg:text-[17px]">
+              Абхазия, г. Гудаута, ул. Пушкина, 2
+            </div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
     <div @click="redirectToLogin" class="mx-auto">

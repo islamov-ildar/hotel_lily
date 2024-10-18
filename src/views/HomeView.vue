@@ -14,9 +14,10 @@ import FullScreenFeedbackModal from "@/components/FullScreenFeedbackModal.vue";
 import ContactsModal from "@/components/ContactsModal.vue";
 import {parseData} from "@/common/utils/parseData";
 import {getAll} from '@/firebase-api.js';
+import SectionDeveloperInfo from "@/views/sections/SectionDeveloperInfo.vue";
 
 export default {
-  components: { IButtonDiscounts, ContactsModal, FullScreenFeedbackModal,IButton, IFooter,SectionMap, SectionFeedbacks, FullScreenCarousel, SectionRooms, SectionTop, SectionAbout, SectionServices },
+  components: {SectionDeveloperInfo, IButtonDiscounts, ContactsModal, FullScreenFeedbackModal,IButton, IFooter,SectionMap, SectionFeedbacks, FullScreenCarousel, SectionRooms, SectionTop, SectionAbout, SectionServices },
   setup() {
 
     const dataFromDB = ref();
@@ -70,6 +71,7 @@ export default {
   <SectionFeedbacks @openFullScreenFeedback="openFullScreenFeedbackView" />
   <SectionMap />
   <IFooter />
+  <SectionDeveloperInfo />
   <FullScreenCarousel :imgIdx="targetImgIdx" v-if="showFullscreenCarousel" :slides="slidesForFullscreenCarousel" @close="showFullscreenCarousel = false" />
   <FullScreenFeedbackModal v-if="showFullscreenFeedback" :feedback="fullscreenFeedback" @close="showFullscreenFeedback = false" />
   <ContactsModal v-if="showContacts" @close="showContacts = false" />

@@ -1,4 +1,18 @@
-<script setup lang="ts">
+<script lang="ts">
+import {onBeforeUnmount, onMounted} from "vue";
+
+export default {
+  setup() {
+    onMounted(() => {
+      document.body.style.overflow = 'hidden';
+    })
+    onBeforeUnmount(() => {
+      document.body.style.overflow = '';
+    })
+
+    return {}
+  }
+}
 </script>
 
 <template>

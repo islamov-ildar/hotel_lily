@@ -56,12 +56,14 @@ export default {
         </div>
       </MobileBlackout>
     </div>
-    <div class="addressInMobile absolute right-0 top-0 flex items-start gap-[10px] text-[13px] pt-[25px] pr-[14px]">
-      <img src="@/assets/images/map-pin.svg" alt="map-pin">
-      <div class="text-[#FBF6ED] text-right">
-        Абхазия, г. Гудаута,<br> ул. Пушкина, 2
+    <a href="#map">
+      <div class="addressInMobile absolute right-0 top-0 flex items-start gap-[10px] text-[13px] pt-[25px] pr-[14px]">
+        <img src="@/assets/images/map-pin.svg" alt="map-pin">
+        <div class="text-[#FBF6ED] text-right">
+          Абхазия, г. Гудаута,<br> ул. Пушкина, 2
+        </div>
       </div>
-    </div>
+    </a>
     <div class="titleContainer relative md:w-[70%] w-full h-[70%] title-background mt-[215px]">
       <div class="font-cormorant text-[#FFFFFF]">
         <div class="hidden md:block textMedia text-[54px] lg:text-[75px] leading-[92px] pl-[130px]">

@@ -35,6 +35,15 @@
         font-family: AliceRegular;
         src: url("./fonts/Alice-Regular.ttf");
     }
+    @font-face {
+        font-family: 'Souliyo-Unicode';
+        src:url('./fonts/Souliyo-Unicode.ttf.woff') format('woff'),
+        url('./fonts/Souliyo-Unicode.ttf.svg#Souliyo-Unicode') format('svg'),
+        url('./fonts/Souliyo-Unicode.ttf.eot'),
+        url('./fonts/Souliyo-Unicode.ttf.eot?#iefix') format('embedded-opentype');
+        font-weight: normal;
+        font-style: normal;
+    }
 }
 
 html {

@@ -20,7 +20,10 @@ export default {
         })
     })
 
+    const checkWindowWidth = () => window.innerWidth > 767;
+
     return {
+      checkWindowWidth,
       showFullBtn,
       isOnBottom,
     }
@@ -31,7 +34,7 @@ export default {
 
 <template>
   <div
-      @mouseenter="showFullBtn = true"
+      @mouseenter="showFullBtn = checkWindowWidth()"
       @mouseleave="showFullBtn = false"
       class="btn fixed bottom-[40px] lg:bottom-[120px] right-[10px] md:right-[50px] z-[11]"
       :class="{'h-[86px] w-[382px]': showFullBtn, 'h-[86px] w-[100px]': !showFullBtn, onBottom: isOnBottom}">
@@ -44,7 +47,7 @@ export default {
         </div>
       </transition>
       <transition name="smallBtn">
-        <div v-if="!showFullBtn" class="z-[10] pulse absolute mt-[-4px] right-0 top-0 w-[86px] h-[86px] yellowBgTelegram">
+        <div v-if="!showFullBtn" class="z-[10] cursor-pointer pulse absolute mt-[-4px] right-0 top-0 w-[86px] h-[86px] yellowBgTelegram">
           <img src="@/assets/icons/yellowBgTelegram.svg" height="86" width="86" alt="yellowBgTelegram">
         </div>
       </transition>

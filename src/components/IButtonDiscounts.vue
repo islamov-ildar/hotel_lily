@@ -93,7 +93,10 @@ export default {
       </div>
     </div>
   </div>
-  <div v-if="showDiscount" class="fixed bottom-[275px] left-[40px] z-[11] max-w-[65%] responsiveModal modalShadow">
+  <div v-if="showDiscount"
+       class="fixed bottom-[140px] left-[40px] z-[11] max-w-[65%] responsiveModal modalShadow"
+       :class="{mobileModalFromBottom: isOnBottom}"
+  >
     <div @click="showDiscount = false" class="cursor-pointer absolute right-0 top-0 w-[17%]">
       <img src="@/assets/icons/yellow-cross.svg" alt="cross">
     </div>
@@ -175,6 +178,10 @@ export default {
 </template>
 
 <style scoped>
+.mobileModalFromBottom {
+  margin-bottom: 100px;
+  transition: margin 400ms;
+}
 .modalShadow {
   box-shadow: 7px 7px 25px 2px rgba(42, 101, 126, 0.20);
 }

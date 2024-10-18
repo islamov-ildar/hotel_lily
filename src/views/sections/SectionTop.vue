@@ -30,10 +30,9 @@ export default {
   </div>
   <div class="wrapper relative">
     <IHeader @openContactsModal="$emit('openContactsModal')"/>
-<!--    <div class="md:hidden">-->
     <div class="mobileBlackoutWrapper">
       <MobileBlackout v-if="showBooking" @close="showBooking = false">
-        <div class="flex flex-col justify-between items-center h-full pb-[10%]">
+        <div class="flex flex-col justify-between items-center h-[90%] pb-[10%]">
           <div class="text-[34px] text-whiteMain font-cormorant text-center">Бронирование<br>номеров</div>
           <a v-for="(item, idx) in mobileBooking" :key="idx" :href="item.link">
             <img :src="item.iconLink" alt="cross" class="w-[55px]">
@@ -41,7 +40,7 @@ export default {
         </div>
       </MobileBlackout>
       <MobileBlackout v-if="showMenu" @close="showMenu = false">
-        <div @click="showMenu = false" class="flex flex-col justify-between items-center h-full pb-[10%]">
+        <div @click="showMenu = false" class="flex flex-col justify-between items-center h-[90%] pb-[10%]">
           <a v-for="(item, idx) in mobileMenuContent" :key="idx" :href="item.link" class="w-full">
             <div class="text-[20px] text-whiteMain py-[23px] menuItem w-full text-center">{{item.title}}</div>
           </a>
@@ -115,7 +114,7 @@ export default {
 
 @media (max-width: 768px) {
   .wrapper {
-    @apply flex justify-center items-center h-[86vh]
+    @apply flex justify-center items-center h-[140vw]
   }
   .titleContainer {
     @apply mt-0 text-[54px] flex justify-center items-center

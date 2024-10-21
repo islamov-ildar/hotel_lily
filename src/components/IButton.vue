@@ -47,9 +47,11 @@ export default {
         </div>
       </transition>
       <transition name="smallBtn">
-        <div v-if="!showFullBtn" class="z-[10] cursor-pointer pulse absolute mt-[-4px] right-0 top-0 w-[86px] h-[86px] yellowBgTelegram">
-          <img src="@/assets/icons/yellowBgTelegram.svg" height="86" width="86" alt="yellowBgTelegram">
-        </div>
+        <a v-if="!showFullBtn" href="https://t.me/Asmat_Agumava">
+          <div class="z-[10] cursor-pointer pulse absolute mt-[-4px] right-0 top-0 w-[86px] h-[86px] yellowBgTelegram">
+            <img src="@/assets/icons/yellowBgTelegram.svg" height="86" width="86" alt="yellowBgTelegram">
+          </div>
+        </a>
       </transition>
     </div>
   </div>

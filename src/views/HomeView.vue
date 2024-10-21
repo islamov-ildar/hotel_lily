@@ -17,7 +17,21 @@ import {getAll} from '@/firebase-api.js';
 import SectionDeveloperInfo from "@/views/sections/SectionDeveloperInfo.vue";
 
 export default {
-  components: {SectionDeveloperInfo, IButtonDiscounts, ContactsModal, FullScreenFeedbackModal,IButton, IFooter,SectionMap, SectionFeedbacks, FullScreenCarousel, SectionRooms, SectionTop, SectionAbout, SectionServices },
+  components: {
+    SectionDeveloperInfo,
+    IButtonDiscounts,
+    ContactsModal,
+    FullScreenFeedbackModal,
+    IButton,
+    IFooter,
+    SectionMap,
+    SectionFeedbacks,
+    FullScreenCarousel,
+    SectionRooms,
+    SectionTop,
+    SectionAbout,
+    SectionServices
+  },
   setup() {
 
     const dataFromDB = ref();
@@ -60,19 +74,23 @@ export default {
 </script>
 
 <template>
-  <div>
-    <IButton label="Забронировать"/>
+  <div class="relative">
+    <div>
+      <IButton label="Забронировать"/>
+    </div>
+    <IButtonDiscounts v-if="dataFromDB && dataFromDB.isSalesEnabled" :data="dataFromDB.salesText" label="Скидки"/>
+    <SectionTop @openContactsModal="showContacts = true"/>
+    <SectionAbout @openFullScreenViewHandler="openFullScreenCarousel"/>
+    <SectionServices/>
+    <SectionRooms v-if="dataFromDB" :data="dataFromDB" @openFullScreenViewHandler="openFullScreenCarousel"/>
+    <SectionFeedbacks @openFullScreenFeedback="openFullScreenFeedbackView"/>
+    <SectionMap/>
+    <IFooter/>
+    <SectionDeveloperInfo/>
+    <FullScreenCarousel :imgIdx="targetImgIdx" v-if="showFullscreenCarousel" :slides="slidesForFullscreenCarousel"
+                        @close="showFullscreenCarousel = false"/>
+    <FullScreenFeedbackModal v-if="showFullscreenFeedback" :feedback="fullscreenFeedback"
+                             @close="showFullscreenFeedback = false"/>
+    <ContactsModal v-if="showContacts" @close="showContacts = false"/>
   </div>
-  <IButtonDiscounts v-if="dataFromDB && dataFromDB.isSalesEnabled" :data="dataFromDB.salesText" label="Скидки" />
-  <SectionTop @openContactsModal="showContacts = true" />
-  <SectionAbout @openFullScreenViewHandler="openFullScreenCarousel" />
-  <SectionServices />
-  <SectionRooms v-if="dataFromDB" :data="dataFromDB" @openFullScreenViewHandler="openFullScreenCarousel" />
-  <SectionFeedbacks @openFullScreenFeedback="openFullScreenFeedbackView" />
-  <SectionMap />
-  <IFooter />
-  <SectionDeveloperInfo />
-  <FullScreenCarousel :imgIdx="targetImgIdx" v-if="showFullscreenCarousel" :slides="slidesForFullscreenCarousel" @close="showFullscreenCarousel = false" />
-  <FullScreenFeedbackModal v-if="showFullscreenFeedback" :feedback="fullscreenFeedback" @close="showFullscreenFeedback = false" />
-  <ContactsModal v-if="showContacts" @close="showContacts = false" />
 </template>

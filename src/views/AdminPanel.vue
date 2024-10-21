@@ -47,8 +47,8 @@ export default {
     const isSalesEnabled = ref(true);
 
     const salesText = ref({
-      main: 'Внимание! Только в этом году и только в этом месяце СКИДКА!',
-      additional: 'Заказывайте два номера со скидкой 30% + завтраки и лежаки на пляже! Ждём!',
+      main: '',
+      additional: '',
     });
 
     const saveData = () => {
@@ -64,7 +64,6 @@ export default {
         semiLuxuryFamily: buildData(semiLuxuryFamily.value),
       }))
       console.log(objForBuild);
-      // writeAllData(allData).then(() => loading.value = false)
       writeAllData(objForBuild).then(() => loading.value = false)
     }
 
@@ -151,7 +150,7 @@ export default {
 <template>
   <div v-if="isUserLogin">
     <button @click="saveData"
-            class="fixed bottom-[70px] right-[40px] btnBorderWrapper cursor-pointer select-none">
+            class="fixed bottom-[70px] right-[40px] btnBorderWrapper cursor-pointer select-none z-10">
       <span
           class="block relative bg-yellowMain py-[30px] px-[40px] font-montserratSemiBold uppercase text-[24px] text-whiteMain btnBorder">
       <span v-if="loading" class="absolute flex justify-center items-center h-full top-0 left-0 w-full">
@@ -193,7 +192,7 @@ export default {
           <div class="border-[3px] border-yellowMain py-[44px] px-[45px] flex gap-[32px] items-center">
             <div>Информировать о СКИДКЕ</div>
             <div class="h-[45px]">
-              <input @input="switchSales" type="checkbox" id="sales" class="custom-checkbox" v-model="isSalesEnabled">
+              <input @input="switchSales" type="checkbox" id="sales" class="custom-checkbox" v-model="isSalesEnabled" :checked="isSalesEnabled">
               <label for="sales" class="cursor-pointer"></label>
             </div>
           </div>
@@ -210,7 +209,7 @@ export default {
               <div>
                 <div>Апрель</div>
                 <div>
-                  <input v-model="salesMonths.april" :disabled="!isSalesEnabled" type="checkbox" id="april"
+                  <input v-model="salesMonths.april" :disabled="!isSalesEnabled" type="checkbox" id="april" :checked="salesMonths.april"
                          class="custom-checkbox checkboxSmallBorder"
                          :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
                   <label for="april"></label></div>
@@ -218,7 +217,7 @@ export default {
               <div>
                 <div>Май</div>
                 <div>
-                  <input v-model="salesMonths.may" :disabled="!isSalesEnabled" type="checkbox" id="may"
+                  <input v-model="salesMonths.may" :disabled="!isSalesEnabled" type="checkbox" id="may" :checked="salesMonths.may"
                          class="custom-checkbox checkboxSmallBorder"
                          :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
                   <label for="may"></label></div>
@@ -226,7 +225,7 @@ export default {
               <div>
                 <div>Июнь</div>
                 <div>
-                  <input v-model="salesMonths.june" :disabled="!isSalesEnabled" type="checkbox" id="june"
+                  <input v-model="salesMonths.june" :disabled="!isSalesEnabled" type="checkbox" id="june" :checked="salesMonths.june"
                          class="custom-checkbox checkboxSmallBorder"
                          :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
                   <label for="june"></label></div>
@@ -234,7 +233,7 @@ export default {
               <div>
                 <div>Июль</div>
                 <div>
-                  <input v-model="salesMonths.july" :disabled="!isSalesEnabled" type="checkbox" id="july"
+                  <input v-model="salesMonths.july" :disabled="!isSalesEnabled" type="checkbox" id="july" :checked="salesMonths.july"
                          class="custom-checkbox checkboxSmallBorder"
                          :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
                   <label for="july"></label></div>
@@ -242,7 +241,7 @@ export default {
               <div>
                 <div>Август</div>
                 <div>
-                  <input v-model="salesMonths.august" :disabled="!isSalesEnabled" type="checkbox" id="august"
+                  <input v-model="salesMonths.august" :disabled="!isSalesEnabled" type="checkbox" id="august" :checked="salesMonths.august"
                          class="custom-checkbox checkboxSmallBorder"
                          :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
                   <label for="august"></label></div>
@@ -250,7 +249,7 @@ export default {
               <div>
                 <div>Сентябрь</div>
                 <div>
-                  <input v-model="salesMonths.september" :disabled="!isSalesEnabled" type="checkbox" id="september"
+                  <input v-model="salesMonths.september" :disabled="!isSalesEnabled" type="checkbox" id="september" :checked="salesMonths.september"
                          class="custom-checkbox checkboxSmallBorder"
                          :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
                   <label for="september"></label></div>
@@ -258,7 +257,7 @@ export default {
               <div>
                 <div>Октябрь</div>
                 <div>
-                  <input v-model="salesMonths.october" :disabled="!isSalesEnabled" type="checkbox" id="october"
+                  <input v-model="salesMonths.october" :disabled="!isSalesEnabled" type="checkbox" id="october" :checked="salesMonths.september"
                          class="custom-checkbox checkboxSmallBorder"
                          :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
                   <label for="october"></label></div>

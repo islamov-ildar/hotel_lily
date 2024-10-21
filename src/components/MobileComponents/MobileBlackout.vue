@@ -1,19 +1,7 @@
 <script lang="ts">
-import {onBeforeUnmount, onMounted} from "vue";
 
 export default {
   setup() {
-    // onMounted(() => {
-    //   window.scrollTo({
-    //     top: 0,
-    //     left: 0,
-    //     behavior: 'smooth'
-    //   });
-    //   document.body.style.overflow = 'hidden';
-    // })
-    // onBeforeUnmount(() => {
-    //   document.body.style.overflow = '';
-    // })
 
     return {}
   }

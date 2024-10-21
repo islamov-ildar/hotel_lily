@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div class="w-full py-[27px] bg-blueMain px-[10%] lg:px-[150px] flex flex-col items-center lg:flex-row justify-between">
+  <div id="footer" class="w-full py-[27px] bg-blueMain px-[10%] lg:px-[150px] flex flex-col items-center lg:flex-row justify-between">
     <div class="mb-[30px] lg:mb-0">
       <img src="@/assets/images/logo.svg" width="145px" alt="logo">
     </div>
@@ -21,7 +21,7 @@
         <div class="flex items-center gap-[10px]">
           <img src="@/assets/images/map-pin.svg" alt="map-pin">
           <div class="text-[#FBF6ED]">
-            Абхазия, г. Гудаута, ул. Пушкина, 2
+            Абхазия, г. Гудаута, ул.&nbsp;Пушкина, 2
           </div>
         </div>
         <div class="flex items-center gap-[10px]">

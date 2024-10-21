@@ -3,8 +3,14 @@ import type {PropType} from "vue";
 import type {IPriceTable} from "@/common/mockData/prices";
 import type {IRoomDescription} from "@/common/mockData/roomsDescription";
 import {ref} from "vue";
+import {monthsDictionary} from "@/common/utils/monthsDictionary";
 
 export default {
+  computed: {
+    monthsDictionary() {
+      return monthsDictionary
+    }
+  },
   props: {
     price: {
       type: Object as PropType<IPriceTable[]>,
@@ -57,7 +63,7 @@ export default {
 
         <div v-for="(item, idx) in priceForRender.pricesByMonths" :key="idx" :class="{endCell: idx === priceForRender.pricesByMonths.length - 1}">
           <div class="cell topCell">
-            <div>{{ item.month }}</div>
+            <div>{{ monthsDictionary[item.month] }}</div>
           </div>
           <div class="cell priceCell relative">
             <input

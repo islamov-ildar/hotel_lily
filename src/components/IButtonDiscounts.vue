@@ -23,31 +23,39 @@ export default {
       return rect.height;
     }
 
+    let socialFloat, footer, developersInfo, modal1, modal2;
+
     onMounted(() => {
-      // document.addEventListener('scroll', function() {
-      //   const documentHeight = document.body.scrollHeight;
-      //   const currentScroll = window.scrollY + window.innerHeight;
-      //   const modifier = 10;
-      //   isOnBottom.value = currentScroll + modifier > documentHeight;
-      // })
 
-      let socialFloat = document.querySelector('#social-float');
-      let footer = document.querySelector('#footer');
-      let developersInfo = document.querySelector('#developersInfo');
-
+      socialFloat = document.querySelector('#social-float');
+      footer = document.querySelector('#footer');
+      developersInfo = document.querySelector('#developersInfo');
       function checkOffset() {
 
-
-        if ((getRectTop(socialFloat) + document.body.scrollTop) + socialFloat.offsetHeight >= getRectTop(footer) + document.body.scrollTop){
+        if ((getRectTop(socialFloat) + document.body.scrollTop) + socialFloat.offsetHeight >= getRectTop(footer) + document.body.scrollTop - 40){
           socialFloat.style.position = 'absolute';
-          socialFloat.style.bottom = `${getRectHeight(footer) + getRectHeight(developersInfo)}px`;
-          console.log('getRectTop(footer)', getRectTop(footer))
+          socialFloat.style.bottom = `${getRectHeight(footer) + getRectHeight(developersInfo) + 40}px`;
+          if(modal1) {
+            modal1.style.position = 'absolute';
+            modal1.style.bottom = `${getRectHeight(footer) + getRectHeight(developersInfo) + 160}px`;
+          }
+          if(modal2) {
+            modal2.style.position = 'absolute';
+            modal2.style.bottom = `${getRectHeight(footer) + getRectHeight(developersInfo) + 160}px`;
+          }
         }
         if (document.body.scrollTop + window.innerHeight < (getRectTop(footer) + document.body.scrollTop)) {
           socialFloat.style.position = 'fixed'; // restore when you scroll up
           socialFloat.style.bottom = '40px';
+          if(modal1) {
+            modal1.style.position = 'fixed';
+            modal1.style.bottom = `160px`;
+          }
+          if(modal2) {
+            modal2.style.position = 'fixed';
+            modal2.style.bottom = `160px`;
+          }
         }
-
       }
 
       document.addEventListener("scroll", function () {
@@ -59,25 +67,40 @@ export default {
     const checkWindowWidth = () => window.innerWidth > 767;
 
     const positionModal = () => {
-      showDiscount.value = true
-      setTimeout(() => {
-        let modal1 = document.querySelector('#fixedModal1');
-        let modal2 = document.querySelector('#fixedModal2');
 
-        let socialFloat = document.querySelector('#social-float');
+      showDiscount.value = !showDiscount.value;
 
-        console.log('modal1', modal1)
-        console.log('modal2', modal2)
-        console.log('socialFloat', getRectTop(socialFloat))
+      if(showDiscount.value) {
+          modal1 = document.querySelector('#fixedModal1');
+          modal2 = document.querySelector('#fixedModal2');
 
-        if(modal1) modal1.style.bottom = `${getRectTop(socialFloat)}px`;
-        if(modal2) modal2.style.bottom = getRectTop(socialFloat);
-      }, 0)
+          if ((getRectTop(socialFloat) + document.body.scrollTop) + socialFloat.offsetHeight >= getRectTop(footer) + document.body.scrollTop - 40){
+            socialFloat.style.position = 'absolute';
+            socialFloat.style.bottom = `${getRectHeight(footer) + getRectHeight(developersInfo) + 40}px`;
+            if(modal1) {
+              modal1.style.position = 'absolute';
+              modal1.style.bottom = `${getRectHeight(footer) + getRectHeight(developersInfo) + 160}px`;
+            }
+            if(modal2) {
+              modal2.style.position = 'absolute';
+              modal2.style.bottom = `${getRectHeight(footer) + getRectHeight(developersInfo) + 160}px`;
+            }
+          }
+      } else {
+        modal1 = null;
+        modal2 = null;
+      }
+    }
 
+    const closeModal = () => {
+      showDiscount.value = false;
+      modal1 = null;
+      modal2 = null;
     }
 
     return {
       checkWindowWidth,
+      closeModal,
       isOnBottom,
       showDiscount,
       showFullBtn,
@@ -90,8 +113,8 @@ export default {
 
 <template>
   <div class="">
-    <div id="fixedModal1" v-if="showDiscount" class="fixed bottom-[275px] z-[11] hidden fixedModal modalShadow">
-      <div @click="showDiscount = false" class="cursor-pointer absolute right-0 top-0">
+    <div id="fixedModal1" v-show="showDiscount" class="fixed bottom-[160px] z-[11] hidden fixedModal modalShadow">
+      <div @click="closeModal" class="cursor-pointer absolute right-0 top-0">
         <img src="@/assets/icons/yellow-cross.svg" alt="cross">
       </div>
       <div class="cross h-full flex items-center justify-center">
@@ -157,11 +180,11 @@ export default {
         </div>
       </div>
     </div>
-    <div id="fixedModal2" v-if="showDiscount"
+    <div id="fixedModal2" v-show="showDiscount"
          class="fixed bottom-[140px] left-[40px] z-[11] max-w-[65%] responsiveModal modalShadow"
          :class="{mobileModalFromBottom: isOnBottom}"
     >
-      <div @click="showDiscount = false" class="cursor-pointer absolute right-0 top-0 w-[17%]">
+      <div @click="closeModal" class="cursor-pointer absolute right-0 top-0 w-[17%]">
         <img src="@/assets/icons/yellow-cross.svg" alt="cross">
       </div>
       <div class="cross h-full flex items-center justify-center">
@@ -170,8 +193,6 @@ export default {
             <div class="bg-whiteMain px-[5%] mt-[-11%] mx-[10%] mb-[5%]">
               <img src="@/assets/icons/discount_badge.svg" alt="logo_blue">
             </div>
-            <!--          <div class="pin pin-green">2 new</div>-->
-
             <div class="flex justify-center items-center">
               <div class="flex flex-col justify-between items-center h-full gap-[30px]">
                 <div class="flex items-center text-center font-montserratSemiBold text-[13px] lg:text-[27px]">
@@ -183,7 +204,7 @@ export default {
               </div>
             </div>
 
-            <div class="mt-[30px] flex justify-end h-full mb-[30px] mr-[30px]">
+            <div class="my-[30px] flex justify-center h-full">
               <div class="flex gap-[15px]">
                 <a href="https://t.me/Asmat_Agumava">
                   <svg class="cursor-pointer" width="49" height="50" viewBox="0 0 49 50" fill="none"
@@ -234,7 +255,7 @@ export default {
         @mouseenter="showFullBtn = checkWindowWidth()"
         @mouseleave="showFullBtn = false"
         @click="positionModal"
-        class="btn fixed h-[86px] bottom-[40px] lg:bottom-[120px] z-[11] w-[100px]"
+        class="btn fixed h-[86px] bottom-[40px] lg:bottom-[40px] z-[11] w-[100px]"
         :class="{ 'w-[180px]': showFullBtn, onBottom: isOnBottom}">
       <div class="relative flex items-center">
         <transition name="fullBtn">

@@ -11,16 +11,50 @@ export default {
 
     const isOnBottom = ref(false);
 
-    onMounted(() => {
-        document.addEventListener('scroll', function() {
-          const documentHeight = document.body.scrollHeight;
-          const currentScroll = window.scrollY + window.innerHeight;
-          const modifier = 10;
-          isOnBottom.value = currentScroll + modifier > documentHeight;
-        })
-    })
+    // onMounted(() => {
+    //     document.addEventListener('scroll', function() {
+    //       const documentHeight = document.body.scrollHeight;
+    //       const currentScroll = window.scrollY + window.innerHeight;
+    //       const modifier = 10;
+    //       isOnBottom.value = currentScroll + modifier > documentHeight;
+    //     })
+    // })
 
     const checkWindowWidth = () => window.innerWidth > 767;
+
+    let buttonFloat, footer, developersInfo;
+
+    onMounted(() => {
+
+      buttonFloat = document.querySelector('#buttonFloat');
+      footer = document.querySelector('#footer');
+      developersInfo = document.querySelector('#developersInfo');
+
+      function getRectTop(el) {
+        let rect = el.getBoundingClientRect();
+        return rect.top;
+      }
+      function getRectHeight(el) {
+        let rect = el.getBoundingClientRect();
+        return rect.height;
+      }
+      function checkOffset() {
+
+        if ((getRectTop(buttonFloat) + document.body.scrollTop) + buttonFloat.offsetHeight >= getRectTop(footer) + document.body.scrollTop - 40){
+          buttonFloat.style.position = 'absolute';
+          buttonFloat.style.bottom = `${getRectHeight(footer) + getRectHeight(developersInfo) + 40}px`;
+
+        }
+        if (document.body.scrollTop + window.innerHeight < (getRectTop(footer) + document.body.scrollTop)) {
+          buttonFloat.style.position = 'fixed'; // restore when you scroll up
+          buttonFloat.style.bottom = '40px';
+        }
+      }
+
+      document.addEventListener("scroll", function () {
+        checkOffset();
+      });
+    })
 
     return {
       checkWindowWidth,
@@ -34,9 +68,10 @@ export default {
 
 <template>
   <div
+      id="buttonFloat"
       @mouseenter="showFullBtn = checkWindowWidth()"
       @mouseleave="showFullBtn = false"
-      class="btn fixed bottom-[40px] lg:bottom-[120px] right-[10px] md:right-[50px] z-[11]"
+      class="btn fixed bottom-[40px] right-[10px] md:right-[50px] z-[11]"
       :class="{'h-[86px] w-[382px]': showFullBtn, 'h-[86px] w-[100px]': !showFullBtn, onBottom: isOnBottom}">
     <div class="relative flex items-center">
       <transition name="fullBtn">

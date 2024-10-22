@@ -1,8 +1,7 @@
 <script lang="ts">
 import type {PropType} from "vue";
 import type {IPriceTable} from "@/common/mockData/prices";
-import type {IRoomDescription} from "@/common/mockData/roomsDescription";
-import {ref} from "vue";
+import {ref, watch} from "vue";
 import {monthsDictionary} from "@/common/utils/monthsDictionary";
 
 export default {
@@ -16,10 +15,18 @@ export default {
       type: Object as PropType<IPriceTable[]>,
       required: true,
     },
+    places: {
+      type: Number,
+      default: 2,
+    }
   },
   setup(props) {
 
     const priceForRender = ref(props.price);
+
+    watch(props, () => {
+      priceForRender.value = props.price
+    })
 
     const hasEmptyField = ref(0);
     const hasIncorrectField = ref(0);
@@ -56,7 +63,7 @@ export default {
           <div class="cell">
             <div class="flex items-center">
               <div><img src="@/assets/icons/person.svg" alt="person"></div>
-              <div>х 2</div>
+              <div>х {{ places }}</div>
             </div>
           </div>
         </div>

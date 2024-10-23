@@ -34,7 +34,7 @@ export default {
         </div>
         <div class="cardContainer flex flex-col
         min-[792px]:flex-row gap-[10px] lg:gap-[20px] fhd:gap-[125px]
-        mt-[60px] lg:mt-[2%] text-[18px] min-[1024px]:max-[1170px]:text-[15px] font-montserratRegular">
+        mt-[60px] lg:mt-[2%] text-[13px] md:text-[18px] min-[1024px]:max-[1170px]:text-[15px] min-[1171px]:text-[18px] font-montserratRegular">
           <div class="flex flex-col gap-[21px]">
             <div class="flex gap-[30px] items-center">
               <div class="min-w-[60px]"><img src="@/assets/icons/swim.svg" alt="swim"></div>
@@ -76,7 +76,6 @@ export default {
       <div class="lg:w-1/3 fhd:w-1/3 hidden lg:block">
         <div class="mx-auto relative">
           <div class="mt-[100px] w-[90%] mx-auto">
-            <!--            <img src="@/assets/images/beach.jpg" alt="beach" class="mx-auto w-full">-->
             <img
                 src="https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/common%2Fbeach.jpg?alt=media&token=281d488d-2421-405c-9bc4-cde699a2afe7"
                 alt="beach" class="mx-auto w-full">

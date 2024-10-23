@@ -418,7 +418,7 @@ export default {
         <div class="font-montserratMedium text-[23px] text-blueMain">Редактировать цены на “Семейный полулюкс”</div>
       </div>
       <div>
-        <div class="bg-blueMain">
+        <div class="pb-[50px] bg-blueMain">
           <div class="text-center text-[52px] font-montserratRegular text-whiteMain pt-[54px] pb-[40px]">Семейный
             полулюкс
           </div>

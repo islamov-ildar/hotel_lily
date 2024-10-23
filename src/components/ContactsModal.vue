@@ -49,7 +49,7 @@ export default {
 
         <div class="flex justify-end h-full mb-[30px] mr-[30px]">
           <div class="flex gap-[15px]">
-            <a href="https://t.me/Asmat_Agumava">
+            <a href="https://t.me/Asmat_Agumava" target="blank">
               <svg class="cursor-pointer" width="49" height="50" viewBox="0 0 49 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_1044_1688)">
                   <circle cx="24.3202" cy="24.9672" r="23.5375" stroke="#2A657E" stroke-width="1.20705"/>
@@ -62,7 +62,7 @@ export default {
                 </defs>
               </svg>
             </a>
-            <a href="https://www.instagram.com/lily_hotel_gudauta?igsh=c2ZxbGpiNnI0ZGF5">
+            <a href="https://www.instagram.com/lily_hotel_gudauta?igsh=c2ZxbGpiNnI0ZGF5" target="blank">
               <svg class="cursor-pointer" width="49" height="50" viewBox="0 0 49 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_1044_1691)">
                   <circle cx="24.8197" cy="24.9672" r="23.5375" stroke="#2A657E" stroke-width="1.20705"/>

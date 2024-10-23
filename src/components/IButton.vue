@@ -76,13 +76,13 @@ export default {
     <div class="relative flex items-center">
       <transition name="fullBtn">
         <div v-if="showFullBtn" class="z-[11] cursor-pointer absolute rounded-[60px] right-0 top-0 btnLabel px-[35px] py-[17px] text-[28px] bg-yellowMain text-left text-[#FFFFFF]">
-          <a href="https://t.me/Asmat_Agumava">
+          <a href="https://t.me/Asmat_Agumava" target="blank">
             {{ label }}
           </a>
         </div>
       </transition>
       <transition name="smallBtn">
-        <a v-if="!showFullBtn" href="https://t.me/Asmat_Agumava">
+        <a v-if="!showFullBtn" href="https://t.me/Asmat_Agumava" target="blank">
           <div class="z-[10] cursor-pointer pulse absolute mt-[-4px] right-0 top-0 w-[86px] h-[86px] yellowBgTelegram">
             <img src="@/assets/icons/yellowBgTelegram.svg" height="86" width="86" alt="yellowBgTelegram">
           </div>

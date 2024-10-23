@@ -34,7 +34,7 @@ export default {
       <MobileBlackout v-if="showBooking" @close="showBooking = false">
         <div class="flex flex-col justify-between items-center h-[90%] pb-[10%]">
           <div class="text-[34px] text-whiteMain font-cormorant text-center">Бронирование<br>номеров</div>
-          <a v-for="(item, idx) in mobileBooking" :key="idx" :href="item.link">
+          <a v-for="(item, idx) in mobileBooking" :key="idx" :href="item.link" target="blank">
             <img :src="item.iconLink" alt="cross" class="w-[55px]">
           </a>
         </div>
@@ -45,7 +45,7 @@ export default {
             <div class="text-[20px] text-whiteMain py-[23px] menuItem w-full text-center">{{item.title}}</div>
           </a>
           <a href="#map">
-            <div class="flex items-start gap-[10px] text-[20px] pt-[25px] pr-[14px]">
+            <div class="flex items-start gap-[10px] text-[13px] leading-[20px] pt-[25px] pr-[14px]">
               <img src="@/assets/images/map-pin.svg" alt="map-pin">
               <div class="text-[#FBF6ED] text-left">
                 Абхазия, г. Гудаута,<br> ул. Пушкина, 2

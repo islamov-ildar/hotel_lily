@@ -136,7 +136,7 @@ export default {
 
             <div class="mt-[30px] flex justify-end h-full mb-[30px] mr-[30px]">
               <div class="flex gap-[15px]">
-                <a href="https://t.me/Asmat_Agumava">
+                <a href="https://t.me/Asmat_Agumava" target="blank">
                   <svg class="cursor-pointer" width="49" height="50" viewBox="0 0 49 50" fill="none"
                        xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_1044_1688)">
@@ -152,7 +152,7 @@ export default {
                     </defs>
                   </svg>
                 </a>
-                <a href="https://www.instagram.com/lily_hotel_gudauta?igsh=c2ZxbGpiNnI0ZGF5">
+                <a href="https://www.instagram.com/lily_hotel_gudauta?igsh=c2ZxbGpiNnI0ZGF5" target="blank">
                   <svg class="cursor-pointer" width="49" height="50" viewBox="0 0 49 50" fill="none"
                        xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_1044_1691)">
@@ -198,7 +198,7 @@ export default {
                 <div class="flex items-center text-center font-montserratSemiBold text-[13px] lg:text-[27px]">
                   {{ data.main }}
                 </div>
-                <div class="flex font-montserratRegular text-center items-center text-[13px] lg:text-[23px]">
+                <div class="flex font-montserratRegular text-center items-center text-[13px] lg:text-[23px] px-[6px]">
                   {{ data.additional }}
                 </div>
               </div>
@@ -206,7 +206,7 @@ export default {
 
             <div class="my-[30px] flex justify-center h-full">
               <div class="flex gap-[15px]">
-                <a href="https://t.me/Asmat_Agumava">
+                <a href="https://t.me/Asmat_Agumava" target="blank">
                   <svg class="cursor-pointer" width="49" height="50" viewBox="0 0 49 50" fill="none"
                        xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_1044_1688)">
@@ -222,7 +222,7 @@ export default {
                     </defs>
                   </svg>
                 </a>
-                <a href="https://www.instagram.com/lily_hotel_gudauta?igsh=c2ZxbGpiNnI0ZGF5">
+                <a href="https://www.instagram.com/lily_hotel_gudauta?igsh=c2ZxbGpiNnI0ZGF5" target="blank">
                   <svg class="cursor-pointer" width="49" height="50" viewBox="0 0 49 50" fill="none"
                        xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_1044_1691)">

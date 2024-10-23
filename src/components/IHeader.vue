@@ -40,7 +40,7 @@ export default {
         <a href="#">
           <div @click="$emit('openContactsModal')" class="cursor-pointer">Контакты</div>
         </a>
-        <a href="https://t.me/Asmat_Agumava">
+        <a href="https://t.me/Asmat_Agumava" target="blank">
           <div class="cursor-pointer">
             Бронирование
           </div>

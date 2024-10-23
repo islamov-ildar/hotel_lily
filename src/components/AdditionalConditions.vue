@@ -18,7 +18,7 @@ export default {}
         <div class="flex items-center gap-[18px] lg:gap-[30px]">
           <img src="@/assets/icons/bannerIcons/children.svg" alt="ico">
           <div class="font-montserratRegular">Для детей от 3х до 5 лет размещение без места
-            с доплатой за питание 450 руб/сутки</div>
+            с доплатой за питание</div>
         </div>
       </div>
       <div class="flex flex-col gap-[40px] lg:w-1/2">
@@ -28,8 +28,8 @@ export default {}
         </div>
         <div class="flex items-center gap-[18px] lg:gap-[30px]">
           <img src="@/assets/icons/bannerIcons/sofa.svg" alt="ico">
-          <div class="font-montserratRegular">Доп место евро-раскладушка - 1200 руб<br>
-            Доп место диван - 1500 руб</div>
+          <div class="font-montserratRegular">Доп место евро-раскладушка<br>
+            Доп место диван</div>
         </div>
         <div class="flex items-center gap-[18px] lg:gap-[30px]">
           <img src="@/assets/icons/bannerIcons/ironingBoard.svg" alt="ico">

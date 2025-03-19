@@ -1,11 +1,11 @@
  export const slidesFamilySemiLux = [
     {
         type: "img",
-        src: "https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/familySemiLuxCarousel%2F1.JPEG?alt=media&token=c77293ba-edc2-4dbd-9886-e0e2a929f103",
+        src: "https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/familySemiLuxCarousel%2F1.jpeg?alt=media&token=0c8b4a15-0ea5-486c-8749-e93ec2f57cd8",
     },
     {
         type: "img",
-        src: "https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/familySemiLuxCarousel%2F2.JPEG?alt=media&token=933e7ad3-11a0-491e-b9da-65af0361b72d",
+        src: "https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/familySemiLuxCarousel%2F2.jpeg?alt=media&token=79f9bac3-53ce-493c-814a-292e31353276",
     },
     {
         type: "img",
@@ -25,11 +25,11 @@
     },
     {
         type: "img",
-        src: "https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/familySemiLuxCarousel%2F7.jpg?alt=media&token=cba74286-e3da-41ee-b90f-91e16be6d7c7",
+        src: "https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/familySemiLuxCarousel%2F7.jpeg?alt=media&token=fa4a6f30-1907-46c4-a4fd-f7c7323e4f5f",
     },
     {
         type: "img",
-        src: "https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/familySemiLuxCarousel%2F8.jpg?alt=media&token=aafe715f-7287-4215-9037-eabcd3050274",
+        src: "https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/familySemiLuxCarousel%2F8.jpeg?alt=media&token=6d406de3-093c-4171-9129-4502b8893143",
     },
     {
         type: "img",

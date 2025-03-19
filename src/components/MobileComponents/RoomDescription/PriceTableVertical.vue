@@ -36,7 +36,7 @@ export default {
         </div>
         <div class="cell relative">
           {{ item.price }}
-          <div v-if="'promotion' in item" class="absolute right-0 bottom-[3px]">
+          <div v-if="'promotion' in item" class="absolute right-0 bottom-[calc(50% - 10px)]">
             <img src="@/assets/icons/promotion.svg" alt="%">
           </div>
         </div>

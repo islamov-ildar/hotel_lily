@@ -30,23 +30,22 @@ export default {
   </div>
   <div class="wrapper relative">
     <IHeader @openContactsModal="$emit('openContactsModal')"/>
-<!--    <div class="md:hidden">-->
     <div class="mobileBlackoutWrapper">
       <MobileBlackout v-if="showBooking" @close="showBooking = false">
-        <div class="flex flex-col justify-between items-center h-full pb-[10%]">
+        <div class="flex flex-col justify-between items-center h-[90%] pb-[10%]">
           <div class="text-[34px] text-whiteMain font-cormorant text-center">Бронирование<br>номеров</div>
-          <a v-for="(item, idx) in mobileBooking" :key="idx" :href="item.link">
-            <img :src="`/src/assets/icons/${item.iconName}.svg`" alt="cross" class="w-[55px]">
+          <a v-for="(item, idx) in mobileBooking" :key="idx" :href="item.link" target="blank">
+            <img :src="item.iconLink" alt="cross" class="w-[55px]">
           </a>
         </div>
       </MobileBlackout>
       <MobileBlackout v-if="showMenu" @close="showMenu = false">
-        <div @click="showMenu = false" class="flex flex-col justify-between items-center h-full pb-[10%]">
+        <div @click="showMenu = false" class="flex flex-col justify-between items-center h-[90%] pb-[10%]">
           <a v-for="(item, idx) in mobileMenuContent" :key="idx" :href="item.link" class="w-full">
             <div class="text-[20px] text-whiteMain py-[23px] menuItem w-full text-center">{{item.title}}</div>
           </a>
           <a href="#map">
-            <div class="flex items-start gap-[10px] text-[20px] pt-[25px] pr-[14px]">
+            <div class="flex items-start gap-[10px] text-[13px] leading-[20px] pt-[25px] pr-[14px]">
               <img src="@/assets/images/map-pin.svg" alt="map-pin">
               <div class="text-[#FBF6ED] text-left">
                 Абхазия, г. Гудаута,<br> ул. Пушкина, 2
@@ -56,12 +55,14 @@ export default {
         </div>
       </MobileBlackout>
     </div>
-    <div class="addressInMobile absolute right-0 top-0 flex items-start gap-[10px] text-[13px] pt-[25px] pr-[14px]">
-      <img src="@/assets/images/map-pin.svg" alt="map-pin">
-      <div class="text-[#FBF6ED] text-right">
-        Абхазия, г. Гудаута,<br> ул. Пушкина, 2
+    <a href="#map">
+      <div class="addressInMobile absolute right-0 top-0 flex items-start gap-[10px] text-[13px] pt-[25px] pr-[14px]">
+        <img src="@/assets/images/map-pin.svg" alt="map-pin">
+        <div class="text-[#FBF6ED] text-right">
+          Абхазия, г. Гудаута,<br> ул. Пушкина, 2
+        </div>
       </div>
-    </div>
+    </a>
     <div class="titleContainer relative md:w-[70%] w-full h-[70%] title-background mt-[215px]">
       <div class="font-cormorant text-[#FFFFFF]">
         <div class="hidden md:block textMedia text-[54px] lg:text-[75px] leading-[92px] pl-[130px]">
@@ -106,14 +107,14 @@ export default {
 .wrapper {
   width: 100%;
   object-fit: cover;
-  background: url("@/assets/images/top-section-cover.png") no-repeat;
+  background: url("https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/common%2Ftop-section-cover.webp?alt=media&token=c2d2ec46-0919-4dcb-b220-62bbbe6e60c1") no-repeat;
   background-size: cover;
   height: 100vh;
 }
 
 @media (max-width: 768px) {
   .wrapper {
-    @apply flex justify-center items-center h-[86vh]
+    @apply flex justify-center items-center h-[140vw]
   }
   .titleContainer {
     @apply mt-0 text-[54px] flex justify-center items-center

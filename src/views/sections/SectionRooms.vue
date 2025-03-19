@@ -1,16 +1,10 @@
 <script lang="ts">
 import HeaderSection from '@/components/HeaderSection.vue';
-import ICarouselRoom from "@/components/ICarouselRoom.vue";
-import InfoTable from "@/components/InfoTable.vue";
-// import {semiLuxurySeaView, standard, semiLuxuryFamily} from "@/common/mockData/prices";
 import {semiluxRoomDescription, standartRoomDescription, familySemiluxRoomDescription} from "@/common/mockData/roomsDescription";
 import {slidesStandardRoom} from "@/common/mockData/roomStandardCarouselSource";
-import Carousel from '@/components/Carousel/Carousel.vue';
-import CarouselVerticalMobile from '@/components/MobileComponents/CarouselVerticalMobile/Carousel.vue';
 import {slidesSemiLuxRoom} from "@/common/mockData/roomSemiLuxCarouselSource";
 import AdditionalConditions from "@/components/AdditionalConditions.vue";
 import type {PropType} from "vue";
-import RoomDescriptionShort from "@/components/MobileComponents/RoomDescription/RoomDescriptionShort.vue";
 import RoomWrapper from "@/components/MobileComponents/RoomDescription/RoomWrapper.vue";
 import {slidesFamilySemiLux} from "@/common/mockData/roomFamilySemiLuxCarouselSource";
 import RoomWrapperDesktop from "@/components/RoomWrapperDesktop.vue";
@@ -19,8 +13,7 @@ export default {
   components: {
     RoomWrapperDesktop,
     RoomWrapper,
-    RoomDescriptionShort,
-    AdditionalConditions, ICarouselRoom, HeaderSection, InfoTable, Carousel, CarouselVerticalMobile},
+    AdditionalConditions, HeaderSection},
   props: {
     data: {
       type: Object as PropType<any>,

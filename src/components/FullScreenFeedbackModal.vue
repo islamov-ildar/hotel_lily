@@ -10,24 +10,16 @@ export default {
     const clickIntoCarousel = (some: any) => {
       const classes = Array.from(some.srcElement.classList);
       if(classes.includes('carousel') || classes.includes('cross')){
-        console.log('click on blackout')
         emit('close')
       }
     }
 
-
-
     onMounted(() => {
       document.body.style.overflow = 'hidden';
-      // document.body.style.top = `-${window.scrollY}px`;
     })
     onBeforeUnmount(() => {
       document.body.style.overflow = '';
-      // document.body.style.position = '';
-      // document.body.style.top = '';
     })
-
-    console.log('fullscreenModal props', props);
 
     return {
       clickIntoCarousel
@@ -47,7 +39,7 @@ export default {
         </div>
         <div v-if="feedback.user_name !=='link_to_yandex'" class="absolute top-[-60px] left-[55px] w-[132px] h-[132px] rounded-t-full bg-[#FFFFFF] flex items-center justify-center">
           <div v-if="feedback.user_photo !== 'default'" class="w-[90px] h-[90px] rounded-full overflow-hidden">
-            <img :src="`src/assets/images/users/${feedback.user_photo}`" alt="person_elips">
+            <img :src="feedback.user_photo" alt="person_elips">
           </div>
           <img v-else src="@/assets/icons/person_elips.svg" alt="person_elips">
         </div>

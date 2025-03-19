@@ -11,16 +11,53 @@ export default {
 
     const isOnBottom = ref(false);
 
+    // onMounted(() => {
+    //     document.addEventListener('scroll', function() {
+    //       const documentHeight = document.body.scrollHeight;
+    //       const currentScroll = window.scrollY + window.innerHeight;
+    //       const modifier = 10;
+    //       isOnBottom.value = currentScroll + modifier > documentHeight;
+    //     })
+    // })
+
+    const checkWindowWidth = () => window.innerWidth > 767;
+
+    let buttonFloat, footer, developersInfo;
+
     onMounted(() => {
-        document.addEventListener('scroll', function() {
-          const documentHeight = document.body.scrollHeight;
-          const currentScroll = window.scrollY + window.innerHeight;
-          const modifier = 10;
-          isOnBottom.value = currentScroll + modifier > documentHeight;
-        })
+
+      buttonFloat = document.querySelector('#buttonFloat');
+      footer = document.querySelector('#footer');
+      developersInfo = document.querySelector('#developersInfo');
+
+      function getRectTop(el) {
+        let rect = el.getBoundingClientRect();
+        return rect.top;
+      }
+      function getRectHeight(el) {
+        let rect = el.getBoundingClientRect();
+        return rect.height;
+      }
+      function checkOffset() {
+
+        if ((getRectTop(buttonFloat) + document.body.scrollTop) + buttonFloat.offsetHeight >= getRectTop(footer) + document.body.scrollTop - 40){
+          buttonFloat.style.position = 'absolute';
+          buttonFloat.style.bottom = `${getRectHeight(footer) + getRectHeight(developersInfo) + 40}px`;
+
+        }
+        if (document.body.scrollTop + window.innerHeight < (getRectTop(footer) + document.body.scrollTop)) {
+          buttonFloat.style.position = 'fixed'; // restore when you scroll up
+          buttonFloat.style.bottom = '40px';
+        }
+      }
+
+      document.addEventListener("scroll", function () {
+        checkOffset();
+      });
     })
 
     return {
+      checkWindowWidth,
       showFullBtn,
       isOnBottom,
     }
@@ -31,22 +68,25 @@ export default {
 
 <template>
   <div
-      @mouseenter="showFullBtn = true"
+      id="buttonFloat"
+      @mouseenter="showFullBtn = checkWindowWidth()"
       @mouseleave="showFullBtn = false"
-      class="btn fixed bottom-[120px] right-[10px] md:right-[50px] z-[11]"
+      class="btn fixed bottom-[40px] right-[10px] md:right-[50px] z-[11]"
       :class="{'h-[86px] w-[382px]': showFullBtn, 'h-[86px] w-[100px]': !showFullBtn, onBottom: isOnBottom}">
     <div class="relative flex items-center">
       <transition name="fullBtn">
         <div v-if="showFullBtn" class="z-[11] cursor-pointer absolute rounded-[60px] right-0 top-0 btnLabel px-[35px] py-[17px] text-[28px] bg-yellowMain text-left text-[#FFFFFF]">
-          <a href="https://t.me/Asmat_Agumava">
+          <a href="https://t.me/Asmat_Agumava" target="blank">
             {{ label }}
           </a>
         </div>
       </transition>
       <transition name="smallBtn">
-        <div v-if="!showFullBtn" class="z-[10] pulse absolute mt-[-4px] right-0 top-0 w-[86px] h-[86px] yellowBgTelegram">
-          <img src="@/assets/icons/yellowBgTelegram.svg" height="86" width="86" alt="yellowBgTelegram">
-        </div>
+        <a v-if="!showFullBtn" href="https://t.me/Asmat_Agumava" target="blank">
+          <div class="z-[10] cursor-pointer pulse absolute mt-[-4px] right-0 top-0 w-[86px] h-[86px] yellowBgTelegram">
+            <img src="@/assets/icons/yellowBgTelegram.svg" height="86" width="86" alt="yellowBgTelegram">
+          </div>
+        </a>
       </transition>
     </div>
   </div>
@@ -59,6 +99,13 @@ export default {
 .onBottom {
   margin-bottom: 50px;
 }
+
+@media (max-width: 550px) {
+  .onBottom {
+    margin-bottom: 90px;
+  }
+}
+
 .pulse::before {
   content: '';
   position: absolute;

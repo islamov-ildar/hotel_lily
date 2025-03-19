@@ -2,7 +2,7 @@
 import {ref} from "vue";
 import PriceTable from "@/components/PriceTable.vue";
 import {getAuth, signOut, onAuthStateChanged} from "firebase/auth";
-import {app, writeAllData, getAll} from '@/firebase';
+import {app, writeAllData, getAll} from '@/firebase-api';
 import {useRouter} from "vue-router";
 import { allData } from "@/common/allData";
 import {parseData} from "@/common/utils/parseData";
@@ -21,10 +21,8 @@ export default {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const uid = user.uid;
-        console.log('User is signed in', uid)
         isUserLogin.value = true
       } else {
-        console.log('User is signed out')
         isUserLogin.value = false
         router.push({name: 'home'})
       }
@@ -44,28 +42,38 @@ export default {
 
     const loading = ref<boolean>(false);
 
+    const tablesForceUpdateKey = ref(0);
+
     const isSalesEnabled = ref(true);
 
     const salesText = ref({
-      main: 'Внимание! Только в этом году и только в этом месяце СКИДКА!',
-      additional: 'Заказывайте два номера со скидкой 30% + завтраки и лежаки на пляже! Ждём!',
+      main: '',
+      additional: '',
     });
 
     const saveData = () => {
       loading.value = true;
+
+      if(!isSalesEnabled.value) switchSales()
+
 
       const objForBuild = JSON.parse(JSON.stringify({
         isSalesEnabled: isSalesEnabled.value,
         salesText: salesText.value,
         salesMonths: salesMonths.value,
         priceYear: priceYear.value,
-        standard: buildData(standard.value),
-        semiLuxurySeaView: buildData(semiLuxurySeaView.value),
-        semiLuxuryFamily: buildData(semiLuxuryFamily.value),
+        standard: buildData(JSON.parse(JSON.stringify(standard.value))),
+        semiLuxurySeaView: buildData(JSON.parse(JSON.stringify(semiLuxurySeaView.value))),
+        semiLuxuryFamily: buildData(JSON.parse(JSON.stringify(semiLuxuryFamily.value))),
       }))
       console.log(objForBuild);
-      // writeAllData(allData).then(() => loading.value = false)
-      writeAllData(objForBuild).then(() => loading.value = false)
+      writeAllData(objForBuild).then(() => {
+        loading.value = false
+        console.log('writeAllData complete')
+        getAllData();
+        tablesForceUpdateKey.value++
+        console.log('tablesForceUpdateKey', tablesForceUpdateKey.value )
+      })
     }
 
     const salesMonths = ref({
@@ -106,25 +114,32 @@ export default {
 
     const loadingDataComplete = ref(false);
 
-    getAll().then(res => {
-      console.log('getAll123', res);
-      const parsedData = parseData(res);
+    const getAllData = () => {
+      getAll().then(res => {
+        console.log('getAll', res);
+        const parsedData = parseData(res);
 
-      isSalesEnabled.value = parsedData.isSalesEnabled;
+        isSalesEnabled.value = parsedData.isSalesEnabled;
 
-      salesMonths.value = parsedData.salesMonths;
-      salesText.value = parsedData.salesText;
-      semiLuxuryFamily.value = parsedData.semiLuxuryFamily;
-      semiLuxurySeaView.value = parsedData.semiLuxurySeaView;
-      standard.value = parsedData.standard;
+        salesMonths.value = parsedData.salesMonths;
+        salesText.value = parsedData.salesText;
+        semiLuxuryFamily.value = parsedData.semiLuxuryFamily;
+        semiLuxurySeaView.value = parsedData.semiLuxurySeaView;
+        standard.value = parsedData.standard;
 
-      if(!isSalesEnabled.value) switchSales()
+        console.log('standard.value', standard.value)
 
-      loadingDataComplete.value = true;
+        if(!isSalesEnabled.value) switchSales()
 
-      priceYear.value = parsedData.year;
+        loadingDataComplete.value = true;
 
-    });
+        priceYear.value = parsedData.year;
+
+      });
+    }
+
+    getAllData();
+
 
     return {
       salesText,
@@ -134,7 +149,6 @@ export default {
       salesTextErrors,
       isSalesEnabled,
       salesMonths,
-      switchSales,
       logout,
       isUserLogin,
       saveData,
@@ -142,6 +156,7 @@ export default {
       semiLuxurySeaView,
       standard,
       loadingDataComplete,
+      tablesForceUpdateKey,
     }
   }
 }
@@ -151,7 +166,7 @@ export default {
 <template>
   <div v-if="isUserLogin">
     <button @click="saveData"
-            class="fixed bottom-[70px] right-[40px] btnBorderWrapper cursor-pointer select-none">
+            class="fixed bottom-[70px] right-[40px] btnBorderWrapper cursor-pointer select-none z-10">
       <span
           class="block relative bg-yellowMain py-[30px] px-[40px] font-montserratSemiBold uppercase text-[24px] text-whiteMain btnBorder">
       <span v-if="loading" class="absolute flex justify-center items-center h-full top-0 left-0 w-full">
@@ -192,9 +207,9 @@ export default {
         <div class="mt-[24px] text-blueMain text-[23px] font-montserratMedium flex flex-col items-end">
           <div class="border-[3px] border-yellowMain py-[44px] px-[45px] flex gap-[32px] items-center">
             <div>Информировать о СКИДКЕ</div>
-            <div class="h-[45px]">
-              <input @input="switchSales" type="checkbox" id="sales" class="custom-checkbox" v-model="isSalesEnabled">
-              <label for="sales" class="cursor-pointer"></label>
+            <div class="h-[45px]" @click="isSalesEnabled = !isSalesEnabled">
+              <img v-if="isSalesEnabled" src="@/assets/icons/checkedBold.svg" alt="checkedBold">
+              <img v-else src="@/assets/icons/uncheckedBold.svg" alt="uncheckedBold">
             </div>
           </div>
           <div :class="{'text-mainGrey': !isSalesEnabled}">
@@ -209,59 +224,52 @@ export default {
             <div class="monthsWrapper mt-[42px] flex flex-col gap-[10px]">
               <div>
                 <div>Апрель</div>
-                <div>
-                  <input v-model="salesMonths.april" :disabled="!isSalesEnabled" type="checkbox" id="april"
-                         class="custom-checkbox checkboxSmallBorder"
-                         :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
-                  <label for="april"></label></div>
+                <div @click="isSalesEnabled ? salesMonths.april = !salesMonths.april : false">
+                  <img v-if="salesMonths.april && isSalesEnabled" src="@/assets/icons/checked.svg" alt="checked">
+                  <img v-else src="@/assets/icons/unchecked.svg" alt="unchecked">
+                </div>
               </div>
               <div>
                 <div>Май</div>
-                <div>
-                  <input v-model="salesMonths.may" :disabled="!isSalesEnabled" type="checkbox" id="may"
-                         class="custom-checkbox checkboxSmallBorder"
-                         :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
-                  <label for="may"></label></div>
+                <div @click="isSalesEnabled ? salesMonths.may = !salesMonths.may : false">
+                  <img v-if="salesMonths.may && isSalesEnabled" src="@/assets/icons/checked.svg" alt="checked">
+                  <img v-else src="@/assets/icons/unchecked.svg" alt="unchecked">
+                </div>
               </div>
               <div>
                 <div>Июнь</div>
-                <div>
-                  <input v-model="salesMonths.june" :disabled="!isSalesEnabled" type="checkbox" id="june"
-                         class="custom-checkbox checkboxSmallBorder"
-                         :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
-                  <label for="june"></label></div>
+                <div @click="isSalesEnabled ? salesMonths.june = !salesMonths.june : false">
+                  <img v-if="salesMonths.june && isSalesEnabled" src="@/assets/icons/checked.svg" alt="unchecked">
+                  <img v-else src="@/assets/icons/unchecked.svg" alt="unchecked">
+                </div>
               </div>
               <div>
                 <div>Июль</div>
-                <div>
-                  <input v-model="salesMonths.july" :disabled="!isSalesEnabled" type="checkbox" id="july"
-                         class="custom-checkbox checkboxSmallBorder"
-                         :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
-                  <label for="july"></label></div>
+                <div @click="isSalesEnabled ? salesMonths.july = !salesMonths.july : false">
+                  <img v-if="salesMonths.july && isSalesEnabled" src="@/assets/icons/checked.svg" alt="checked">
+                  <img v-else src="@/assets/icons/unchecked.svg" alt="unchecked">
+                </div>
               </div>
               <div>
                 <div>Август</div>
-                <div>
-                  <input v-model="salesMonths.august" :disabled="!isSalesEnabled" type="checkbox" id="august"
-                         class="custom-checkbox checkboxSmallBorder"
-                         :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
-                  <label for="august"></label></div>
+                <div @click="isSalesEnabled ? salesMonths.august = !salesMonths.august : false">
+                  <img v-if="salesMonths.august && isSalesEnabled" src="@/assets/icons/checked.svg" alt="checked">
+                  <img v-else src="@/assets/icons/unchecked.svg" alt="unchecked">
+                </div>
               </div>
               <div>
                 <div>Сентябрь</div>
-                <div>
-                  <input v-model="salesMonths.september" :disabled="!isSalesEnabled" type="checkbox" id="september"
-                         class="custom-checkbox checkboxSmallBorder"
-                         :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
-                  <label for="september"></label></div>
+                <div @click="isSalesEnabled ? salesMonths.september = !salesMonths.september : false">
+                  <img v-if="salesMonths.september && isSalesEnabled" src="@/assets/icons/checked.svg" alt="checked">
+                  <img v-else src="@/assets/icons/unchecked.svg" alt="uncheckedBold">
+                </div>
               </div>
               <div>
                 <div>Октябрь</div>
-                <div>
-                  <input v-model="salesMonths.october" :disabled="!isSalesEnabled" type="checkbox" id="october"
-                         class="custom-checkbox checkboxSmallBorder"
-                         :class="{checkboxSmallBorderDisabled: !isSalesEnabled}">
-                  <label for="october"></label></div>
+                <div @click="isSalesEnabled ? salesMonths.october = !salesMonths.october : false">
+                  <img v-if="salesMonths.october && isSalesEnabled" src="@/assets/icons/checked.svg" alt="checked">
+                  <img v-else src="@/assets/icons/unchecked.svg" alt="unchecked">
+                </div>
               </div>
             </div>
           </div>
@@ -385,7 +393,7 @@ export default {
           <div class="text-center text-[52px] font-montserratRegular text-whiteMain pt-[54px] pb-[40px]">Стандарт</div>
           <div class="flex justify-center">
             <div>
-              <PriceTable :price="standard"/>
+              <PriceTable :price="standard" :key="tablesForceUpdateKey"  />
             </div>
           </div>
         </div>
@@ -401,7 +409,7 @@ export default {
           </div>
           <div class="flex justify-center">
             <div>
-              <PriceTable :price="semiLuxurySeaView"/>
+              <PriceTable :price="semiLuxurySeaView" :key="tablesForceUpdateKey" />
             </div>
           </div>
         </div>
@@ -410,13 +418,13 @@ export default {
         <div class="font-montserratMedium text-[23px] text-blueMain">Редактировать цены на “Семейный полулюкс”</div>
       </div>
       <div>
-        <div class="bg-blueMain">
+        <div class="pb-[50px] bg-blueMain">
           <div class="text-center text-[52px] font-montserratRegular text-whiteMain pt-[54px] pb-[40px]">Семейный
             полулюкс
           </div>
           <div class="flex justify-center">
             <div>
-              <PriceTable :price="semiLuxuryFamily"/>
+              <PriceTable :price="semiLuxuryFamily" :key="tablesForceUpdateKey" :places="3" />
             </div>
           </div>
         </div>

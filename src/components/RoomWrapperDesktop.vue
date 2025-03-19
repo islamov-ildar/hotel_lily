@@ -36,7 +36,7 @@ export default {
     <div class="flex w-full justify-between mb-[10%]">
       <CarouselDesktopVertical
           class="w-1/2 min-[1440px]:w-1/3"
-          :class="{'order-2': rightCarousel}"
+          :class="{'order-2': rightCarousel, 'mr-[65px]': rightCarousel}"
           :carousel-idx="1"
           :slides="slides"
           :interval="3000"

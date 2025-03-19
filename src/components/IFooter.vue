@@ -2,17 +2,17 @@
 </script>
 
 <template>
-  <div class="w-full py-[27px] bg-blueMain px-[10%] lg:px-[150px] flex flex-col items-center lg:flex-row justify-between">
+  <div id="footer" class="w-full py-[27px] bg-blueMain px-[10%] lg:px-[150px] flex flex-col items-center lg:flex-row justify-between">
     <div class="mb-[30px] lg:mb-0">
       <img src="@/assets/images/logo.svg" width="145px" alt="logo">
     </div>
     <div class="flex items-center gap-[10px] lg:gap-[50px] py-[5px]">
       <div class="hidden lg:block flex-col justify-end h-full">
         <div class="flex gap-[20px]">
-          <a href="https://t.me/Asmat_Agumava">
+          <a href="https://t.me/Asmat_Agumava" target="blank">
             <img src="@/assets/icons/telegram.svg" alt="logo">
           </a>
-          <a href="https://www.instagram.com/lily_hotel_gudauta?igsh=c2ZxbGpiNnI0ZGF5">
+          <a href="https://www.instagram.com/lily_hotel_gudauta?igsh=c2ZxbGpiNnI0ZGF5" target="blank">
             <img src="@/assets/icons/instagram.svg" alt="logo">
           </a>
         </div>
@@ -21,7 +21,7 @@
         <div class="flex items-center gap-[10px]">
           <img src="@/assets/images/map-pin.svg" alt="map-pin">
           <div class="text-[#FBF6ED]">
-            Абхазия, г. Гудаута, ул. Пушкина, 2
+            Абхазия, г. Гудаута, ул.&nbsp;Пушкина, 2
           </div>
         </div>
         <div class="flex items-center gap-[10px]">
@@ -39,10 +39,10 @@
       </div>
       <div class="lg:hidden min-w-[40px]">
         <div class="flex flex-col gap-[20px]">
-          <a href="https://t.me/Asmat_Agumava">
+          <a href="https://t.me/Asmat_Agumava" target="blank">
             <img src="@/assets/icons/telegram.svg" alt="logo">
           </a>
-          <a href="https://www.instagram.com/lily_hotel_gudauta?igsh=c2ZxbGpiNnI0ZGF5">
+          <a href="https://www.instagram.com/lily_hotel_gudauta?igsh=c2ZxbGpiNnI0ZGF5" target="blank">
             <img src="@/assets/icons/instagram.svg" alt="logo">
           </a>
         </div>

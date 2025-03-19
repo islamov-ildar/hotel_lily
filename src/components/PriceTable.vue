@@ -1,19 +1,32 @@
 <script lang="ts">
 import type {PropType} from "vue";
 import type {IPriceTable} from "@/common/mockData/prices";
-import type {IRoomDescription} from "@/common/mockData/roomsDescription";
-import {ref} from "vue";
+import {ref, watch} from "vue";
+import {monthsDictionary} from "@/common/utils/monthsDictionary";
 
 export default {
+  computed: {
+    monthsDictionary() {
+      return monthsDictionary
+    }
+  },
   props: {
     price: {
       type: Object as PropType<IPriceTable[]>,
       required: true,
     },
+    places: {
+      type: Number,
+      default: 2,
+    }
   },
   setup(props) {
 
     const priceForRender = ref(props.price);
+
+    watch(props, () => {
+      priceForRender.value = props.price
+    })
 
     const hasEmptyField = ref(0);
     const hasIncorrectField = ref(0);
@@ -50,14 +63,14 @@ export default {
           <div class="cell">
             <div class="flex items-center">
               <div><img src="@/assets/icons/person.svg" alt="person"></div>
-              <div>х 2</div>
+              <div>х {{ places }}</div>
             </div>
           </div>
         </div>
 
         <div v-for="(item, idx) in priceForRender.pricesByMonths" :key="idx" :class="{endCell: idx === priceForRender.pricesByMonths.length - 1}">
           <div class="cell topCell">
-            <div>{{ item.month }}</div>
+            <div>{{ monthsDictionary[item.month] }}</div>
           </div>
           <div class="cell priceCell relative">
             <input

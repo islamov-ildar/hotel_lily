@@ -1,7 +1,7 @@
 <script lang="ts">
 import {ref} from "vue";
 import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
-import {app} from '@/firebase';
+import {app} from '@/firebase-api';
 import {useRouter} from "vue-router";
 
 export default {

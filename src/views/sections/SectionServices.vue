@@ -22,9 +22,12 @@ export default {
         </HeaderSection>
         <div class="lg:hidden mb-[70px] w-full mx-auto relative">
           <div class="lg:mt-[100px] px-[25px] z-10 relative">
+<!--            <img-->
+<!--                src="https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/common%2Fbeach.jpg?alt=media&token=281d488d-2421-405c-9bc4-cde699a2afe7"-->
+<!--                alt="beach" width="525" height="699" class="mx-auto">-->
             <img
-                src="https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/common%2Fbeach.jpg?alt=media&token=281d488d-2421-405c-9bc4-cde699a2afe7"
-                alt="beach" width="525" height="699" class="mx-auto">
+              src="@/assets/images/beach.jpg"
+              alt="beach" class="mx-auto w-full">
           </div>
           <div class="absolute w-[100%] h-[95%] left-[0] border-2 border-yellowMain top-[13%] z-0"></div>
         </div>
@@ -76,8 +79,11 @@ export default {
       <div class="lg:w-1/3 fhd:w-1/3 hidden lg:block">
         <div class="mx-auto relative">
           <div class="mt-[100px] w-[90%] mx-auto">
+<!--            <img-->
+<!--                src="https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/common%2Fbeach.jpg?alt=media&token=281d488d-2421-405c-9bc4-cde699a2afe7"-->
+<!--                alt="beach" class="mx-auto w-full">-->
             <img
-                src="https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/common%2Fbeach.jpg?alt=media&token=281d488d-2421-405c-9bc4-cde699a2afe7"
+                src="@/assets/images/beach.jpg"
                 alt="beach" class="mx-auto w-full">
           </div>
           <div class="absolute w-full h-full border-2 border-yellowMain top-[73px]"></div>
@@ -95,8 +101,11 @@ export default {
     <div class="flex flex-col min-[1275px]:flex-row gap-[10px] text-[20px] justify-between">
       <div class="relative md:mb-[5%]">
         <div class="w-[85%] mx-auto">
+<!--          <img-->
+<!--              src="https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/common%2Fkitchen.jpg?alt=media&token=4c707a47-66c6-4be8-92cb-1fb1a1bf1765"-->
+<!--              alt="kitchen" class="w-full">-->
           <img
-              src="https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/common%2Fkitchen.jpg?alt=media&token=4c707a47-66c6-4be8-92cb-1fb1a1bf1765"
+              src="@/assets/images/kitchen.jpg"
               alt="kitchen" class="w-full">
         </div>
         <div class="absolute w-[78%] h-[95%] right-[3%] top-[15%] border-2 border-yellowMain z-0"></div>
@@ -118,14 +127,5 @@ export default {
   .cardContainer {
     margin-left: 10%;
   }
-}
-
-.cafeImg {
-  width: 100%;
-  object-fit: cover;
-  background: url("https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/common%2Fcafe.jpg?alt=media&token=f2f98058-6da5-4fd0-abd3-4cd2e53b3d59") no-repeat;
-  background-size: cover;
-  object-position: 50% 50%;
-//height: 100vh;
 }
 </style>

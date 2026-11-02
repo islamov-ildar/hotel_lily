@@ -1,13 +1,15 @@
 import './assets/main.css'
-import { createApp } from 'vue'
+import { ViteSSG } from 'vite-ssg'
 import { createPinia } from 'pinia'
-
+import { ref } from 'vue'
 import App from './App.vue'
-import router from './router'
+import { routes } from './router'
+import { hotelDataKey, fetchHotelData } from './common/hotelData'
 
-const app = createApp(App)
-
-app.use(createPinia())
-app.use(router)
-
-app.mount('#app')
+export const createApp = ViteSSG(App, { routes }, async ({ app, initialState, routePath }) => {
+  app.use(createPinia())
+  if (import.meta.env.SSR && routePath === '/') {
+    initialState.hotelData = await fetchHotelData()
+  }
+  app.provide(hotelDataKey, ref(initialState.hotelData))
+})

@@ -1,6 +1,6 @@
 <script lang="ts">
 
-import {onMounted, ref} from "vue";
+import {onBeforeUnmount, onMounted, ref} from "vue";
 
 export default {
   props: {
@@ -22,19 +22,21 @@ export default {
 
     const checkWindowWidth = () => window.innerWidth > 767;
 
-    let buttonFloat, footer, developersInfo;
+    let buttonFloat: HTMLElement, footer: HTMLElement, developersInfo: HTMLElement;
 
+    let removeScrollListener = () => {};
+    onBeforeUnmount(() => removeScrollListener());
     onMounted(() => {
 
-      buttonFloat = document.querySelector('#buttonFloat');
-      footer = document.querySelector('#footer');
-      developersInfo = document.querySelector('#developersInfo');
+      buttonFloat = document.querySelector<HTMLElement>('#buttonFloat')!;
+      footer = document.querySelector<HTMLElement>('#footer')!;
+      developersInfo = document.querySelector<HTMLElement>('#developersInfo')!;
 
-      function getRectTop(el) {
+      function getRectTop(el: HTMLElement) {
         let rect = el.getBoundingClientRect();
         return rect.top;
       }
-      function getRectHeight(el) {
+      function getRectHeight(el: HTMLElement) {
         let rect = el.getBoundingClientRect();
         return rect.height;
       }
@@ -51,9 +53,8 @@ export default {
         }
       }
 
-      document.addEventListener("scroll", function () {
-        checkOffset();
-      });
+      document.addEventListener("scroll", checkOffset, { passive: true });
+      removeScrollListener = () => document.removeEventListener("scroll", checkOffset);
     })
 
     return {

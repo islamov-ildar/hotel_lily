@@ -1,43 +1,63 @@
+import asset0 from "@/assets/generated/images/carousel/standart_room/1.webp";
+import asset1 from "@/assets/generated/images/carousel/standart_room/2.webp";
+import asset2 from "@/assets/generated/images/carousel/standart_room/3.webp";
+import asset3 from "@/assets/generated/images/carousel/standart_room/4.webp";
+import asset4 from "@/assets/generated/images/carousel/standart_room/5.webp";
+import asset5 from "@/assets/generated/images/carousel/standart_room/6.webp";
+import asset6 from "@/assets/generated/images/carousel/standart_room/7.webp";
+import asset7 from "@/assets/generated/images/carousel/standart_room/8.webp";
+import asset8 from "@/assets/generated/images/carousel/standart_room/9.webp";
+import asset9 from "@/assets/generated/images/carousel/standart_room/10.webp";
  export const slidesStandardRoom = [
     {
         type: "img",
-        src: "/src/assets/images/carousel/standart_room/1.jpg",
+        alt: "Номер «Стандарт» в отеле «Лилия» — фото 1",
+        src: asset0,
     },
     {
         type: "img",
-        src: "/src/assets/images/carousel/standart_room/2.jpg",
+        alt: "Номер «Стандарт» в отеле «Лилия» — фото 2",
+        src: asset1,
     },
     {
         type: "img",
-        src: "/src/assets/images/carousel/standart_room/3.jpg",
+        alt: "Номер «Стандарт» в отеле «Лилия» — фото 3",
+        src: asset2,
     },
     {
         type: "img",
-        src: "/src/assets/images/carousel/standart_room/4.jpg",
+        alt: "Номер «Стандарт» в отеле «Лилия» — фото 4",
+        src: asset3,
     },
     {
         type: "img",
-        src: "/src/assets/images/carousel/standart_room/5.jpg",
+        alt: "Номер «Стандарт» в отеле «Лилия» — фото 5",
+        src: asset4,
     },
     {
         type: "img",
-        src: "/src/assets/images/carousel/standart_room/6.jpg",
+        alt: "Номер «Стандарт» в отеле «Лилия» — фото 6",
+        src: asset5,
     },
     {
         type: "img",
-        src: "/src/assets/images/carousel/standart_room/7.jpg",
+        alt: "Номер «Стандарт» в отеле «Лилия» — фото 7",
+        src: asset6,
     },
     {
         type: "img",
-        src: "/src/assets/images/carousel/standart_room/8.jpg",
+        alt: "Номер «Стандарт» в отеле «Лилия» — фото 8",
+        src: asset7,
     },
     {
         type: "img",
-        src: "/src/assets/images/carousel/standart_room/9.jpg",
+        alt: "Номер «Стандарт» в отеле «Лилия» — фото 9",
+        src: asset8,
     },
     {
         type: "img",
-        src: "/src/assets/images/carousel/standart_room/10.jpg",
+        alt: "Номер «Стандарт» в отеле «Лилия» — фото 10",
+        src: asset9,
     },
 ];
 

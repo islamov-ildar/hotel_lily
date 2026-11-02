@@ -9,7 +9,7 @@ export default {
   components: {HeaderSection, CarouselDesktop, CarouselMobile2},
   emits: ['openFullScreenViewHandler'],
   setup(_, {emit}) {
-    const openFullScreenViewAscent = (slides, imgIdx) => {
+    const openFullScreenViewAscent = (slides: unknown[], imgIdx: number) => {
       emit('openFullScreenViewHandler', slides, imgIdx);
     }
     return {

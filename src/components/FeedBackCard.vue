@@ -26,13 +26,13 @@ export default {
   <div class="card relative shadow">
     <div v-if="data.user_name !=='link_to_yandex'" class="absolute top-[-60px] left-[55px] w-[132px] h-[132px] rounded-t-full bg-[#FFFFFF] flex items-center justify-center">
       <div v-if="data.user_photo !== 'default'" class="w-[90px] h-[90px] rounded-full overflow-hidden">
-        <img :src="data.user_photo" alt="person">
+        <img loading="lazy" decoding="async" :src="data.user_photo" alt="person">
       </div>
       <img v-else src="@/assets/icons/person_elips.svg" alt="person_elips">
     </div>
     <div v-if="data.user_name !=='link_to_yandex'" class="w-full text-left pt-[30px] pb-[30px] px-[30px] text-blueMain">
       <div class="pb-[12px] w-full flex justify-end">
-        <img src="@/assets/images/yandex_logo.png" alt="yandex_logo">
+        <img src="@/assets/generated/images/yandex_logo.webp" alt="yandex_logo">
       </div>
       <div class="font-montserratMedium text-[18px] md:text-[24px]">{{ data.user_name }}</div>
       <div class="font-montserratRegular text-[13px] md:text-[17px] flex gap-[16px] mt-[16px] mb-[25px] items-center">
@@ -59,7 +59,7 @@ export default {
       </div>
 
       <div>
-        <img src="@/assets/images/yandex_logo.png" alt="yandex_logo">
+        <img src="@/assets/generated/images/yandex_logo.webp" alt="yandex_logo">
       </div>
     </a>
   </div>

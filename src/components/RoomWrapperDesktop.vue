@@ -17,7 +17,7 @@ export default {
   props: ['price', 'slides', 'roomDescription', 'rightCarousel'],
 
   setup(_, {emit}) {
-    const openFullScreenViewAscent = (slides, imgIdx) => {
+    const openFullScreenViewAscent = (slides: unknown[], imgIdx: number) => {
       emit('openFullScreenViewHandler', slides, imgIdx);
     }
     return {

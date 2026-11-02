@@ -24,10 +24,10 @@ export default {
           <div class="lg:mt-[100px] px-[25px] z-10 relative">
 <!--            <img-->
 <!--                src="https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/common%2Fbeach.jpg?alt=media&token=281d488d-2421-405c-9bc4-cde699a2afe7"-->
-<!--                alt="beach" width="525" height="699" class="mx-auto">-->
-            <img
-              src="@/assets/images/beach.jpg"
-              alt="beach" class="mx-auto w-full">
+<!--                alt="Пляж рядом с отелем «Лилия»" width="525" height="699" class="mx-auto">-->
+            <img loading="lazy" decoding="async"
+              src="@/assets/generated/images/beach.webp"
+              alt="Пляж рядом с отелем «Лилия»" class="mx-auto w-full">
           </div>
           <div class="absolute w-[100%] h-[95%] left-[0] border-2 border-yellowMain top-[13%] z-0"></div>
         </div>
@@ -40,37 +40,37 @@ export default {
         mt-[60px] lg:mt-[2%] text-[13px] md:text-[18px] min-[1024px]:max-[1170px]:text-[15px] min-[1171px]:text-[18px] font-montserratRegular">
           <div class="flex flex-col gap-[21px]">
             <div class="flex gap-[30px] items-center">
-              <div class="min-w-[60px]"><img src="@/assets/icons/swim.svg" alt="swim"></div>
+              <div class="min-w-[60px]"><img loading="lazy" decoding="async" src="@/assets/icons/swim.svg" alt="swim"></div>
               <div class="text-blueMain">Собственный пляж</div>
             </div>
             <div class="flex gap-[30px] items-center">
-              <div class="min-w-[60px]"><img src="@/assets/icons/beachUmbrella.svg" alt="beachUmbrella"></div>
+              <div class="min-w-[60px]"><img loading="lazy" decoding="async" src="@/assets/icons/beachUmbrella.svg" alt="beachUmbrella"></div>
               <div class="text-blueMain">Бесплатные лежаки и зонтики</div>
             </div>
             <div class="flex gap-[30px] items-center">
-              <div class="min-w-[60px]"><img src="@/assets/icons/alcove.svg" alt="alcove"></div>
+              <div class="min-w-[60px]"><img loading="lazy" decoding="async" src="@/assets/icons/alcove.svg" alt="alcove"></div>
               <div class="text-blueMain">Беседка</div>
             </div>
             <div class="flex gap-[30px] items-center">
-              <div class="min-w-[60px]"><img src="@/assets/icons/grill.svg" alt="grill"></div>
+              <div class="min-w-[60px]"><img loading="lazy" decoding="async" src="@/assets/icons/grill.svg" alt="grill"></div>
               <div class="text-blueMain">Мангал/барбекю</div>
             </div>
           </div>
           <div class="flex flex-col justify-center gap-[21px]">
             <div class="flex gap-[30px] items-center">
-              <div class="min-w-[60px]"><img src="@/assets/icons/cutlery.svg" alt="cutlery"></div>
+              <div class="min-w-[60px]"><img loading="lazy" decoding="async" src="@/assets/icons/cutlery.svg" alt="cutlery"></div>
               <div class="text-blueMain">Кафе<br>(включённый завтрак)</div>
             </div>
             <div class="flex gap-[30px] items-center">
-              <div class="min-w-[60px]"><img src="@/assets/icons/parking.svg" alt="parking"></div>
+              <div class="min-w-[60px]"><img loading="lazy" decoding="async" src="@/assets/icons/parking.svg" alt="parking"></div>
               <div class="text-blueMain">Автостоянка<br>с&nbsp;видеонаблюдением</div>
             </div>
             <div class="flex gap-[30px] items-center">
-              <div class="min-w-[60px]"><img src="@/assets/icons/taxi.svg" alt="taxi"></div>
+              <div class="min-w-[60px]"><img loading="lazy" decoding="async" src="@/assets/icons/taxi.svg" alt="taxi"></div>
               <div class="text-blueMain">Трансфер</div>
             </div>
             <div class="flex gap-[30px] items-center">
-              <div class="min-w-[60px]"><img src="@/assets/icons/wifi.svg" alt="wifi"></div>
+              <div class="min-w-[60px]"><img loading="lazy" decoding="async" src="@/assets/icons/wifi.svg" alt="wifi"></div>
               <div class="text-blueMain">Wi-Fi интернет</div>
             </div>
           </div>
@@ -81,10 +81,10 @@ export default {
           <div class="mt-[100px] w-[90%] mx-auto">
 <!--            <img-->
 <!--                src="https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/common%2Fbeach.jpg?alt=media&token=281d488d-2421-405c-9bc4-cde699a2afe7"-->
-<!--                alt="beach" class="mx-auto w-full">-->
-            <img
-                src="@/assets/images/beach.jpg"
-                alt="beach" class="mx-auto w-full">
+<!--                alt="Пляж рядом с отелем «Лилия»" class="mx-auto w-full">-->
+            <img loading="lazy" decoding="async"
+                src="@/assets/generated/images/beach.webp"
+                alt="Пляж рядом с отелем «Лилия»" class="mx-auto w-full">
           </div>
           <div class="absolute w-full h-full border-2 border-yellowMain top-[73px]"></div>
         </div>
@@ -103,10 +103,10 @@ export default {
         <div class="w-[85%] mx-auto">
 <!--          <img-->
 <!--              src="https://firebasestorage.googleapis.com/v0/b/hotel-lily.appspot.com/o/common%2Fkitchen.jpg?alt=media&token=4c707a47-66c6-4be8-92cb-1fb1a1bf1765"-->
-<!--              alt="kitchen" class="w-full">-->
-          <img
-              src="@/assets/images/kitchen.jpg"
-              alt="kitchen" class="w-full">
+<!--              alt="Кафе отеля «Лилия»" class="w-full">-->
+          <img loading="lazy" decoding="async"
+              src="@/assets/generated/images/kitchen.webp"
+              alt="Кафе отеля «Лилия»" class="w-full">
         </div>
         <div class="absolute w-[78%] h-[95%] right-[3%] top-[15%] border-2 border-yellowMain z-0"></div>
       </div>

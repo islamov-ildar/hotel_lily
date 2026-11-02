@@ -6,7 +6,7 @@ import type {IRoomDescription} from "@/common/mockData/roomsDescription";
 export default {
   props: {
     price: {
-      type: Object as PropType<IPriceTable[]>,
+      type: Object as PropType<IPriceTable>,
       required: true,
     },
     roomDescription: {
@@ -29,7 +29,7 @@ export default {
         <img src="@/assets/icons/sleep_place.svg" alt="area">
         <div class="text-[28px]">x {{ roomDescription.sleep_place }}</div>
       </div>
-      <div class="flex gap-[12px] items-center">
+      <div class="flex gap-0 items-center">
         <img src="@/assets/icons/add_person.svg" alt="area">
         <div class="text-[28px]">{{ roomDescription.additional_sleep_place }} доп. места</div>
       </div>

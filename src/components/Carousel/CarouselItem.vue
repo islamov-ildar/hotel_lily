@@ -2,10 +2,9 @@
   <transition :name="transitionEffect">
     <div
       @click="$emit('clickOnImg', index)"
-      v-if="slide.type === 'img'"
+      v-if="slide.type === 'img' && currentSlide === index"
       class="carousel-item"
       :class="{topCircle: typeVertical}"
-      v-show="currentSlide === index"
       @mouseenter="$emit('mouseenter')"
       @mouseout="$emit('mouseout')"
       :style="customStyle(slide.src)"
@@ -14,18 +13,18 @@
         <img src="@/assets/images/Zoom.svg" alt="Zoom" class="">
       </div>
     </div>
-    <div v-else class="carousel-item" v-show="currentSlide === index">
-      <video controls :src="slide.src" width="690" muted>
-        Простите, но ваш браузер не поддерживает встроенные видео.
-      </video>
+    <div v-else-if="currentSlide === index" class="carousel-item">
+      <VideoPlayer :src="slide.src" width="690" muted :poster="slide.poster" />
     </div>
   </transition>
 </template>
 
 <script>
+import VideoPlayer from "@/components/VideoPlayer.vue";
 import {computed} from "vue";
 
 export default {
+  components: { VideoPlayer },
   emits: ["mouseenter", "mouseout", "clickOnImg"],
   props: ["slide", "currentSlide", "index", "direction", "typeVertical"],
 

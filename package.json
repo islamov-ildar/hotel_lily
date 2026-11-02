@@ -4,15 +4,20 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --host",
-    "build": "run-p type-check \"build-only {@}\" --",
+    "dev": "npm run prepare-assets && vite --host",
+    "build": "npm run prepare-assets && npm run type-check && npm run generate",
     "preview": "vite preview",
-    "build-only": "vite build",
+    "build-only": "npm run prepare-assets && npm run generate",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "prepare-assets": "node scripts/prepare-assets.mjs",
+    "generate": "vite-ssg build && node scripts/finalize-build.mjs && node scripts/verify-build.mjs",
+    "verify-build": "node scripts/verify-build.mjs",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
+    "@unhead/vue": "^1.11.20",
     "firebase": "^10.12.5",
     "pinia": "^2.1.7",
     "vue": "^3.4.21",
@@ -20,6 +25,7 @@
     "vue3-carousel": "^0.3.3"
   },
   "devDependencies": {
+    "@playwright/test": "^1.49.1",
     "@rushstack/eslint-patch": "^1.8.0",
     "@tsconfig/node20": "^20.1.4",
     "@types/node": "^20.12.5",
@@ -33,9 +39,12 @@
     "npm-run-all2": "^6.1.2",
     "postcss": "^8.4.38",
     "prettier": "^3.2.5",
+    "sharp": "^0.33.5",
     "tailwindcss": "^3.4.13",
     "typescript": "~5.4.0",
     "vite": "^5.2.8",
-    "vue-tsc": "^2.0.11"
+    "vite-ssg": "^0.23.8",
+    "vue-tsc": "^2.0.11",
+    "wawoff2": "^2.0.1"
   }
 }

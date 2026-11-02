@@ -4,38 +4,47 @@
 
 @layer base {
     @font-face {
+        font-display: swap;
         font-family: "Cormorant";
-        src: url("./fonts/CormorantGaramond-Medium.ttf");
+        src: url("./generated/fonts/CormorantGaramond-Medium.woff2") format("woff2");
     }
     @font-face {
+        font-display: swap;
         font-family: Helvetica_Regular;
-        src: url("./fonts/helvetica_regular.otf");
+        src: url("./generated/fonts/helvetica_regular.woff2") format("woff2");
     }
     @font-face {
+        font-display: swap;
         font-family: Helvetica_Light;
-        src: url("./fonts/helvetica_light.otf");
+        src: url("./generated/fonts/helvetica_light.woff2") format("woff2");
     }
     @font-face {
+        font-display: swap;
         font-family: RalewayRegular;
-        src: url("./fonts/raleway-regular.ttf");
+        src: url("./generated/fonts/raleway-regular.woff2") format("woff2");
     }
     @font-face {
+        font-display: swap;
         font-family: MontserratRegular;
-        src: url("./fonts/montserrat-regular.ttf");
+        src: url("./generated/fonts/montserrat-regular.woff2") format("woff2");
     }
     @font-face {
+        font-display: swap;
         font-family: MontserratMedium;
-        src: url("./fonts/Montserrat-Medium.ttf");
+        src: url("./generated/fonts/Montserrat-Medium.woff2") format("woff2");
     }
     @font-face {
+        font-display: swap;
         font-family: MontserratSemiBold;
-        src: url("./fonts/Montserrat-SemiBold.ttf");
+        src: url("./generated/fonts/Montserrat-SemiBold.woff2") format("woff2");
     }
     @font-face {
+        font-display: swap;
         font-family: AliceRegular;
-        src: url("./fonts/Alice-Regular.ttf");
+        src: url("./generated/fonts/Alice-Regular.woff2") format("woff2");
     }
     @font-face {
+        font-display: swap;
         font-family: 'Souliyo-Unicode';
         src:url('./fonts/Souliyo-Unicode.ttf.woff') format('woff'),
         url('./fonts/Souliyo-Unicode.ttf.svg#Souliyo-Unicode') format('svg'),

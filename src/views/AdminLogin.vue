@@ -1,11 +1,13 @@
 <script lang="ts">
 import {ref} from "vue";
+import {useHead} from "@unhead/vue";
 import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
 import {app} from '@/firebase-api';
 import {useRouter} from "vue-router";
 
 export default {
   setup() {
+    useHead({ title: "Управление сайтом — Отель Лилия", meta: [{name: "robots", content: "noindex, nofollow"}] });
 
     const password = ref<string>('');
     const email = ref<string>('');

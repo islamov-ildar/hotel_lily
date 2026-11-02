@@ -27,8 +27,7 @@ export const getAll = async () => {
 
 export async function writeAllData(allData) {
     const db = getDatabase();
-    set(ref(db, 'allData'), allData).then(res => console.log(res))
-        .catch(err => console.log(err));
+    return set(ref(db, 'allData'), allData);
 }
 
 // const storage = getStorage();

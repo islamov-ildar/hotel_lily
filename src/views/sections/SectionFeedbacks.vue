@@ -56,9 +56,10 @@ export default {
       refreshCarousel.value = refreshCarousel.value + 1;
     };
 
-    reportWindowSize();
-
-    onMounted(() => window.addEventListener("resize", reportWindowSize));
+    onMounted(() => {
+      reportWindowSize();
+      window.addEventListener("resize", reportWindowSize);
+    });
     onBeforeUnmount(() => window.removeEventListener("resize", reportWindowSize));
 
     const handleOpenFeedbackModal = (feedback: any) => emit('openFullScreenFeedback', feedback);

@@ -2,6 +2,10 @@
 import IHeader from "@/components/IHeader.vue";
 import MobileBlackout from "@/components/MobileComponents/MobileBlackout.vue";
 import {mobileBooking, mobileMenuContent} from "@/components/MobileComponents/mockData"
+import hero640 from '@/assets/generated/hero-640.webp';
+import hero1024 from '@/assets/generated/hero-1024.webp';
+import hero1600 from '@/assets/generated/hero-1600.webp';
+import hero1920 from '@/assets/generated/hero-1920.webp';
 import {ref} from "vue";
 export default {
   components: {MobileBlackout, IHeader},
@@ -12,6 +16,7 @@ export default {
     const showMenu = ref(false);
 
     return {
+      hero640, hero1024, hero1600, hero1920,
       showMenu,
       showBooking,
       mobileBooking,
@@ -29,6 +34,8 @@ export default {
     </div>
   </div>
   <div class="wrapper relative">
+    <img :src="hero1600" :srcset="`${hero640} 640w, ${hero1024} 1024w, ${hero1600} 1600w, ${hero1920} 1920w`"
+         sizes="100vw" width="1920" height="1080" fetchpriority="high" alt="" class="hero-image" />
     <IHeader @openContactsModal="$emit('openContactsModal')"/>
     <div class="mobileBlackoutWrapper">
       <MobileBlackout v-if="showBooking" @close="showBooking = false">
@@ -63,8 +70,9 @@ export default {
         </div>
       </div>
     </a>
-    <div class="titleContainer relative md:w-[70%] w-full h-[70%] title-background mt-[215px]">
-      <div class="font-cormorant text-[#FFFFFF]">
+    <h1 class="titleContainer relative md:w-[70%] w-full h-[70%] title-background mt-[215px]">
+      <span class="sr-only">Отель «Лилия» в Гудауте — отдых у моря</span>
+      <div aria-hidden="true" class="font-cormorant text-[#FFFFFF]">
         <div class="hidden md:block textMedia text-[54px] lg:text-[75px] leading-[92px] pl-[130px]">
           ОТЕЛЬ,<br>
           В&nbsp;КОТОРОМ&nbsp;ВАС<br>
@@ -76,11 +84,12 @@ export default {
           ВСЕГДА <br>ЖДУТ!
         </div>
       </div>
-    </div>
+    </h1>
   </div>
 </template>
 
 <style scoped>
+.hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; }
 .menuItem {
   border-bottom: 1px solid var(--main-blue-color);
 }
@@ -107,8 +116,8 @@ export default {
 .wrapper {
   width: 100%;
   object-fit: cover;
-  background: url("./src/assets/images/main.jpg") no-repeat;
-  background-size: cover;
+  isolation: isolate;
+
   height: 100vh;
 }
 

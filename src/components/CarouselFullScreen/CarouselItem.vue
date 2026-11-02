@@ -1,17 +1,15 @@
 <template>
   <transition :name="transitionEffect">
-    <div v-show="currentSlide === index" class="carousel-item flex items-center justify-center h-full">
+    <div v-if="currentSlide === index" class="carousel-item flex items-center justify-center h-full">
       <div
           @mouseenter="$emit('mouseenter')"
           @mouseout="$emit('mouseout')"
           class="h-full flex items-center"
       >
-<!--        <img v-if="slide.type === 'img'" :src="slide.src" alt="alt" class="h-full"/>-->
-        <img v-if="slide.type === 'img'" :src="slide.src" alt="alt" :class="{'h-full': windowWidth }" />
+<!--        <img v-if="slide.type === 'img' && currentSlide === index" :src="slide.src" :alt="slide.alt || 'Фотография отеля «Лилия»'" class="h-full"/>-->
+        <img v-if="slide.type === 'img' && currentSlide === index" :src="slide.src" :alt="slide.alt || 'Фотография отеля «Лилия»'" class="fullscreen-photo" />
         <div v-else class="h-full flex items-center justify-center">
-          <video controls :src="slide.src" class="w-[80vw]">
-            Простите, но ваш браузер не поддерживает встроенные видео.
-          </video>
+          <VideoPlayer :src="slide.src" class="w-[80vw]" :poster="slide.poster" />
         </div>
       </div>
     </div>
@@ -19,19 +17,22 @@
 </template>
 
 <script>
+import VideoPlayer from "@/components/VideoPlayer.vue";
 export default {
+  components: { VideoPlayer },
   emits: ["mouseenter", "mouseout"],
   props: ["slide", "currentSlide", "index", "direction"],
   computed: {
     transitionEffect() {
       return this.direction === "right" ? "slide-out" : "slide-in";
     },
-    windowWidth() { return window.innerWidth > 1919 }
+
   },
 };
 </script>
 
 <style scoped>
+@media (min-width: 1920px) { .fullscreen-photo { height: 100%; } }
 .carousel-item {
   position: absolute;
   top: 0;

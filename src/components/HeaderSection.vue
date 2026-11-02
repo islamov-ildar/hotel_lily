@@ -12,9 +12,9 @@ export default {
 <template>
 <div class="flex flex-col items-center">
   <div v-if="showVerticalStick" class="vertical-stick"></div>
-  <div class="mb-[20px] lg:mb-[40px] font-cormorant leading-[37px] text-[34px] md:text-[50px] lg:text-[70px]">
+  <h2 class="mb-[20px] lg:mb-[40px] font-cormorant leading-[37px] text-[34px] md:text-[50px] lg:text-[70px]">
     <slot name="title"></slot>
-  </div>
+  </h2>
   <div class="font-ralewayRegular uppercase tracking-[2.9px] text-center text-[11px] md:text-[20px] text-[#F2C452]">
     <slot name="description"></slot>
   </div>

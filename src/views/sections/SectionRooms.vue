@@ -4,6 +4,7 @@ import {semiluxRoomDescription, standartRoomDescription, familySemiluxRoomDescri
 import {slidesStandardRoom} from "@/common/mockData/roomStandardCarouselSource";
 import {slidesSemiLuxRoom} from "@/common/mockData/roomSemiLuxCarouselSource";
 import AdditionalConditions from "@/components/AdditionalConditions.vue";
+import {computed} from "vue";
 import type {PropType} from "vue";
 import RoomWrapper from "@/components/MobileComponents/RoomDescription/RoomWrapper.vue";
 import {slidesFamilySemiLux} from "@/common/mockData/roomFamilySemiLuxCarouselSource";
@@ -23,13 +24,13 @@ export default {
   emits: ['openFullScreenViewHandler'],
 
   setup(props, { emit }) {
-    const openFullScreenViewAscent = (slides, imgIdx) => {
+    const openFullScreenViewAscent = (slides: unknown[], imgIdx: number) => {
       emit('openFullScreenViewHandler', slides, imgIdx);
     }
 
-    const standard = props.data.standard;
-    const semiLuxuryFamily = props.data.semiLuxuryFamily;
-    const semiLuxurySeaView = props.data.semiLuxurySeaView;
+    const standard = computed(() => props.data.standard);
+    const semiLuxuryFamily = computed(() => props.data.semiLuxuryFamily);
+    const semiLuxurySeaView = computed(() => props.data.semiLuxurySeaView);
 
     return {
       standard,

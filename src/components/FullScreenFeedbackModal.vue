@@ -45,7 +45,7 @@ export default {
         </div>
         <div class="w-full text-left pt-[30px] pb-[50px] px-[30px] text-blueMain">
           <div class="pb-[12px] w-full flex justify-end">
-            <img src="@/assets/images/yandex_logo.png" alt="yandex_logo">
+            <img src="@/assets/generated/images/yandex_logo.webp" alt="yandex_logo">
           </div>
           <div class="font-montserratMedium text-[24px]">{{ feedback.user_name }}</div>
           <div class="font-montserratRegular text-[17px] flex gap-[16px] mt-[16px] mb-[25px] items-center">

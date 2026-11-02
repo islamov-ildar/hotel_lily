@@ -1,4 +1,4 @@
-export const monthsDictionary = {
+export const monthsDictionary: Record<string, string> = {
     april: 'Апрель',
     may: 'Май',
     june: 'Июнь',

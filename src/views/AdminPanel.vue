@@ -1,5 +1,6 @@
 <script lang="ts">
-import {ref} from "vue";
+import {onBeforeUnmount, ref} from "vue";
+import {useHead} from "@unhead/vue";
 import PriceTable from "@/components/PriceTable.vue";
 import {getAuth, signOut, onAuthStateChanged} from "firebase/auth";
 import {app, writeAllData, getAll} from '@/firebase-api';
@@ -12,6 +13,7 @@ export default {
   components: {PriceTable},
 
   setup() {
+    useHead({ title: "Управление сайтом — Отель Лилия", meta: [{name: "robots", content: "noindex, nofollow"}] });
 
     console.log(app);
     const router = useRouter();
@@ -41,6 +43,10 @@ export default {
     }
 
     const loading = ref<boolean>(false);
+    const saveStatus = ref('');
+    let saveStatusTimer: ReturnType<typeof setTimeout> | undefined;
+    let isActive = true;
+    onBeforeUnmount(() => { isActive = false; clearTimeout(saveStatusTimer); });
 
     const tablesForceUpdateKey = ref(0);
 
@@ -52,7 +58,10 @@ export default {
     });
 
     const saveData = () => {
+      if (loading.value) return;
       loading.value = true;
+      clearTimeout(saveStatusTimer);
+      saveStatus.value = '';
 
       if(!isSalesEnabled.value) switchSales()
 
@@ -68,15 +77,19 @@ export default {
       }))
       console.log(objForBuild);
       writeAllData(objForBuild).then(() => {
+        if (!isActive) return;
         loading.value = false
-        console.log('writeAllData complete')
+        saveStatus.value = 'Цены сохранены. При открытии или обновлении сайта посетители получат новые данные.';
+        saveStatusTimer = setTimeout(() => { saveStatus.value = ''; }, 5000);
         getAllData();
         tablesForceUpdateKey.value++
         console.log('tablesForceUpdateKey', tablesForceUpdateKey.value )
-      })
+      }).catch(() => {
+        saveStatus.value = 'Не удалось сохранить цены. Повторите попытку.';
+      }).finally(() => { loading.value = false; })
     }
 
-    const salesMonths = ref({
+    const salesMonths = ref<Record<string, boolean>>({
       april: false,
       may: false,
       june: false,
@@ -108,9 +121,9 @@ export default {
       }
     }
 
-    const semiLuxuryFamily = ref({});
-    const semiLuxurySeaView = ref({});
-    const standard = ref({});
+    const semiLuxuryFamily = ref({year: 2024, pricesByMonths: [] as {month: string; price: number; promotion?: boolean}[]});
+    const semiLuxurySeaView = ref({year: 2024, pricesByMonths: [] as {month: string; price: number; promotion?: boolean}[]});
+    const standard = ref({year: 2024, pricesByMonths: [] as {month: string; price: number; promotion?: boolean}[]});
 
     const loadingDataComplete = ref(false);
 
@@ -144,6 +157,7 @@ export default {
     return {
       salesText,
       loading,
+      saveStatus,
       priceYear,
       validationSaleText,
       salesTextErrors,
@@ -165,6 +179,9 @@ export default {
 </script>
 <template>
   <div v-if="isUserLogin">
+    <Transition name="save-status">
+      <p v-if="saveStatus" role="status" class="fixed bottom-4 right-4 left-4 z-30 bg-whiteMain text-blueMain p-4 text-center">{{ saveStatus }}</p>
+    </Transition>
     <button @click="saveData"
             class="fixed bottom-[70px] right-[40px] btnBorderWrapper cursor-pointer select-none z-10">
       <span
@@ -436,6 +453,14 @@ export default {
 </template>
 
 <style scoped>
+.save-status-enter-active,
+.save-status-leave-active { transition: opacity 400ms ease, transform 400ms ease; }
+.save-status-enter-from,
+.save-status-leave-to { opacity: 0; transform: translateY(8px); }
+@media (prefers-reduced-motion: reduce) {
+  .save-status-enter-active, .save-status-leave-active { transition: none; }
+}
+
 .inputYear:focus {
   outline: none !important;
   @apply border border-yellowMain
@@ -488,7 +513,7 @@ export default {
 }
 
 .custom-checkbox:checked + label::before {
-  background-image: url("src/assets/icons/checkMark.svg");
+  background-image: url("@/assets/icons/checkMark.svg");
   background-size: 30px 32px;
 }
 

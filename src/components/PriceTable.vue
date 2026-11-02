@@ -12,7 +12,7 @@ export default {
   },
   props: {
     price: {
-      type: Object as PropType<IPriceTable[]>,
+      type: Object as PropType<IPriceTable>,
       required: true,
     },
     places: {
@@ -39,7 +39,7 @@ export default {
         }
 
         if(it.price.toString().length > 5) {
-          it.price = it.price.toString().slice(0, 5);
+          it.price = Number(it.price.toString().slice(0, 5));
         }
       })
     }

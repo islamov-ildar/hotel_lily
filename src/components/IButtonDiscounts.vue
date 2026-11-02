@@ -1,6 +1,7 @@
 <script lang="ts">
 
-import {onMounted, PropType, ref} from "vue";
+import {onBeforeUnmount, onMounted, ref} from "vue";
+import type {PropType} from "vue";
 
 export default {
   props: {
@@ -13,23 +14,26 @@ export default {
 
     const isOnBottom = ref(false);
 
-    function getRectTop(el) {
+    function getRectTop(el: HTMLElement) {
       let rect = el.getBoundingClientRect();
       return rect.top;
     }
 
-    function getRectHeight(el) {
+    function getRectHeight(el: HTMLElement) {
       let rect = el.getBoundingClientRect();
       return rect.height;
     }
 
-    let socialFloat, footer, developersInfo, modal1, modal2;
+    let socialFloat: HTMLElement, footer: HTMLElement, developersInfo: HTMLElement;
+    let modal1: HTMLElement | null = null, modal2: HTMLElement | null = null;
 
+    let removeScrollListener = () => {};
+    onBeforeUnmount(() => removeScrollListener());
     onMounted(() => {
 
-      socialFloat = document.querySelector('#social-float');
-      footer = document.querySelector('#footer');
-      developersInfo = document.querySelector('#developersInfo');
+      socialFloat = document.querySelector<HTMLElement>('#social-float')!;
+      footer = document.querySelector<HTMLElement>('#footer')!;
+      developersInfo = document.querySelector<HTMLElement>('#developersInfo')!;
       function checkOffset() {
 
         if ((getRectTop(socialFloat) + document.body.scrollTop) + socialFloat.offsetHeight >= getRectTop(footer) + document.body.scrollTop - 40){
@@ -58,9 +62,8 @@ export default {
         }
       }
 
-      document.addEventListener("scroll", function () {
-        checkOffset();
-      });
+      document.addEventListener("scroll", checkOffset, { passive: true });
+      removeScrollListener = () => document.removeEventListener("scroll", checkOffset);
     })
 
 
@@ -71,8 +74,8 @@ export default {
       showDiscount.value = !showDiscount.value;
 
       if(showDiscount.value) {
-          modal1 = document.querySelector('#fixedModal1');
-          modal2 = document.querySelector('#fixedModal2');
+          modal1 = document.querySelector<HTMLElement>('#fixedModal1')!;
+          modal2 = document.querySelector<HTMLElement>('#fixedModal2')!;
 
           if ((getRectTop(socialFloat) + document.body.scrollTop) + socialFloat.offsetHeight >= getRectTop(footer) + document.body.scrollTop - 40){
             socialFloat.style.position = 'absolute';
